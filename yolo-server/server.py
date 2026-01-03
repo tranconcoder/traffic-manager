@@ -15,7 +15,7 @@ MODEL_PATH = 'yolo11n.pt'
 
 CONFIDENCE_THRESHOLD = 0.5 
 VEHICLE_CLASSES = ['car', 'truck', 'bus', 'motorcycle', 'bicycle'] 
-SOCKETIO_SERVER_URL = 'wss://172.28.31.150:3000'
+SOCKETIO_SERVER_URL = 'wss://localhost:3000'
 ENABLE_TRACKING = True 
 ENABLE_GPU = True 
 

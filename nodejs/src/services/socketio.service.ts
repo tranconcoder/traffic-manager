@@ -3,7 +3,14 @@ import { Server as HTTPsServer } from "https";
 import handleEvent from "../utils/socketio.util.js";
 
 export function runSocketIOService(server: HTTPsServer): SocketIOServer {
-  const io = new SocketIOServer(server); // Store the instance
+  const io = new SocketIOServer(server, {
+    pingTimeout: 30000, // 30s (reduced for tunnel stability)
+    pingInterval: 10000, // 10s (more frequent pings)
+    cors: { origin: "*" },
+    transports: ["websocket", "polling"], // Fallback support
+    allowUpgrades: true,
+    perMessageDeflate: false // Disable compression to avoid b'\xff' errors
+  }); // Store the instance
 
   io.on("connection", async (socket: Socket) => {
     console.log(`SOCKET.IO CLIENT CONNECTED: ${socket.id}`);

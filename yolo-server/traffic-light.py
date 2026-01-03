@@ -15,7 +15,7 @@ from PIL import Image
 MODEL_PATH = "./models/mhiot-dentinhieu-best-new-nano.pt"
 # MODEL_PATH = "./models/mhiot-dentinhieu-best-new.pt"
 CONFIDENCE_THRESHOLD = 0.4 
-SOCKETIO_SERVER_URL = 'wss://172.28.31.150:3000'
+SOCKETIO_SERVER_URL = 'wss://localhost:3000'
 ENABLE_GPU = True
 
 # ---------------------------------------------------------------------------- #

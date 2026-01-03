@@ -20,6 +20,8 @@ viewsRouter.get("/cameras/:cameraId", viewController.viewCameraDetail);
 
 viewsRouter.get("/demo", viewController.demoPage);
 
+viewsRouter.get("/combined", viewController.combinedPage);
+
 viewsRouter.get("/violations/review", viewController.violationReviewPage);
 
 viewsRouter.get(

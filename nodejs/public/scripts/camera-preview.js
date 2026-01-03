@@ -1,5 +1,5 @@
 const MAX_LOG_ENTRIES = 50;
-const SOCKETIO_SERVER_URL = "wss://172.28.31.150:3000";
+const SOCKETIO_SERVER_URL = "wss://localhost:3000";
 
 // DOM Elements
 const cameraListEl = document.getElementById("camera-list");

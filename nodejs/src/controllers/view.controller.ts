@@ -75,6 +75,11 @@ export default new (class ViewController {
     res.render("pages/demo");
   };
 
+  /* ----------------------------- Combined Page ----------------------------- */
+  combinedPage: RequestHandler = (req, res, next) => {
+    res.render("pages/combined");
+  };
+
   /* ----------------------------- Violation Review Page ----------------------------- */
   violationReviewPage: RequestHandler = (req, res, next) => {
     res.render("pages/violation-review", {

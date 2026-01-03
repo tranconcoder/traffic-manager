@@ -73,11 +73,11 @@ export default function runWebsocketService(
 
         io.to(room).emit("image", {
           cameraId,
-          imageId, 
-          width, 
-          height, 
-          buffer, 
-          track_line_y: camera.camera_track_line_y, 
+          imageId,
+          width,
+          height,
+          buffer,
+          track_line_y: camera.camera_track_line_y,
           created_at: timestamp
         });
 

@@ -1,4 +1,4 @@
-const SOCKETIO_SERVER_URL = "wss://172.28.31.150:3001";
+const SOCKETIO_SERVER_URL = "wss://localhost:3001";
 const MAX_LOG_ENTRIES = 50;
 const FRAME_RATE_LIMIT = 30; // Max frames per second to process
 
@@ -553,7 +553,7 @@ function drawVehicleOverlays(offsetX, offsetY, drawWidth, drawHeight) {
       offsetY +
       (latestVehicleData.counting_line.y /
         latestVehicleData.image_dimensions.height) *
-        drawHeight;
+      drawHeight;
     const startX = offsetX;
     const endX = offsetX + drawWidth;
 
@@ -729,7 +729,7 @@ function drawVehicleOverlays(offsetX, offsetY, drawWidth, drawHeight) {
         offsetY +
         (latestVehicleData.counting_line.y /
           latestVehicleData.image_dimensions.height) *
-          drawHeight;
+        drawHeight;
 
       // Up counter (right side)
       const upX = offsetX + drawWidth - 150;

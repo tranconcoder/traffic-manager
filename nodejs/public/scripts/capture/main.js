@@ -1,5 +1,5 @@
 // Giá trị mặc định có thể được ghi đè bởi người dùng
-const DEFAULT_WEBSOCKET_URL = "100.121.193.6:3001";
+const DEFAULT_WEBSOCKET_URL = "localhost:3001";
 const DEFAULT_API_KEY =
   "0e1f4b7dc39c63e9dbbfbf5afc2e50f9deb625507cada47b203117c82362d1d2";
 
@@ -312,7 +312,7 @@ window.addEventListener("load", () => {
   });
 
   // Update status styling based on connection status
-  const originalUpdateStatus = window.updateStatus || function () {};
+  const originalUpdateStatus = window.updateStatus || function () { };
   window.updateStatus = function (isConnected, message) {
     const statusElement = document.getElementById("status");
     if (isConnected) {

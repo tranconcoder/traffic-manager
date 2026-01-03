@@ -50,6 +50,9 @@ export async function handleJoinAllCameraEvent(this: Socket) {
 
   const cameraIds = await cameraModel.find({}, { _id: 1 }).lean();
 
+  const rooms = cameraIds.map(id => `camera_${id._id}`);
+  console.log(`[SocketIO] Client ${socket.id} joining rooms:`, rooms);
+
   cameraIds.forEach((id) => {
     socket.join(`camera_${id._id}`);
   });

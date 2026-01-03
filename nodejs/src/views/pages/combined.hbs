@@ -1,0 +1,124 @@
+{{! Combined Page V4 - Vehicle Manager with LocalStorage }}
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hệ thống Giám sát Giao thông</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="/css/combined.css" />
+</head>
+
+<body class="fullscreen-mode">
+    <!-- Sidebar Toggle -->
+    <button class="sidebar-toggle" id="sidebarToggle"><i class="fas fa-cog"></i></button>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h2><i class="fas fa-traffic-light"></i> Điều khiển</h2>
+            <button class="sidebar-close" id="sidebarClose"><i class="fas fa-times"></i></button>
+        </div>
+
+        <div class="sidebar-content">
+            <!-- Connection -->
+            <div class="sidebar-section">
+                <h3><i class="fas fa-plug"></i> Kết nối</h3>
+                <div class="form-group">
+                    <label>Camera</label>
+                    <select id="cameraSelect">
+                        <option value="">Chọn camera...</option>
+                    </select>
+                </div>
+                <div class="status-badge disconnected" id="connectionStatus">
+                    <span class="status-dot"></span> Chưa kết nối
+                </div>
+            </div>
+
+            <!-- Capture -->
+            <div class="sidebar-section">
+                <h3><i class="fas fa-camera"></i> Chụp ảnh</h3>
+                <div class="form-group">
+                    <label>FPS: <span id="fpsValue">10</span></label>
+                    <input type="range" id="fpsSlider" min="1" max="20" value="10" />
+                </div>
+                <div class="btn-group">
+                    <button class="btn btn-success" id="startBtn"><i class="fas fa-play"></i> Bắt đầu</button>
+                    <button class="btn btn-danger" id="stopBtn" disabled><i class="fas fa-stop"></i> Dừng</button>
+                </div>
+            </div>
+
+            <!-- Vehicle Manager -->
+            <div class="sidebar-section">
+                <h3><i class="fas fa-car"></i> Quản lý phương tiện</h3>
+                <div class="vehicle-list" id="vehicleList"></div>
+                <div class="upload-zone" id="uploadZone">
+                    <i class="fas fa-plus"></i>
+                    <span>Thêm phương tiện mới</span>
+                    <input type="file" id="vehicleUpload" accept="image/*" hidden />
+                </div>
+                <div class="form-group" style="margin-top: 10px;">
+                    <label>Kích thước: <span id="sizeValue">150</span>px</label>
+                    <input type="range" id="sizeSlider" min="50" max="400" value="150" />
+                </div>
+            </div>
+
+            <!-- Traffic Light -->
+            <div class="sidebar-section">
+                <h3><i class="fas fa-traffic-light"></i> Đèn</h3>
+                <div class="light-controls">
+                    <button class="light-btn red active" data-light="red"><i class="fas fa-circle"></i></button>
+                    <button class="light-btn yellow" data-light="yellow"><i class="fas fa-circle"></i></button>
+                    <button class="light-btn green" data-light="green"><i class="fas fa-circle"></i></button>
+                </div>
+            </div>
+        </div>
+
+        <div class="sidebar-footer">
+            <div class="stats">
+                <div class="stat"><i class="fas fa-upload"></i> <span id="framesSent">0</span></div>
+                <div class="stat"><i class="fas fa-download"></i> <span id="framesReceived">0</span></div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Demo Area -->
+    <main class="demo-fullscreen" id="demoArea">
+        <canvas id="mainCanvas"></canvas>
+
+        <!-- Traffic Light Display -->
+        <div class="traffic-light-display" id="trafficLight">
+            <div class="tl-light red active"></div>
+            <div class="tl-light yellow"></div>
+            <div class="tl-light green"></div>
+        </div>
+
+        <!-- Status -->
+        <div class="status-overlay">
+            <span class="recording-badge" id="recordingBadge"><i class="fas fa-circle"></i> ĐANG GỬI</span>
+            <span class="light-status" id="lightStatus">🔴 Đèn đỏ</span>
+            <span class="key-hint">WASD để di chuyển xe</span>
+        </div>
+    </main>
+
+    <!-- Preview Float -->
+    <div class="preview-float" id="previewFloat">
+        <div class="preview-header">
+            <span><i class="fas fa-eye"></i> AI Preview</span>
+            <button class="preview-close" id="previewClose"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="preview-content">
+            <canvas id="previewCanvas"></canvas>
+            <div class="preview-info">
+                <span id="detectionCount">0 phát hiện</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/scripts/combined/main.js"></script>
+</body>
+
+</html>

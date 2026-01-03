@@ -27,7 +27,7 @@ USE_HALF_PRECISION = True
 ENABLE_GPU = True 
 
 # Socket.IO configuration
-SOCKETIO_SERVER_URL = 'wss://172.28.31.150:3000' 
+SOCKETIO_SERVER_URL = 'wss://localhost:3000' 
 MAX_FPS = 90
 QUEUE_SIZE = 5 
 
