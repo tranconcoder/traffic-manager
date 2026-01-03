@@ -7,6 +7,7 @@ const router = Router();
 router.get("/all", catchError(violationController.getAllViolations));
 
 router.get("/image/:violation_id", catchError(violationController.getImageBuffer));
+router.get("/frames/:violation_id", catchError(violationController.getViolationFrames));
 
 router.patch("/status/:violation_id", catchError(violationController.updateViolationStatus));
 

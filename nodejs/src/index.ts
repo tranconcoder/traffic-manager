@@ -18,6 +18,7 @@ import { WebSocketServer } from "ws";
 
 // Services
 import * as ffmpegService from "@/services/ffmpeg.service.js";
+import { runMqttService } from "@/services/mqtt.service.js";
 
 // Morgan
 import morgan from "morgan";
@@ -136,6 +137,8 @@ handleRoute(app);
 ffmpegService.run();
 // Websocket
 runWebsocketService(wss, HOST, PORT);
+// MQTT
+runMqttService();
 
 //
 // ERROR HANDLER

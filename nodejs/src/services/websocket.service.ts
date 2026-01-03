@@ -6,7 +6,7 @@ import { io as ioClient, Socket } from "socket.io-client";
 import url from "url";
 import { WebSocketServer } from "ws";
 // Analytics
-import { WebsocketAnalytics } from "./websocketAnalytics.service.js";
+import { websocketAnalytics } from "./websocketAnalytics.service.js";
 
 // Import the io instance (assuming it's exported from index.ts)
 // Adjust the path if necessary
@@ -17,10 +17,6 @@ import { imageSize } from 'image-size';
 import { io } from '@/index.js';
 import mongoose from 'mongoose';
 import cameraImageModel from '@/models/cameraImage.model.js';
-
-
-const websocketAnalytics = new WebsocketAnalytics(0, 0, 10_000);
-websocketAnalytics.startAnalytics();
 
 export default function runWebsocketService(
   wss: WebSocketServer,

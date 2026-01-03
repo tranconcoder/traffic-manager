@@ -1,0 +1,544 @@
+[
+    {
+        "id": "f6f2187d.f17ca8",
+        "type": "tab",
+        "label": "Sensor Data Flow",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "ui_tab_monitor",
+        "type": "ui_tab",
+        "name": "Kịch bản 1: Giám sát",
+        "icon": "dashboard",
+        "order": 1,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "ui_tab_violation",
+        "type": "ui_tab",
+        "name": "Kịch bản 2: Theo dõi vi phạm",
+        "icon": "warning",
+        "order": 2,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "ui_group_violation_placeholder",
+        "type": "ui_group",
+        "name": "📋 Thông tin vi phạm",
+        "tab": "ui_tab_violation",
+        "order": 1,
+        "disp": false,
+        "width": "24",
+        "collapse": false
+    },
+    {
+        "id": "ui_group_control",
+        "type": "ui_group",
+        "name": "📷 Chọn Camera",
+        "tab": "ui_tab_monitor",
+        "order": 1,
+        "disp": true,
+        "width": "12",
+        "collapse": false
+    },
+    {
+        "id": "ui_group_temp",
+        "type": "ui_group",
+        "name": "🌡️ Nhiệt độ",
+        "tab": "ui_tab_monitor",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "ui_group_hum",
+        "type": "ui_group",
+        "name": "💧 Độ ẩm",
+        "tab": "ui_tab_monitor",
+        "order": 3,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "ui_group_video",
+        "type": "ui_group",
+        "name": "📹 Live Camera",
+        "tab": "ui_tab_monitor",
+        "order": 4,
+        "disp": true,
+        "width": "12",
+        "collapse": false
+    },
+    {
+        "id": "57c141722b11a9a9",
+        "type": "ui_base",
+        "theme": {
+            "name": "theme-dark",
+            "lightTheme": {
+                "default": "#0094CE",
+                "baseColor": "#0094CE",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": false
+            },
+            "darkTheme": {
+                "default": "#097479",
+                "baseColor": "#097479",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true
+            },
+            "themeState": {
+                "base-color": {
+                    "default": "#097479",
+                    "value": "#097479",
+                    "edited": false
+                },
+                "page-titlebar-backgroundColor": {
+                    "value": "#1a1a2e",
+                    "edited": true
+                },
+                "page-backgroundColor": {
+                    "value": "#16213e",
+                    "edited": true
+                },
+                "page-sidebar-backgroundColor": {
+                    "value": "#0f3460",
+                    "edited": true
+                },
+                "group-textColor": {
+                    "value": "#e94560",
+                    "edited": true
+                },
+                "group-borderColor": {
+                    "value": "#0f3460",
+                    "edited": true
+                },
+                "group-backgroundColor": {
+                    "value": "#1a1a2e",
+                    "edited": true
+                },
+                "widget-textColor": {
+                    "value": "#ffffff",
+                    "edited": true
+                },
+                "widget-backgroundColor": {
+                    "value": "#e94560",
+                    "edited": true
+                },
+                "widget-borderColor": {
+                    "value": "#0f3460",
+                    "edited": true
+                },
+                "base-font": {
+                    "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+                }
+            },
+            "angularTheme": {
+                "primary": "indigo",
+                "accents": "pink",
+                "warn": "red",
+                "background": "grey",
+                "palette": "dark"
+            }
+        },
+        "site": {
+            "name": "Traffic Manager IoT",
+            "hideToolbar": "false",
+            "allowSwipe": "false",
+            "lockMenu": "false",
+            "allowTempTheme": "true",
+            "dateFormat": "DD/MM/YYYY",
+            "sizes": {
+                "sx": 48,
+                "sy": 48,
+                "gx": 6,
+                "gy": 6,
+                "cx": 6,
+                "cy": 6,
+                "px": 0,
+                "py": 0
+            }
+        }
+    },
+    {
+        "id": "mqtt_broker_emqx",
+        "type": "mqtt-broker",
+        "name": "EMQX Public",
+        "broker": "broker.emqx.io",
+        "port": "1883",
+        "clientid": "nodered-dashboard",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true
+    },
+    {
+        "id": "ui_template_camera_select",
+        "type": "ui_template",
+        "z": "f6f2187d.f17ca8",
+        "group": "ui_group_control",
+        "name": "Camera Dropdown",
+        "order": 1,
+        "width": 12,
+        "height": 5,
+        "format": "<div style=\"padding: 10px;\">\n    <label style=\"color: #e94560; font-weight: bold; margin-bottom: 8px; display: block;\">Chọn Camera:</label>\n    <select id=\"camera-select\" style=\"width: 100%; padding: 10px; border-radius: 8px; border: 2px solid #e94560; background: #16213e; color: white; font-size: 14px; cursor: pointer;\">\n        <option value=\"\">-- Chọn camera --</option>\n    </select>\n    \n    <label style=\"color: #e94560; font-weight: bold; margin: 12px 0 8px; display: block;\">Khoảng thời gian:</label>\n    <div id=\"time-range-btns\" style=\"display: flex; gap: 8px; flex-wrap: wrap;\">\n        <button data-range=\"15000\" style=\"flex:1; padding: 8px; border-radius: 6px; border: 1px solid #e94560; background: #16213e; color: #ccc; cursor: pointer;\">15s</button>\n        <button data-range=\"30000\" style=\"flex:1; padding: 8px; border-radius: 6px; border: 1px solid #e94560; background: #16213e; color: #ccc; cursor: pointer;\">30s</button>\n        <button data-range=\"60000\" class=\"active\" style=\"flex:1; padding: 8px; border-radius: 6px; border: 1px solid #e94560; background: #e94560; color: white; cursor: pointer;\">60s</button>\n        <button data-range=\"300000\" style=\"flex:1; padding: 8px; border-radius: 6px; border: 1px solid #e94560; background: #16213e; color: #ccc; cursor: pointer;\">5m</button>\n    </div>\n    \n    <div id=\"camera-status\" style=\"margin-top: 10px; color: #888; font-size: 12px;\">Đang tải...</div>\n</div>\n\n<script>\n(function(scope) {\n    const select = document.getElementById('camera-select');\n    const status = document.getElementById('camera-status');\n    const btns = document.querySelectorAll('#time-range-btns button');\n    const baseUrl = 'https://' + location.hostname + ':3000';\n    let selectedRange = 60000; // Default 60s\n    \n    btns.forEach(btn => {\n        btn.addEventListener('click', () => {\n            btns.forEach(b => { b.style.background = '#16213e'; b.style.color = '#ccc'; });\n            btn.style.background = '#e94560'; btn.style.color = 'white';\n            selectedRange = parseInt(btn.dataset.range);\n            if (select.value) loadHistory(select.value);\n        });\n    });\n    \n    fetch(baseUrl + '/api/camera/all')\n        .then(res => res.json())\n        .then(data => {\n            const cameras = data.metadata || data.data || data;\n            if (!Array.isArray(cameras)) throw new Error('Invalid');\n            cameras.forEach(cam => {\n                const opt = document.createElement('option');\n                opt.value = cam._id;\n                opt.textContent = cam.camera_name || cam.name || cam._id;\n                select.appendChild(opt);\n            });\n            status.textContent = cameras.length + ' camera';\n            status.style.color = '#48bb78';\n        })\n        .catch(err => { status.textContent = 'Lỗi: ' + err.message; status.style.color = '#ff6b6b'; });\n    \n    function loadHistory(cameraId) {\n        status.textContent = '⏳ Đang tải...';\n        status.style.color = '#ffd93d';\n        scope.send({payload: cameraId, topic: 'selectedCamera'});\n        \n        setTimeout(() => {\n            const fromTime = Date.now() - selectedRange;\n            fetch(baseUrl + '/api/sensor/history/' + cameraId + '?limit=500&from=' + fromTime)\n                .then(res => res.json())\n                .then(data => {\n                    const history = data.metadata || data;\n                    if (Array.isArray(history) && history.length > 0) {\n                        scope.send({payload: history, topic: 'sensorHistory'});\n                        status.textContent = '✅ ' + history.length + ' điểm';\n                    } else {\n                        scope.send({payload: [], topic: 'sensorHistory'});\n                        status.textContent = '✅ Không có dữ liệu';\n                    }\n                    status.style.color = '#48bb78';\n                })\n                .catch(err => { status.textContent = 'Lỗi: ' + err.message; status.style.color = '#ff6b6b'; });\n        }, 300);\n    }\n    \n    select.addEventListener('change', () => {\n        if (select.value) loadHistory(select.value);\n        else { status.textContent = 'Chưa chọn'; status.style.color = '#888'; scope.send({payload: '', topic: 'selectedCamera'}); }\n    });\n})(scope);\n</script>",
+        "storeOutMessages": false,
+        "fwdInMessages": false,
+        "resendOnRefresh": false,
+        "templateScope": "local",
+        "className": "",
+        "x": 150,
+        "y": 60,
+        "wires": [
+            [
+                "func_set_camera",
+                "ui_template_traffic_light",
+                "ui_template_vehicle_stats",
+                "ui_template_video"
+            ]
+        ]
+    },
+    {
+        "id": "func_set_camera",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "Process Camera/History",
+        "func": "if (msg.topic === 'selectedCamera') {\n    flow.set('selectedCameraId', msg.payload);\n    if (msg.payload) {\n        node.status({fill:'green', shape:'dot', text: 'Camera: ' + msg.payload});\n        return [{payload: []}, {payload: []}, {payload: 0}, {payload: 0}];\n    } else {\n        node.status({fill:'grey', shape:'ring', text: 'No camera'});\n    }\n    return null;\n}\n\nif (msg.topic === 'sensorHistory') {\n    var history = msg.payload;\n    var lastTemp = 0, lastHum = 0;\n    \n    if (!history || history.length === 0) {\n        node.status({fill:'yellow', shape:'ring', text: 'No data'});\n        return [{payload: 0}, {payload: 0}, {payload: 0}, {payload: 0}];\n    }\n    \n    // Build chart data array\n    var tempChart = [];\n    var humChart = [];\n    \n    history.forEach(function(item) {\n        var ts = new Date(item.created_at).getTime();\n        tempChart.push({x: ts, y: item.temperature});\n        humChart.push({x: ts, y: item.humidity});\n        lastTemp = item.temperature;\n        lastHum = item.humidity;\n    });\n    \n    node.status({fill:'blue', shape:'dot', text: history.length + ' points'});\n    \n    // Return chart series format\n    return [\n        {payload: [{ series: ['Temperature'], data: [tempChart], labels: [''] }]},\n        {payload: [{ series: ['Humidity'], data: [humChart], labels: [''] }]},\n        {payload: lastTemp},\n        {payload: lastHum}\n    ];\n}\n\nreturn null;",
+        "outputs": 4,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 400,
+        "y": 60,
+        "wires": [
+            [
+                "ui_chart_temp"
+            ],
+            [
+                "ui_chart_hum"
+            ],
+            [
+                "ui_gauge_temp"
+            ],
+            [
+                "ui_gauge_hum"
+            ]
+        ]
+    },
+    {
+        "id": "mqtt_in_sensor",
+        "type": "mqtt in",
+        "z": "f6f2187d.f17ca8",
+        "name": "MQTT Sensor",
+        "topic": "traffic-manager/sensor/#",
+        "qos": "1",
+        "datatype": "json",
+        "broker": "mqtt_broker_emqx",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 130,
+        "y": 140,
+        "wires": [
+            [
+                "func_filter_camera"
+            ]
+        ]
+    },
+    {
+        "id": "func_filter_camera",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "Filter by Camera",
+        "func": "var selectedCamera = flow.get('selectedCameraId');\nvar incomingCamera = msg.payload.camera_id;\n\n// Only pass through if camera is selected AND matches\nif (selectedCamera && selectedCamera === incomingCamera) {\n    return msg;\n}\n\n// Block if no camera selected or doesn't match\nreturn null;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 330,
+        "y": 140,
+        "wires": [
+            [
+                "debug_sensor",
+                "function_split_data"
+            ]
+        ]
+    },
+    {
+        "id": "debug_sensor",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "Log",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": true,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "payload",
+        "statusType": "auto",
+        "x": 530,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "function_split_data",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "Split",
+        "func": "var temp = { payload: msg.payload.temperature, topic: 'Temp' };\nvar hum = { payload: msg.payload.humidity, topic: 'Hum' };\nreturn [temp, hum];",
+        "outputs": 2,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 530,
+        "y": 180,
+        "wires": [
+            [
+                "ui_gauge_temp",
+                "ui_chart_temp"
+            ],
+            [
+                "ui_gauge_hum",
+                "ui_chart_hum"
+            ]
+        ]
+    },
+    {
+        "id": "ui_gauge_temp",
+        "type": "ui_gauge",
+        "z": "f6f2187d.f17ca8",
+        "name": "Gauge Temp",
+        "group": "ui_group_temp",
+        "order": 1,
+        "width": 6,
+        "height": 4,
+        "gtype": "gage",
+        "title": "Nhiệt độ",
+        "label": "°C",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "50",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "25",
+        "seg2": "35",
+        "x": 710,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "ui_chart_temp",
+        "type": "ui_chart",
+        "z": "f6f2187d.f17ca8",
+        "name": "Chart Temp",
+        "group": "ui_group_temp",
+        "order": 2,
+        "width": 6,
+        "height": 4,
+        "label": "Lịch sử nhiệt độ",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "Chọn camera để xem dữ liệu",
+        "dot": false,
+        "ymin": "0",
+        "ymax": "50",
+        "removeOlder": "5",
+        "removeOlderPoints": "100",
+        "removeOlderUnit": "60",
+        "cutout": 0,
+        "useOneColor": true,
+        "useUTC": false,
+        "colors": [
+            "#ff7f0e"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 710,
+        "y": 180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ui_gauge_hum",
+        "type": "ui_gauge",
+        "z": "f6f2187d.f17ca8",
+        "name": "Gauge Hum",
+        "group": "ui_group_hum",
+        "order": 1,
+        "width": 6,
+        "height": 4,
+        "gtype": "gage",
+        "title": "Độ ẩm",
+        "label": "%",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "40",
+        "seg2": "70",
+        "x": 710,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "ui_chart_hum",
+        "type": "ui_chart",
+        "z": "f6f2187d.f17ca8",
+        "name": "Chart Hum",
+        "group": "ui_group_hum",
+        "order": 2,
+        "width": 6,
+        "height": 4,
+        "label": "Lịch sử độ ẩm",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "Chọn camera để xem dữ liệu",
+        "dot": false,
+        "ymin": "0",
+        "ymax": "100",
+        "removeOlder": "5",
+        "removeOlderPoints": "100",
+        "removeOlderUnit": "60",
+        "cutout": 0,
+        "useOneColor": true,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 710,
+        "y": 280,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ui_template_video",
+        "type": "ui_template",
+        "z": "f6f2187d.f17ca8",
+        "group": "ui_group_video",
+        "name": "Video",
+        "order": 1,
+        "width": 12,
+        "height": 7,
+        "format": "<div style=\"text-align: center; background: #1a1a2e; padding: 10px; border-radius: 8px; position: relative;\">\n    <canvas id=\"video-canvas\" style=\"width: 100%; max-width: 720px; border-radius: 8px; border: 2px solid #e94560; background: #000;\"></canvas>\n    <div id=\"status\" style=\"color: #888; margin-top: 8px; font-size: 12px;\">Đang kết nối...</div>\n</div>\n\n<script src=\"https://cdn.socket.io/4.5.4/socket.io.min.js\"></script>\n<script>\n(function(scope) {\n    const canvas = document.getElementById('video-canvas');\n    const ctx = canvas.getContext('2d');\n    const status = document.getElementById('status');\n    \n    // State\n    let selectedCameraId = null;\n    let latestImage = null;\n    let latestVehicleData = null;\n    let latestTrafficData = null;\n    let latestTrackLineY = null;\n    let lastDrawTime = 0;\n\n    const socket = io('https://' + location.hostname + ':3000', {\n        transports: ['websocket', 'polling'],\n        secure: true,\n        rejectUnauthorized: false\n    });\n\n    // Handle Camera Selection from Node-RED\n    scope.$watch('msg', function(msg) {\n        if (msg && msg.topic === 'selectedCamera') {\n            selectedCameraId = msg.payload;\n            // Clear state on camera change\n            latestVehicleData = null;\n            latestTrafficData = null;\n            latestImage = null;\n            latestTrackLineY = null;\n            // Clear canvas\n            canvas.width = canvas.width; // Reset\n        }\n    });\n\n    function draw() {\n        if (!latestImage || !ctx) return;\n        \n        // Resize canvas to match image aspect ratio while fitting container\n        const container = canvas.parentElement;\n        const containerWidth = container.clientWidth || 720;\n        const aspect = latestImage.width / latestImage.height;\n        const drawWidth = containerWidth;\n        const drawHeight = drawWidth / aspect;\n        \n        if (canvas.width !== drawWidth || canvas.height !== drawHeight) {\n             canvas.width = drawWidth;\n             canvas.height = drawHeight;\n        }\n\n        ctx.clearRect(0, 0, drawWidth, drawHeight);\n        ctx.drawImage(latestImage, 0, 0, drawWidth, drawHeight);\n        \n        // Helper to scale coordinates\n        const scaleX = (x) => x * drawWidth;\n        const scaleY = (y) => y * drawHeight;\n        \n        // (Counting Line drawing removed)\n\n        // 1.5 Draw Tracks (Vehicle Trails)\n        if (latestVehicleData && latestVehicleData.tracks && latestVehicleData.tracks.length > 0) {\n            const imgW = latestVehicleData.image_dimensions ? latestVehicleData.image_dimensions.width : (latestImage ? latestImage.width : 1280);\n            const imgH = latestVehicleData.image_dimensions ? latestVehicleData.image_dimensions.height : (latestImage ? latestImage.height : 720);\n\n            latestVehicleData.tracks.forEach(track => {\n                if (track.positions && track.positions.length >= 2) {\n                     let color = \"rgba(255, 255, 0, 0.8)\";\n                     const colorMap = { car: 'rgba(0, 255, 0, 0.8)', truck: 'rgba(0, 0, 255, 0.8)', bus: 'rgba(255, 0, 0, 0.8)', motorcycle: 'rgba(255, 255, 0, 0.8)' };\n                     if (colorMap[track.class]) color = colorMap[track.class];\n\n                     ctx.beginPath();\n                     ctx.strokeStyle = color;\n                     ctx.lineWidth = 2;\n\n                     const sortedPositions = [...track.positions].sort((a, b) => a.time - b.time);\n                     for (let i = 0; i < sortedPositions.length - 1; i++) {\n                         const pos1 = sortedPositions[i];\n                         const pos2 = sortedPositions[i + 1];\n                         \n                         const x1 = (pos1.x / imgW) * drawWidth;\n                         const y1 = (pos1.y / imgH) * drawHeight;\n                         const x2 = (pos2.x / imgW) * drawWidth;\n                         const y2 = (pos2.y / imgH) * drawHeight;\n                         \n                         if (i === 0) ctx.moveTo(x1, y1);\n                         ctx.lineTo(x2, y2);\n                     }\n                     ctx.stroke();\n                }\n            });\n        }\n\n        // 2. Draw Vehicles\n        if (latestVehicleData && latestVehicleData.detections) {\n            latestVehicleData.detections.forEach(d => {\n                if (!d.bbox) return;\n                \n                const x = d.bbox.x1 * drawWidth;\n                const y = d.bbox.y1 * drawHeight;\n                const w = (d.bbox.x2 - d.bbox.x1) * drawWidth;\n                const h = (d.bbox.y2 - d.bbox.y1) * drawHeight;\n                \n                const colorMap = { car: '#00ff00', truck: '#0000ff', bus: '#ff0000', motorcycle: '#ffff00' };\n                const color = colorMap[d.class] || '#00ff00';\n                \n                ctx.strokeStyle = color;\n                ctx.lineWidth = 2;\n                ctx.strokeRect(x, y, w, h);\n                \n                // Label\n                ctx.fillStyle = color;\n                ctx.fillRect(x, y - 20, w, 20);\n                ctx.fillStyle = 'black';\n                ctx.font = '12px Arial';\n                ctx.fillText(`${d.class} ${d.confidence.toFixed(2)}`, x + 2, y - 5);\n            });\n        }\n        \n        // 3. Draw Traffic Lights\n        if (latestTrafficData && latestTrafficData.detections) {\n             latestTrafficData.detections.forEach(d => {\n                 if (!d.bbox) return;\n                 const x = d.bbox.x1 * drawWidth;\n                 const y = d.bbox.y1 * drawHeight;\n                 const w = (d.bbox.x2 - d.bbox.x1) * drawWidth;\n                 const h = (d.bbox.y2 - d.bbox.y1) * drawHeight;\n                 \n                 const color = d.class.toLowerCase().includes('red') ? 'red' : \n                              (d.class.toLowerCase().includes('green') ? 'green' : 'yellow');\n                 \n                 ctx.strokeStyle = color;\n                 ctx.lineWidth = 3;\n                 ctx.strokeRect(x, y, w, h);\n             });\n        }\n    }\n\n    socket.on('connect', () => {\n        status.textContent = '✅ Đã kết nối';\n        status.style.color = '#00ff00';\n    });\n\n    socket.on('image', (data) => {\n        if (!data || !data.buffer) return;\n        if (selectedCameraId && data.cameraId !== selectedCameraId) return;\n        \n        let buffer = data.buffer;\n        if (buffer.type === 'Buffer' && Array.isArray(buffer.data)) {\n             buffer = new Uint8Array(buffer.data);\n        } else if (typeof buffer === 'string') {\n             // Base64 or similar if changed later\n             const binary = atob(buffer);\n             const len = binary.length;\n             buffer = new Uint8Array(len);\n             for (let i=0; i<len; i++) buffer[i] = binary.charCodeAt(i);\n        }\n        \n        // Capture track_line_y\n        if (data.track_line_y !== undefined) {\n             latestTrackLineY = data.track_line_y;\n        }\n        \n        const blob = new Blob([buffer], { type: 'image/jpeg' });\n        const url = URL.createObjectURL(blob);\n        \n        const img = new Image();\n        img.onload = () => {\n            latestImage = img;\n            URL.revokeObjectURL(url);\n            draw();\n        };\n        img.src = url;\n    });\n    \n    socket.on('car_detected', (data) => {\n        if (selectedCameraId && data.camera_id !== selectedCameraId) return;\n        latestVehicleData = data;\n        draw();\n    });\n    \n    socket.on('traffic_light', (data) => {\n        if (selectedCameraId && data.cameraId !== selectedCameraId) return;\n        latestTrafficData = data;\n        draw();\n    });\n\n})(scope);\n</script>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 710,
+        "y": 340,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ui_group_traffic_light",
+        "type": "ui_group",
+        "name": "🚦 Đèn giao thông",
+        "tab": "ui_tab_monitor",
+        "order": 5,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "ui_group_vehicle_stats",
+        "type": "ui_group",
+        "name": "🚗 Thống kê phương tiện",
+        "tab": "ui_tab_monitor",
+        "order": 6,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "ui_template_traffic_light",
+        "type": "ui_template",
+        "z": "f6f2187d.f17ca8",
+        "group": "ui_group_traffic_light",
+        "name": "Traffic Light Widget",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "format": "<div style=\"display: flex; justify-content: center; align-items: center; gap: 20px; padding: 20px; height: 100%;\">\n    <div id=\"light-red\" style=\"width: 60px; height: 60px; border-radius: 50%; background: #330000; border: 2px solid #555; box-shadow: 0 0 10px #000 inset; transition: all 0.2s;\"></div>\n    <div id=\"light-yellow\" style=\"width: 60px; height: 60px; border-radius: 50%; background: #333300; border: 2px solid #555; box-shadow: 0 0 10px #000 inset; transition: all 0.2s;\"></div>\n    <div id=\"light-green\" style=\"width: 60px; height: 60px; border-radius: 50%; background: #003300; border: 2px solid #555; box-shadow: 0 0 10px #000 inset; transition: all 0.2s;\"></div>\n</div>\n<div id=\"tl-status\" style=\"text-align: center; color: #888; font-size: 12px; margin-top: 10px;\">Đang chờ dữ liệu...</div>\n\n<script src=\"https://cdn.socket.io/4.5.4/socket.io.min.js\"></script>\n<script>\n(function(scope) {\n    const lights = {\n        'RED': document.getElementById('light-red'),\n        'YELLOW': document.getElementById('light-yellow'),\n        'GREEN': document.getElementById('light-green')\n    };\n    const statusEl = document.getElementById('tl-status');\n    let selectedCameraId = null;\n    \n    const socket = io('https://' + location.hostname + ':3000', {\n        transports: ['websocket', 'polling'],\n        secure: true,\n        rejectUnauthorized: false\n    });\n\n    function reset() {\n        lights['RED'].style.background = '#330000';\n        lights['RED'].style.boxShadow = '0 0 10px #000 inset';\n        lights['YELLOW'].style.background = '#333300';\n        lights['YELLOW'].style.boxShadow = '0 0 10px #000 inset';\n        lights['GREEN'].style.background = '#003300';\n        lights['GREEN'].style.boxShadow = '0 0 10px #000 inset';\n    }\n\n    function updateLight(color) {\n        reset();\n        if (color && lights[color]) {\n            const brightColors = {\n                'RED': '#ff0000',\n                'YELLOW': '#ffff00',\n                'GREEN': '#00ff00'\n            };\n            lights[color].style.background = brightColors[color];\n            lights[color].style.boxShadow = `0 0 20px ${brightColors[color]}`;\n            statusEl.textContent = `Tín hiệu: ${color}`;\n        }\n    }\n\n    scope.$watch('msg', function(msg) {\n        if (msg && msg.topic === 'selectedCamera') {\n            selectedCameraId = msg.payload;\n            statusEl.textContent = selectedCameraId ? 'Đang chờ tín hiệu...' : 'Chưa chọn camera';\n            reset();\n        }\n    });\n\n    socket.on('traffic_light', (data) => {\n        if (selectedCameraId && data.cameraId === selectedCameraId) {\n             // Raw format example: \"Traffic Light -Red-\"\n             let rawStatus = data.traffic_status || \"\";\n             let color = null;\n             if (rawStatus.toLowerCase().includes('red')) color = 'RED';\n             else if (rawStatus.toLowerCase().includes('green')) color = 'GREEN';\n             else if (rawStatus.toLowerCase().includes('yellow')) color = 'YELLOW';\n             \n             if (color) updateLight(color);\n        }\n    });\n})(scope);\n</script>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 400,
+        "y": 460,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ui_template_vehicle_stats",
+        "type": "ui_template",
+        "z": "f6f2187d.f17ca8",
+        "group": "ui_group_vehicle_stats",
+        "name": "Vehicle Stats Widget",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "format": "<div style=\"padding: 10px;\">\n    <div class=\"stat-item\" style=\"margin-bottom: 8px; background: #1a1a2e; padding: 8px; border-radius: 4px; border-left: 3px solid #e94560;\">\n        <div style=\"display: flex; justify-content: space-between; color: #ccc; font-size: 12px;\">\n            <span>🚗 Ô tô</span>\n            <span id=\"count-car\" style=\"font-weight: bold; color: white;\">0</span>\n        </div>\n    </div>\n    <div class=\"stat-item\" style=\"margin-bottom: 8px; background: #1a1a2e; padding: 8px; border-radius: 4px; border-left: 3px solid #ffcc00;\">\n        <div style=\"display: flex; justify-content: space-between; color: #ccc; font-size: 12px;\">\n            <span>🚚 Xe tải</span>\n            <span id=\"count-truck\" style=\"font-weight: bold; color: white;\">0</span>\n        </div>\n    </div>\n    <div class=\"stat-item\" style=\"margin-bottom: 8px; background: #1a1a2e; padding: 8px; border-radius: 4px; border-left: 3px solid #00cc00;\">\n        <div style=\"display: flex; justify-content: space-between; color: #ccc; font-size: 12px;\">\n            <span>🚌 Xe buýt</span>\n            <span id=\"count-bus\" style=\"font-weight: bold; color: white;\">0</span>\n        </div>\n    </div>\n    <div class=\"stat-item\" style=\"margin-bottom: 8px; background: #1a1a2e; padding: 8px; border-radius: 4px; border-left: 3px solid #3366ff;\">\n        <div style=\"display: flex; justify-content: space-between; color: #ccc; font-size: 12px;\">\n            <span>🏍️ Xe máy</span>\n            <span id=\"count-motorbike\" style=\"font-weight: bold; color: white;\">0</span>\n        </div>\n    </div>\n    <div id=\"stats-timestamp\" style=\"text-align: right; font-size: 10px; color: #666; margin-top: 5px;\">--:--:--</div>\n</div>\n\n<script src=\"https://cdn.socket.io/4.5.4/socket.io.min.js\"></script>\n<script>\n(function(scope) {\n    const els = {\n        'car': document.getElementById('count-car'),\n        'truck': document.getElementById('count-truck'),\n        'bus': document.getElementById('count-bus'),\n        'motorbike': document.getElementById('count-motorbike'),\n        'timestamp': document.getElementById('stats-timestamp')\n    };\n    const baseUrl = 'https://' + location.hostname + ':3000';\n    let selectedCameraId = null;\n    let currentCounts = { car: 0, truck: 0, bus: 0, motorbike: 0 };\n    let seenIds = new Set(); // Track unique IDs locally during session\n    let fetchTimeout = null;\n\n    const socket = io(baseUrl, {\n        transports: ['websocket', 'polling'],\n        secure: true,\n        rejectUnauthorized: false\n    });\n\n    function updateDisplay() {\n        for (const [key, val] of Object.entries(currentCounts)) {\n            if (els[key]) els[key].textContent = val;\n        }\n        els['timestamp'].textContent = new Date().toLocaleTimeString();\n    }\n\n    function loadStats(cameraId) {\n        // els['timestamp'].textContent = 'Đang tải...'; \n        fetch(baseUrl + '/api/car-detection/stats/' + cameraId)\n            .then(res => res.json())\n            .then(data => {\n                const stats = data.metadata || {};\n                 currentCounts = {\n                    car: stats.car || 0,\n                    truck: stats.truck || 0,\n                    bus: stats.bus || 0,\n                    motorbike: stats.motorcycle || stats.motorbike || 0\n                };\n                updateDisplay();\n            })\n            .catch(err => {\n                console.error(\"Stats error:\", err);\n                els['timestamp'].textContent = 'Lỗi tải';\n            });\n    }\n\n    scope.$watch('msg', function(msg) {\n        if (msg && msg.topic === 'selectedCamera') {\n            selectedCameraId = msg.payload;\n            // Reset on camera change\n            currentCounts = { car: 0, truck: 0, bus: 0, motorbike: 0 };\n            seenIds.clear();\n            updateDisplay();\n            \n            if (selectedCameraId) {\n                loadStats(selectedCameraId);\n            } else {\n                els['timestamp'].textContent = '--:--:--';\n            }\n        }\n    });\n\n    socket.on('car_detected', (data) => {\n        if (selectedCameraId && data.camera_id === selectedCameraId) {\n             // Check for new IDs\n             let hasNewId = false;\n             if (Array.isArray(data.detections)) {\n                 data.detections.forEach(d => {\n                     if (d.id && !seenIds.has(d.id)) {\n                         seenIds.add(d.id);\n                         hasNewId = true;\n                     }\n                 });\n             }\n\n             if (hasNewId) {\n                 // Debounce fetch to avoid spamming API on every frame of a new entry\n                 if (fetchTimeout) clearTimeout(fetchTimeout);\n                 fetchTimeout = setTimeout(() => {\n                     loadStats(selectedCameraId);\n                 }, 500);\n             }\n        }\n    });\n})(scope);\n</script>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 400,
+        "y": 520,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ui_template_placeholder_kb2",
+        "type": "ui_template",
+        "z": "f6f2187d.f17ca8",
+        "group": "ui_group_violation_placeholder",
+        "name": "KB2 Placeholder",
+        "order": 1,
+        "width": 0,
+        "height": 12,
+        "format": "<div class=\"violation-dashboard\" style=\"display: flex; height: calc(100vh - 120px); gap: 20px; color: #ccc;\">\n    <!-- Left: List -->\n    <div class=\"violation-list\" style=\"flex: 1; background: #16213e; border-radius: 12px; padding: 15px; overflow-y: auto;\">\n        <h3 style=\"color: #e94560; margin-top: 0; border-bottom: 1px solid #0f3460; padding-bottom: 10px;\">\n            <i class=\"fa fa-list\"></i> Danh sách vi phạm\n            <button onclick=\"scope.refreshList()\" style=\"float: right; background: none; border: none; color: #e94560; cursor: pointer;\"><i class=\"fa fa-sync\"></i></button>\n        </h3>\n        <div id=\"v-list-container\">Đang tải...</div>\n    </div>\n\n    <!-- Right: Preview -->\n    <div class=\"violation-preview\" style=\"flex: 2; background: #1a1a2e; border-radius: 12px; padding: 15px; display: flex; flex-direction: column;\">\n        <h3 style=\"color: #e94560; margin-top: 0;\"><i class=\"fa fa-play-circle\"></i> Xem lại video</h3>\n        \n        <div id=\"v-player-container\" style=\"flex: 1; display: flex; justify-content: center; align-items: center; background: #000; border-radius: 8px; position: relative; overflow: hidden;\">\n            <div id=\"v-placeholder\" style=\"text-align: center;\">\n                <i class=\"fa fa-mouse-pointer\" style=\"font-size: 40px; margin-bottom: 10px; color: #555;\"></i>\n                <p>Chọn một vi phạm để xem video</p>\n            </div>\n            <img id=\"v-player-img\" src=\"\" style=\"max-width: 100%; max-height: 100%; display: none;\">\n            <div id=\"v-timestamp\" style=\"position: absolute; top: 10px; right: 10px; background: rgba(0,0,0,0.6); padding: 4px 8px; border-radius: 4px; font-size: 12px; display: none;\"></div>\n        </div>\n        \n        <div class=\"player-controls\" style=\"margin-top: 15px; display: flex; align-items: center; gap: 10px;\">\n            <button id=\"btn-play\" disabled style=\"background: #e94560; border: none; color: white; width: 36px; height: 36px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center;\"><i class=\"fa fa-play\"></i></button>\n            <input type=\"range\" id=\"v-slider\" min=\"0\" max=\"100\" value=\"0\" disabled style=\"flex: 1; accent-color: #e94560;\">\n            <span id=\"v-frame-count\" style=\"font-size: 12px; min-width: 60px; text-align: right;\">0/0</span>\n        </div>\n    </div>\n</div>\n\n<script>\n(function(scope) {\n    const baseUrl = 'https://' + location.hostname + ':3000';\n    let currentFrames = [];\n    let isPlaying = false;\n    let playInterval;\n    let currentIndex = 0;\n\n    const dom = {\n        list: document.getElementById('v-list-container'),\n        placeholder: document.getElementById('v-placeholder'),\n        img: document.getElementById('v-player-img'),\n        timestamp: document.getElementById('v-timestamp'),\n        btnPlay: document.getElementById('btn-play'),\n        slider: document.getElementById('v-slider'),\n        frameCount: document.getElementById('v-frame-count')\n    };\n\n    // --- Player Logic ---\n    function showFrame(index) {\n        if (!currentFrames[index]) return;\n        const frame = currentFrames[index];\n        dom.img.src = 'data:image/jpeg;base64,' + _arrayBufferToBase64(frame.image.data);\n        dom.timestamp.textContent = new Date(frame.timestamp).toLocaleTimeString();\n        dom.slider.value = index;\n        dom.frameCount.textContent = `${index + 1}/${currentFrames.length}`;\n    }\n\n    function play() {\n        isPlaying = true;\n        dom.btnPlay.innerHTML = '<i class=\"fa fa-pause\"></i>';\n        playInterval = setInterval(() => {\n            currentIndex++;\n            if (currentIndex >= currentFrames.length) {\n                currentIndex = 0; // Loop\n            }\n            showFrame(currentIndex);\n        }, 100); // 10fps\n    }\n\n    function pause() {\n        isPlaying = false;\n        dom.btnPlay.innerHTML = '<i class=\"fa fa-play\"></i>';\n        clearInterval(playInterval);\n    }\n\n    dom.btnPlay.addEventListener('click', () => isPlaying ? pause() : play());\n    \n    dom.slider.addEventListener('input', (e) => {\n        pause();\n        currentIndex = parseInt(e.target.value);\n        showFrame(currentIndex);\n    });\n\n    // --- List Logic ---\n    scope.refreshList = function() {\n        dom.list.innerHTML = 'Scan...';\n        fetch(baseUrl + '/api/violation/all')\n            .then(res => res.json())\n            .then(data => {\n                const items = data.metadata || [];\n                if (items.length === 0) {\n                    dom.list.innerHTML = '<p style=\"text-align:center; padding: 20px;\">Không có vi phạm nào</p>';\n                    return;\n                }\n                \n                // Flat map all violations from groups\n                let allViolations = [];\n                items.forEach(group => {\n                    group.violations.forEach(v => {\n                        allViolations.push({...v, license_plate: group.license_plate});\n                    });\n                });\n                \n                // Sort by time desc\n                allViolations.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));\n\n                dom.list.innerHTML = '';\n                allViolations.forEach(v => {\n                    const el = document.createElement('div');\n                    el.style.cssText = 'padding: 10px; border-bottom: 1px solid #ffffff1a; cursor: pointer; transition: background 0.2s;';\n                    el.onmouseover = () => el.style.background = '#ffffff1a';\n                    el.onmouseout = () => el.style.background = 'transparent';\n                    \n                    const time = new Date(v.detection_time || v.created_at).toLocaleString();\n                    const typeMap = { 'RED_LIGHT': 'Vượt đèn đỏ', 'LANE_ENCROACHMENT': 'Lấn làn' };\n                    \n                    el.innerHTML = `\n                        <div style=\"display:flex; justify-content:space-between; margin-bottom: 4px;\">\n                            <span style=\"font-weight:bold; color: #fff;\">${v.license_plate}</span>\n                            <span style=\"font-size: 11px; background: #e94560; padding: 2px 6px; border-radius: 4px; color: white;\">${typeMap[v.violation_type] || v.violation_type}</span>\n                        </div>\n                        <div style=\"font-size: 11px; color: #888;\"><i class=\"fa fa-clock\"></i> ${time}</div>\n                    `;\n                    \n                    el.onclick = () => loadPreview(v._id);\n                    dom.list.appendChild(el);\n                });\n            });\n    };\n\n    function loadPreview(violationId) {\n        pause();\n        dom.placeholder.style.display = 'block';\n        dom.placeholder.innerHTML = '⏳ Đang tải video...';\n        dom.img.style.display = 'none';\n        dom.timestamp.style.display = 'none';\n        dom.btnPlay.disabled = true;\n        dom.slider.disabled = true;\n\n        fetch(baseUrl + '/api/violation/frames/' + violationId)\n            .then(res => res.json())\n            .then(data => {\n                currentFrames = data.metadata || [];\n                if (currentFrames.length > 0) {\n                    dom.placeholder.style.display = 'none';\n                    dom.img.style.display = 'block';\n                    dom.timestamp.style.display = 'block';\n                    dom.btnPlay.disabled = false;\n                    dom.slider.disabled = false;\n                    dom.slider.max = currentFrames.length - 1;\n                    \n                    currentIndex = 0;\n                    showFrame(0);\n                    play(); // Auto play\n                } else {\n                    dom.placeholder.innerHTML = '⚠️ Không tìm thấy video quy trình';\n                }\n            });\n    }\n\n    function _arrayBufferToBase64(buffer) {\n        var binary = '';\n        var bytes = new Uint8Array(buffer);\n        var len = bytes.byteLength;\n        for (var i = 0; i < len; i++) {\n            binary += String.fromCharCode(bytes[i]);\n        }\n        return window.btoa(binary);\n    }\n\n    // Initial load\n    scope.refreshList();\n    // Auto refresh every 10s\n    setInterval(scope.refreshList, 10000);\n\n})(scope);\n</script>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 710,
+        "y": 400,
+        "wires": [
+            []
+        ]
+    }
+]

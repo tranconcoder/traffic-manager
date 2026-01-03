@@ -41,6 +41,13 @@
             <div class="sidebar-section">
                 <h3><i class="fas fa-camera"></i> Chụp ảnh</h3>
                 <div class="form-group">
+                    <label>Nguồn hình ảnh</label>
+                    <select id="sourceSelect">
+                        <option value="simulation">Giả lập (Canvas)</option>
+                        <option value="webcam">Ghi màn hình</option>
+                    </select>
+                </div>
+                <div class="form-group">
                     <label>FPS: <span id="fpsValue">10</span></label>
                     <input type="range" id="fpsSlider" min="1" max="20" value="10" />
                 </div>
@@ -49,6 +56,9 @@
                     <button class="btn btn-danger" id="stopBtn" disabled><i class="fas fa-stop"></i> Dừng</button>
                 </div>
             </div>
+
+            <!-- Hidden generic video element for webcam -->
+            <video id="webcamVideo" autoplay playsinline style="display: none;"></video>
 
             <!-- Vehicle Manager -->
             <div class="sidebar-section">
@@ -73,6 +83,104 @@
                     <button class="light-btn yellow" data-light="yellow"><i class="fas fa-circle"></i></button>
                     <button class="light-btn green" data-light="green"><i class="fas fa-circle"></i></button>
                 </div>
+                <div class="form-group" style="margin-top: 10px;">
+                    <label>Kích thước đèn: <span id="lightSizeValue">100</span>%</label>
+                    <input type="range" id="lightSizeSlider" min="50" max="200" value="100" />
+                </div>
+            </div>
+
+            <!-- Sensor Simulation -->
+            <div class="sidebar-section">
+                <h3><i class="fas fa-thermometer-half"></i> Cảm biến & GPS</h3>
+                <div class="form-group">
+                    <label>Nhiệt độ: <span id="tempValue">25</span>°C</label>
+                    <input type="range" id="tempSlider" min="0" max="50" value="25" />
+                </div>
+                <div class="form-group">
+                    <label>Độ ẩm: <span id="humValue">60</span>%</label>
+                    <input type="range" id="humSlider" min="0" max="100" value="60" />
+                </div>
+                <!-- iOS Style Toggle CSS -->
+                <style>
+                    .toggle-switch {
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        margin-top: 10px;
+                        padding: 8px 0;
+                    }
+
+                    .toggle-switch .toggle-label {
+                        color: #ccc;
+                        font-size: 13px;
+                    }
+
+                    .toggle-switch .switch {
+                        position: relative;
+                        display: inline-block;
+                        width: 50px;
+                        height: 26px;
+                        cursor: pointer;
+                    }
+
+                    .toggle-switch .switch input {
+                        opacity: 0;
+                        width: 0;
+                        height: 0;
+                    }
+
+                    .toggle-switch .slider {
+                        position: absolute;
+                        cursor: pointer;
+                        top: 0;
+                        left: 0;
+                        right: 0;
+                        bottom: 0;
+                        background-color: #4a5568;
+                        border-radius: 26px;
+                        transition: .3s;
+                    }
+
+                    .toggle-switch .slider:before {
+                        position: absolute;
+                        content: "";
+                        height: 20px;
+                        width: 20px;
+                        left: 3px;
+                        bottom: 3px;
+                        background-color: white;
+                        border-radius: 50%;
+                        transition: .3s;
+                    }
+
+                    .toggle-switch input:checked+.slider {
+                        background-color: #48bb78;
+                    }
+
+                    .toggle-switch input:checked+.slider:before {
+                        transform: translateX(24px);
+                    }
+                </style>
+
+                <div class="toggle-switch">
+                    <span class="toggle-label"><i class="fas fa-random"></i> Tự động generate</span>
+                    <label class="switch">
+                        <input type="checkbox" id="generateToggle">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+
+                <button class="btn btn-primary" id="sendSensorBtn"
+                    style="margin-top: 8px; width: 100%; background: #3498db; color: white; border: none; padding: 8px; border-radius: 4px; cursor: pointer;"><i
+                        class="fas fa-satellite-dish"></i> Gửi dữ liệu</button>
+
+                <div class="toggle-switch">
+                    <span class="toggle-label"><i class="fas fa-sync-alt"></i> Tự động gửi (1s)</span>
+                    <label class="switch">
+                        <input type="checkbox" id="autoSendToggle">
+                        <span class="slider"></span>
+                    </label>
+                </div>
             </div>
         </div>
 
@@ -88,8 +196,8 @@
     <main class="demo-fullscreen" id="demoArea">
         <canvas id="mainCanvas"></canvas>
 
-        <!-- Traffic Light Display -->
-        <div class="traffic-light-display" id="trafficLight">
+        <!-- Traffic Light Click Area (invisible, only for interaction) -->
+        <div class="traffic-light-display" id="trafficLight" style="opacity: 0; pointer-events: auto;">
             <div class="tl-light red active"></div>
             <div class="tl-light yellow"></div>
             <div class="tl-light green"></div>
@@ -118,6 +226,7 @@
     </div>
 
     <script src="/socket.io/socket.io.js"></script>
+    <script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
     <script src="/scripts/combined/main.js"></script>
 </body>
 

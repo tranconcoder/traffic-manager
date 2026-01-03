@@ -1,0 +1,92 @@
+/* Node-RED Sidebar Injection */
+#custom-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 250px;
+    background: #1e1e1e;
+    border-right: 1px solid #333;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    padding-top: 50px;
+    /* Space for a header if needed */
+    transition: transform 0.3s ease;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+}
+
+#custom-sidebar.collapsed {
+    transform: translateX(-250px);
+}
+
+#custom-sidebar .sidebar-header {
+    padding: 20px;
+    color: #fff;
+    font-size: 1.2em;
+    font-weight: bold;
+    text-align: center;
+    border-bottom: 1px solid #333;
+    background: #252526;
+}
+
+#custom-sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#custom-sidebar li {
+    border-bottom: 1px solid #2a2a2a;
+}
+
+#custom-sidebar a {
+    display: block;
+    padding: 15px 20px;
+    color: #ccc;
+    text-decoration: none;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    transition: background 0.2s, color 0.2s;
+}
+
+#custom-sidebar a:hover {
+    background: #007acc;
+    color: #fff;
+}
+
+#custom-sidebar a.active {
+    background: #333;
+    color: #fff;
+    border-left: 4px solid #007acc;
+}
+
+/* Adjust Node-RED main content to make room */
+/* This might need tuning depending on Node-RED version DOM structure */
+#header,
+#main-container,
+#workspace {
+    left: 250px !important;
+    width: calc(100% - 250px) !important;
+}
+
+/* .red-ui-sidebar {} removed */
+
+/* Toggle Button */
+#sidebar-toggle-btn {
+    position: fixed;
+    top: 10px;
+    left: 260px;
+    /* 250px + 10px */
+    z-index: 10000;
+    background: #007acc;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: left 0.3s ease;
+}
+
+#sidebar-toggle-btn.collapsed {
+    left: 10px;
+}

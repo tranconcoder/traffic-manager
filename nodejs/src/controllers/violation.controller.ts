@@ -19,12 +19,21 @@ export default new class ViolationController {
         res.send(buffer);
     };
 
+    getViolationFrames: RequestHandler = async (req, res, next) => {
+        const frames = await violationService.getViolationFrames(req.params.violation_id);
+
+        new OkResponse({
+            message: "Get violation frames successfully",
+            metadata: frames
+        }).send(res);
+    };
+
     updateViolationStatus: RequestHandler = async (req, res, next) => {
         const { violation_id } = req.params;
         const { status } = req.body;
 
         // Validate status
-        if (!Object.values(ViolationStatus).includes(status)) 
+        if (!Object.values(ViolationStatus).includes(status))
             throw new BadRequestErrorResponse("Invalid status");
 
         const updatedViolation = await violationService.updateViolationStatus(violation_id, status);

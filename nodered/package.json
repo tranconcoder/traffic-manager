@@ -1,0 +1,12 @@
+{
+    "name": "traffic-manager-nodered",
+    "version": "1.0.0",
+    "description": "Node-RED server for Traffic Manager IoT",
+    "scripts": {
+        "start": "node-red -u ."
+    },
+    "dependencies": {
+        "node-red": "^4.0.0",
+        "node-red-dashboard": "^3.6.0"
+    }
+}

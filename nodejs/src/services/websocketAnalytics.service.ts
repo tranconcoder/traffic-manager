@@ -57,3 +57,6 @@ export class WebsocketAnalytics {
 		this.clearIntervalData();
 	}
 }
+
+export const websocketAnalytics = new WebsocketAnalytics(0, 0, 10_000);
+websocketAnalytics.startAnalytics();

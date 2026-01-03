@@ -36,6 +36,14 @@ export const violationLicensePlateSchema = new Schema({
         type: Buffer,
         required: true,
     },
+    video_frames: [{
+        timestamp: Date,
+        image: Buffer
+    }],
+    detection_time: {
+        type: Date,
+        default: Date.now
+    }
 }, {
     collection: VIOLATION_COLLECTION_NAME,
     timestamps: timestamps

@@ -9,6 +9,11 @@ import { TrafficViolation } from "@/enums/trafficViolation.enum.js";
 import { ViolationLicensePlateDetect } from "./socketio.util.d.js";
 import imagesModel from "@/models/images.model.js";
 import licensePlateDetectedModel from "@/models/licensePlateDetected.model.js";
+import sensorDataModel from "@/models/sensorData.model.js";
+import { websocketAnalytics } from "@/services/websocketAnalytics.service.js";
+import { Types } from "mongoose";
+import sharp from "sharp";
+import { pushImage, setTrafficLightStatus, getRecentImages } from "@/services/redis.service.js";
 
 /* -------------------------------------------------------------------------- */
 /*                            Use strategy pattern                            */
@@ -66,6 +71,9 @@ export async function handleLeaveCameraEvent(this: Socket, cameraId: string) {
   socket.leave(`camera_${cameraId}`);
 }
 
+// Rate limiting map for 1FPS saving
+const lastImageSaveTime = new Map<string, number>();
+
 /* -------------------------------------------------------------------------- */
 /*                          Handle 'image' event handler                      */
 /* -------------------------------------------------------------------------- */
@@ -83,7 +91,7 @@ export async function handleImageEvent(
 ) {
   const socket = this;
 
-  socket.broadcast.emit("image", {
+  const payload = {
     cameraId: data.cameraId,
     imageId: data.imageId,
     width: data.width,
@@ -91,7 +99,44 @@ export async function handleImageEvent(
     buffer: data.buffer,
     created_at: data.created_at,
     track_line_y: data.track_line_y,
-  });
+  };
+
+  socket.broadcast.emit("image", payload);
+  socket.emit("image", payload); // Send back to sender
+
+  websocketAnalytics.transferData(data.buffer.length, 1);
+
+  try {
+    // 1. Cache to Redis (Every frame - Max FPS)
+    // Used for violation context and real-time analysis
+    pushImage(data.cameraId, {
+      imageId: data.imageId || new Types.ObjectId().toString(),
+      image: data.buffer,
+      created_at: data.created_at,
+      width: data.width,
+      height: data.height
+    });
+
+    // 2. Save to MongoDB (1 FPS Throttling)
+    // Only save if 1 second has passed since last save for this camera
+    const now = Date.now();
+    const lastSaved = lastImageSaveTime.get(data.cameraId) || 0;
+
+    if (now - lastSaved >= 1000) {
+      await cameraImageModel.create({
+        _id: data.imageId || new Types.ObjectId(),
+        cameraId: data.cameraId,
+        image: data.buffer,
+        width: data.width,
+        height: data.height,
+        created_at: data.created_at,
+      });
+      lastImageSaveTime.set(data.cameraId, now);
+    }
+
+  } catch (error: any) {
+    console.error("Image autosave/cache failed:", error.message);
+  }
 }
 
 /* -------------------------------------------------------------------------- */
@@ -100,6 +145,20 @@ export async function handleImageEvent(
 export async function handleTrafficLightEvent(this: Socket, data: any) {
   const socket = this;
 
+  // Sanitize data to prevent Mongoose validation errors
+  if (!data.detections) data.detections = [];
+  if (!data.inference_time) data.inference_time = 0;
+  if (!data.image_dimensions) data.image_dimensions = { width: 640, height: 480 };
+  if (data.image_dimensions.width === undefined) data.image_dimensions.width = 0;
+  if (data.image_dimensions.height === undefined) data.image_dimensions.height = 0;
+
+  // Clean detections
+  data.detections.forEach((d: any) => {
+    if (!d.bbox) d.bbox = { x1: 0, y1: 0, x2: 0, y2: 0, width: 0, height: 0 };
+    if (d.bbox.width === undefined) d.bbox.width = (d.bbox.x2 || 0) - (d.bbox.x1 || 0);
+    if (d.bbox.height === undefined) d.bbox.height = (d.bbox.y2 || 0) - (d.bbox.y1 || 0);
+  });
+
   let maxDetection = { confidence: 0 };
   data.detections.forEach((element: any) => {
     if (maxDetection.confidence < element.confidence) {
@@ -107,7 +166,7 @@ export async function handleTrafficLightEvent(this: Socket, data: any) {
     }
   });
 
-  socket.broadcast.emit("traffic_light", {
+  const payload = {
     cameraId: data.cameraId,
     imageId: data.imageId,
     traffic_status: data.traffic_status,
@@ -115,12 +174,26 @@ export async function handleTrafficLightEvent(this: Socket, data: any) {
     inference_time: data.inference_time,
     image_dimensions: data.image_dimensions,
     created_at: data.created_at,
-  });
+  };
+
+  socket.broadcast.emit("traffic_light", payload);
+  socket.emit("traffic_light", payload); // Send back to sender
+
+  // Calculate status string (RED, GREEN, YELLOW)
+  if (data.traffic_status) {
+    let status = "UNKNOWN";
+    const raw = data.traffic_status.toUpperCase();
+    if (raw.includes("RED")) status = "RED";
+    else if (raw.includes("GREEN")) status = "GREEN";
+    else if (raw.includes("YELLOW")) status = "YELLOW";
+
+    setTrafficLightStatus(data.cameraId, status);
+  }
 
   console.log("Traffic light detection data", data.traffic_status);
 
   trafficLightModel.create(data).catch((err) => {
-    console.log("Traffic light detection creation failed", err);
+    console.log("Traffic light detection creation failed", err.message);
   });
 }
 
@@ -132,21 +205,43 @@ export async function handleCarDetectedEvent(this: Socket, data: any) {
 
   // Forward vehicle detection data to all clients with original event name
   socket.broadcast.emit("car_detected", data);
+  socket.emit("car_detected", data); // Send back to sender
 
   try {
-    // Parallel fetch camera and image buffer
-    const [camera, imageBuffer] = await Promise.all([
-      cameraModel.findById(data.camera_id),
-      cameraImageModel.findById(data.image_id),
-    ]);
-
+    const camera = await cameraModel.findById(data.camera_id);
     if (!camera) throw new Error("Not found camera!");
-    if (!imageBuffer) throw new Error("Not found image buffer!");
 
+    // Fetch from Redis (using recent 1-minute buffer)
+    const recentImages = await getRecentImages(data.camera_id);
+
+    // Find the specific image frame for this detection
+    // Try matching by ID first, then fallback to timestamp
+    const redisImage = recentImages.find((img: any) =>
+      (data.image_id && img.imageId === data.image_id) ||
+      (img.created_at === data.created_at)
+    );
+
+    let cameraImageBuffer: Buffer | null = null;
+    if (!redisImage) {
+      console.warn(`[Car Detection] Image frame not found in Redis cache (ID: ${data.image_id}). Proceeding without image buffer.`);
+    } else {
+      // Restore Buffer
+      if (redisImage.image && redisImage.image.type === 'Buffer') {
+        cameraImageBuffer = Buffer.from(redisImage.image.data);
+      } else if (Array.isArray(redisImage.image?.data)) {
+        cameraImageBuffer = Buffer.from(redisImage.image.data);
+      } else if (redisImage.image) {
+        cameraImageBuffer = Buffer.from(redisImage.image);
+      }
+    }
+
+    // Detect Red Light Violations (Optimized to check Redis for traffic light)
     const redLightViolations = await violationService.detectRedLightViolation(
       data,
       camera
     );
+
+    // Detect Lane Encroachment
     const laneViolations = await violationService.laneEncroachment(
       data.detections,
       data.image_dimensions,
@@ -187,7 +282,7 @@ export async function handleCarDetectedEvent(this: Socket, data: any) {
         camera_id: data.camera_id,
         image_id: data.image_id,
         violations,
-        buffer: imageBuffer.image,
+        buffer: cameraImageBuffer, // Send the high-quality buffer from Redis
         detections: data.detections,
       });
     }

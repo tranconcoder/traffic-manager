@@ -1,0 +1,225 @@
+[
+    {
+        "id": "f6f2187d.f17ca8",
+        "type": "tab",
+        "label": "Sensor Data Flow",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "ui_tab_monitor",
+        "type": "ui_tab",
+        "name": "Monitor",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "ui_group_sensors",
+        "type": "ui_group",
+        "name": "Environment Sensors",
+        "tab": "ui_tab_monitor",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "ui_group_video",
+        "type": "ui_group",
+        "name": "Live Camera",
+        "tab": "ui_tab_monitor",
+        "order": 2,
+        "disp": true,
+        "width": "12",
+        "collapse": false
+    },
+    {
+        "id": "http_in_sensor",
+        "type": "http in",
+        "z": "f6f2187d.f17ca8",
+        "name": "Receiver Sensor Data",
+        "url": "/sensor-data",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 150,
+        "y": 100,
+        "wires": [
+            [
+                "debug_sensor",
+                "http_response_sensor",
+                "function_split_data"
+            ]
+        ]
+    },
+    {
+        "id": "debug_sensor",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "Log Sensor Data",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 400,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "http_response_sensor",
+        "type": "http response",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "statusCode": "200",
+        "headers": {},
+        "x": 400,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "function_split_data",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "Split Data",
+        "func": "var temp = { payload: msg.payload.temperature, topic: 'Temperature' };\nvar hum = { payload: msg.payload.humidity, topic: 'Humidity' };\nreturn [temp, hum];",
+        "outputs": 2,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 400,
+        "y": 240,
+        "wires": [
+            [
+                "ui_gauge_temp",
+                "ui_chart_history"
+            ],
+            [
+                "ui_gauge_hum",
+                "ui_chart_history"
+            ]
+        ]
+    },
+    {
+        "id": "ui_gauge_temp",
+        "type": "ui_gauge",
+        "z": "f6f2187d.f17ca8",
+        "name": "Temperature",
+        "group": "ui_group_sensors",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Temperature",
+        "label": "°C",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "x": 650,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "ui_gauge_hum",
+        "type": "ui_gauge",
+        "z": "f6f2187d.f17ca8",
+        "name": "Humidity",
+        "group": "ui_group_sensors",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Humidity",
+        "label": "%",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "x": 650,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "ui_chart_history",
+        "type": "ui_chart",
+        "z": "f6f2187d.f17ca8",
+        "name": "History",
+        "group": "ui_group_sensors",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "label": "History",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "0",
+        "ymax": "100",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 650,
+        "y": 360,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ui_template_video",
+        "type": "ui_template",
+        "z": "f6f2187d.f17ca8",
+        "group": "ui_group_video",
+        "name": "Video Player",
+        "order": 0,
+        "width": 12,
+        "height": 8,
+        "format": "<div style=\"text-align: center;\">\n    <img id=\"cam-feed\" src=\"\" style=\"width: 100%; max-width: 800px; border-radius: 8px; border: 2px solid #555;\" />\n    <div id=\"status\" style=\"color: #aaa; margin-top: 5px;\">Connecting to Main Server...</div>\n</div>\n\n<script src=\"https://cdn.socket.io/4.5.4/socket.io.min.js\"></script>\n<script>\n(function(scope) {\n    const img = document.getElementById('cam-feed');\n    const status = document.getElementById('status');\n    // Connect to Main Server (localhost:3000)\n    // Note: Assuming Browser can reach localhost:3000\n    const socket = io('http://localhost:3000');\n\n    socket.on('connect', () => {\n        status.textContent = 'Connected to Traffic Manager';\n        status.style.color = '#00ff00';\n    });\n\n    socket.on('disconnect', () => {\n        status.textContent = 'Disconnected';\n        status.style.color = '#ff0000';\n    });\n\n    socket.on('image', (data) => {\n        if (data && data.buffer) {\n            // If buffer is ArrayBuffer/Uint8Array\n            // const blob = new Blob([data.buffer], { type: 'image/jpeg' });\n            // img.src = URL.createObjectURL(blob);\n            \n            // If buffer is already base64 string or Object with type/data\n             // Check how server sends it. \n             // In combined/main.js -> captureAndSend -> buffer is Uint8Array.\n             // Socket.io binary support works well.\n             const blob = new Blob([data.buffer], { type: 'image/jpeg' });\n             const url = URL.createObjectURL(blob);\n             img.src = url;\n             \n             // Revoke old URL to prevent memory leak (optional per frame but good practice)\n             img.onload = () => URL.revokeObjectURL(url);\n        }\n    });\n})(scope);\n</script>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 650,
+        "y": 440,
+        "wires": [
+            []
+        ]
+    }
+]

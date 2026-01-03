@@ -7,6 +7,7 @@ import { ViolationLicensePlateDetect } from "@/utils/socketio.util.d.js";
 import { ViolationStatus } from "@/enums/trafficViolation.enum.js";
 import violationModel from "@/models/violation.model.js";
 import cameraImageModel from "@/models/cameraImage.model.js";
+import { getRecentImages } from "@/services/redis.service.js";
 
 export default new (class ViolationService {
   /* -------------------------------------------------------------------------- */
@@ -27,6 +28,7 @@ export default new (class ViolationService {
               violation_status: "$violation_status",
               created_at: "$createdAt",
               updated_at: "$updatedAt",
+              detection_time: "$detection_time"
             },
           },
         },
@@ -43,12 +45,19 @@ export default new (class ViolationService {
 
   async getImageBuffer(violation_id: string) {
     const violation = await violationModel.findById(violation_id);
-    console.log(violation);
     if (!violation?.image_buffer) {
       throw new Error("Violation not found");
     }
 
     return violation.image_buffer;
+  }
+
+  async getViolationFrames(violation_id: string) {
+    const violation = await violationModel.findById(violation_id).select('video_frames');
+    if (!violation?.video_frames) {
+      return [];
+    }
+    return violation.video_frames;
   }
 
   /* -------------------------------------------------------------------------- */
@@ -88,6 +97,47 @@ export default new (class ViolationService {
       }
     );
 
+    // Get images from Redis (High FPS)
+    const allRedisImages = await getRecentImages(data.camera_id);
+
+    // Find main image
+    let mainImage = allRedisImages.find((img: any) =>
+      (data.image_id && img.imageId === data.image_id) ||
+      (Math.abs(img.created_at - (data.created_at || Date.now())) < 100)
+    );
+
+    // If not in Redis (expired?), try MongoDB (1FPS fallback)
+    if (!mainImage) {
+      const doc = await cameraImageModel.findById(data.image_id);
+      if (doc) mainImage = { image: doc.image, created_at: doc.created_at, width: doc.width, height: doc.height };
+    }
+
+    const detectionTime = mainImage?.created_at ? new Date(mainImage.created_at) : new Date();
+    // Restore buffer if needed
+    let imageBuffer = mainImage?.image;
+    if (imageBuffer && imageBuffer.type === 'Buffer') imageBuffer = Buffer.from(imageBuffer.data);
+    else if (imageBuffer && Array.isArray(imageBuffer.data)) imageBuffer = Buffer.from(imageBuffer.data);
+
+    // Get context frames ±7s
+    const startTime = detectionTime.getTime() - 7000;
+    const endTime = detectionTime.getTime() + 7000;
+
+    const contextFrames = allRedisImages.filter((img: any) =>
+      img.created_at >= startTime && img.created_at <= endTime
+    ).sort((a: any, b: any) => a.created_at - b.created_at);
+
+    // Also persist these context frames to cameraImageModel?
+    // User said "mongodb saves violations". Use insertMany to save them as records IF they don't exist?
+    // But this function saves to `violationModel`.
+    // The requirement "mongodb only saves... violation images" likely means we should save to `cameraImageModel` OR `violationModel`.
+    // The current code saves to `violationModel` (embedded). I will stick to that to avoid schema changes.
+    // If specific save to `cameraImageModel` is needed, I'd add it, but avoiding duplicates is tricky.
+
+    const videoFrames = contextFrames.map((f: any) => ({
+      timestamp: new Date(f.created_at),
+      image: (f.image && f.image.type === 'Buffer') ? Buffer.from(f.image.data) : Buffer.from(f.image)
+    }));
+
     await Promise.all(
       violationList.map(async (violation) => {
         await violationModel.findOneAndUpdate(
@@ -96,12 +146,12 @@ export default new (class ViolationService {
             camera_id: data.camera_id,
             violation_type: violation.violation_type,
             violation_status: ViolationStatus.PENDING,
-            created_at: { $gte: new Date(Date.now() - 1000 * 60) }, // Thời gian lưu không quá 1 phút so với hiện tại mongoose query
+            created_at: { $gte: new Date(Date.now() - 1000 * 60) },
           },
           {
-            image_buffer: await cameraImageModel
-              .findById(data.image_id)
-              .then((x) => x?.image),
+            image_buffer: imageBuffer,
+            detection_time: detectionTime,
+            video_frames: videoFrames
           },
           {
             upsert: true,
@@ -128,12 +178,20 @@ export default new (class ViolationService {
     const vehicleIds = await Promise.all(
       tracks.map(async (vehicle) => {
         /* ------------------------ Get current traffic light ----------------------- */
+        /* ------------------------ Get current traffic light ----------------------- */
+        // Optimization: Only check the last 2 positions (movement in current frame)
+        // detailed history check is redundant as it was checked in previous frames.
+        const recentPositions = vehicle.positions.slice(-2);
+
+        if (recentPositions.length < 2) return null;
+
         const trafficLightStatusList = (
           await Promise.all(
-            vehicle.positions.map(async ({ time, x, y }) => {
+            recentPositions.map(async ({ time, x, y }) => {
               return {
                 trafficStatus: await trafficLightService.getTrafficLightByTime(
-                  time
+                  time,
+                  camera_id // Pass camera_id for Redis lookup
                 ),
                 overcomeRedLightLine: y < scaledTrackLineY, // Vượt qua đèn đỏ
               };

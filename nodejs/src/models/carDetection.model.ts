@@ -106,7 +106,7 @@ export const cartDetectionSchema = new Schema(
 
 cartDetectionSchema.index(
   { created_at: -1 },
-  { expireAfterSeconds: ms("1 hour") / 1000 }
+  { expireAfterSeconds: ms("1 day") / 1000 }
 );
 
 export default model(CART_DETECTION_MODEL_NAME, cartDetectionSchema);
