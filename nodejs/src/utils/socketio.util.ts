@@ -73,6 +73,9 @@ export async function handleLeaveCameraEvent(this: Socket, cameraId: string) {
 
 // Rate limiting map for 1FPS saving
 const lastImageSaveTime = new Map<string, number>();
+// Rate limiting for YOLO API calls (5 FPS max)
+const lastYoloApiTime = new Map<string, number>();
+const YOLO_API_MIN_INTERVAL = 200; // 200ms = 5 FPS max
 
 /* -------------------------------------------------------------------------- */
 /*                          Handle 'image' event handler                      */
@@ -108,7 +111,6 @@ export async function handleImageEvent(
 
   try {
     // 1. Cache to Redis (Every frame - Max FPS)
-    // Used for violation context and real-time analysis
     pushImage(data.cameraId, {
       imageId: data.imageId || new Types.ObjectId().toString(),
       image: data.buffer,
@@ -118,7 +120,6 @@ export async function handleImageEvent(
     });
 
     // 2. Save to MongoDB (1 FPS Throttling)
-    // Only save if 1 second has passed since last save for this camera
     const now = Date.now();
     const lastSaved = lastImageSaveTime.get(data.cameraId) || 0;
 
@@ -134,8 +135,80 @@ export async function handleImageEvent(
       lastImageSaveTime.set(data.cameraId, now);
     }
 
+    // 3. Send to YOLO API (Kaggle) for detection - Rate limited
+    const lastApiCall = lastYoloApiTime.get(data.cameraId) || 0;
+    if (now - lastApiCall >= YOLO_API_MIN_INTERVAL) {
+      lastYoloApiTime.set(data.cameraId, now);
+
+      // Call API asynchronously (don't await to not block)
+      callYoloApiAndEmit(socket, data).catch((err) => {
+        console.error("[YOLO API] Detection error:", err.message);
+      });
+    }
+
   } catch (error: any) {
     console.error("Image autosave/cache failed:", error.message);
+  }
+}
+
+// Helper function to call YOLO API and emit results
+async function callYoloApiAndEmit(socket: Socket, data: any) {
+  const { yoloApiService } = await import("@/services/yoloApi.service.js");
+
+  if (!yoloApiService.isConfigured()) return;
+
+  const result = await yoloApiService.detectVehicles(
+    data.buffer,
+    data.cameraId,
+    data.track_line_y,
+    data.created_at
+  );
+
+  if (!result) return;
+
+  // Emit vehicle detection
+  if (result.vehicle && result.vehicle.detections.length > 0) {
+    const vehiclePayload = {
+      camera_id: data.cameraId,
+      image_id: data.imageId,
+      track_line_y: data.track_line_y,
+      detections: result.vehicle.detections,
+      inference_time: result.vehicle.inference_time,
+      image_dimensions: result.image_dimensions,
+      created_at: data.created_at,
+      vehicle_count: result.vehicle.vehicle_count,
+      tracks: result.vehicle.tracks,
+      new_crossings: result.vehicle.new_crossings
+    };
+
+    socket.broadcast.emit("car_detected", vehiclePayload);
+    socket.emit("car_detected", vehiclePayload);
+  }
+
+  // Emit traffic light detection
+  if (result.traffic_light && result.traffic_light.traffic_status) {
+    const tlPayload = {
+      cameraId: data.cameraId,
+      imageId: data.imageId,
+      traffic_status: result.traffic_light.traffic_status,
+      detections: result.traffic_light.detections,
+      inference_time: result.traffic_light.inference_time,
+      image_dimensions: result.image_dimensions,
+      created_at: data.created_at
+    };
+
+    socket.broadcast.emit("traffic_light", tlPayload);
+    socket.emit("traffic_light", tlPayload);
+
+    // Save to Redis for violation detection
+    if (result.traffic_light.traffic_status) {
+      let status = "UNKNOWN";
+      const raw = result.traffic_light.traffic_status.toUpperCase();
+      if (raw.includes("RED")) status = "RED";
+      else if (raw.includes("GREEN")) status = "GREEN";
+      else if (raw.includes("YELLOW")) status = "YELLOW";
+      setTrafficLightStatus(data.cameraId, status);
+    }
   }
 }
 
