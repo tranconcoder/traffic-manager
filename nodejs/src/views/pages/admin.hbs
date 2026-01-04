@@ -1,0 +1,203 @@
+<div class="container-fluid p-4">
+    <h1 class="mb-4 text-primary"><i class="fas fa-server me-2"></i>Media Server Admin</h1>
+
+    <div class="row mb-4">
+        <!-- Server Stats -->
+        <div class="col-md-3">
+            <div class="card bg-dark text-white border-primary shadow-sm h-100">
+                <div class="card-body text-center">
+                    <h5 class="card-title text-muted">CPU Usage</h5>
+                    <h2 class="display-4" id="cpu-usage">0%</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card bg-dark text-white border-success shadow-sm h-100">
+                <div class="card-body text-center">
+                    <h5 class="card-title text-muted">Memory</h5>
+                    <h2 class="display-6" id="memory-usage">0 MB</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card bg-dark text-white border-info shadow-sm h-100">
+                <div class="card-body text-center">
+                    <h5 class="card-title text-muted">Uptime</h5>
+                    <h2 class="display-6" id="uptime">0s</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card bg-dark text-white border-warning shadow-sm h-100">
+                <div class="card-body text-center">
+                    <h5 class="card-title text-muted">Connections</h5>
+                    <h2 class="display-4" id="connections">0</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Active Streams -->
+    <div class="card shadow-sm border-0">
+        <div class="card-header bg-white border-0 py-3">
+            <h5 class="mb-0 text-dark"><i class="fas fa-video me-2 text-danger"></i>Active Live Streams</h5>
+        </div>
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-hover align-middle mb-0">
+                    <thead class="bg-light">
+                        <tr>
+                            <th class="ps-4">Stream Path</th>
+                            <th>StartTime</th>
+                            <th>Resolution</th>
+                            <th>Bitrate</th>
+                            <th>FPS</th>
+                            <th>Audio</th>
+                            <th>Clients</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="streams-table">
+                        <tr>
+                            <td colspan="8" class="text-center py-4">No active streams</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Preview Modal -->
+    <div class="modal fade" id="previewModal" tabindex="-1">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-dark">Stream Preview (FLV)</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body p-0 bg-dark text-center">
+                    <video id="previewVideo" controls muted autoplay playsinline class="w-100"
+                        style="max-height: 500px;"></video>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.bootcss.com/flv.js/1.5.0/flv.min.js"></script>
+<script>
+    const formatBytes = (bytes) => {
+        if (bytes === 0) return '0 B';
+        const k = 1024;
+        const dm = 2;
+        const sizes = ['B', 'KB', 'MB', 'GB'];
+        const i = Math.floor(Math.log(bytes) / Math.log(k));
+        return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
+    };
+
+    const formatUptime = (sec) => {
+        const h = Math.floor(sec / 3600);
+        const m = Math.floor((sec % 3600) / 60);
+        const s = Math.floor(sec % 60);
+        return `${h}h ${m}m ${s}s`;
+    };
+
+    // Preview Logic (FLV)
+    let flvPlayer;
+    window.openPreview = (app, stream) => {
+        const video = document.getElementById('previewVideo');
+        if (!video) return;
+
+        // Construct FLV URL (Assuming port 8000)
+        const streamUrl = `${window.location.protocol}//${window.location.hostname}:8000/${app}/${stream}.flv`;
+        console.log('Playing:', streamUrl);
+
+        if (flvjs.isSupported()) {
+            if (flvPlayer) {
+                flvPlayer.destroy();
+                flvPlayer = null;
+            }
+            flvPlayer = flvjs.createPlayer({
+                type: 'flv',
+                url: streamUrl,
+                isLive: true,
+                cors: true,
+                hasAudio: false
+            });
+            flvPlayer.attachMediaElement(video);
+            flvPlayer.load();
+            flvPlayer.play().catch(e => console.log('Autoplay blocked:', e));
+        }
+
+        const modalEl = document.getElementById('previewModal');
+        const modal = new bootstrap.Modal(modalEl);
+        modal.show();
+
+        modalEl.addEventListener('hidden.bs.modal', () => {
+            if (flvPlayer) {
+                flvPlayer.destroy();
+                flvPlayer = null;
+            }
+            video.pause();
+            video.src = '';
+        });
+    };
+
+    async function updateDashboard() {
+        try {
+            // Fetch Stats
+            const statsRes = await fetch('/nms/stats');
+            if (statsRes.ok) {
+                const stats = await statsRes.json();
+                if (stats.data) {
+                    const s = stats.data;
+                    let cpuVal = s.cpu;
+                    if (typeof cpuVal === 'object') cpuVal = 0;
+                    document.getElementById('cpu-usage').innerText = Math.round(cpuVal) + '%';
+
+                    document.getElementById('memory-usage').innerText = formatBytes(s.memory?.rss || 0);
+                    document.getElementById('uptime').innerText = formatUptime(s.uptime || 0);
+                }
+            }
+
+            // Fetch Streams
+            const streamsRes = await fetch('/nms/streams');
+            if (streamsRes.ok) {
+                const res = await streamsRes.json();
+                const tbody = document.getElementById('streams-table');
+
+                const streams = res.data?.streams || [];
+                const streamList = Array.isArray(streams) ? streams : Object.values(streams);
+
+                document.getElementById('connections').innerText = streamList.reduce((acc, curr) => acc + (curr.clients || 0), 0);
+
+                if (streamList.length === 0) {
+                    tbody.innerHTML = '<tr><td colspan="8" class="text-center py-4 text-muted">No active streams</td></tr>';
+                } else {
+                    tbody.innerHTML = streamList.map(s => `
+                        <tr>
+                            <td class="ps-4">
+                                <span class="fw-bold text-primary me-2">${s.app}/${s.name}</span>
+                                <button class="btn btn-sm btn-outline-primary" onclick="openPreview('${s.app}', '${s.name}')">
+                                    <i class="fas fa-play me-1"></i> Check
+                                </button>
+                            </td>
+                            <td>${new Date(s.startTime).toLocaleTimeString()}</td>
+                            <td>${s.width || '-'}x${s.height || '-'}</td>
+                            <td>${Math.round(s.bitrate || 0)} kbps</td>
+                            <td>${Math.round(s.fps || 0)}</td>
+                            <td>${s.audio ? s.audio.codec : 'No'}</td>
+                            <td><span class="badge bg-info">${s.clients || 0}</span></td>
+                            <td><span class="badge bg-success">Live</span></td>
+                        </tr>
+                    `).join('');
+                }
+            }
+        } catch (error) {
+            console.error('Dash error', error);
+        }
+    }
+
+    updateDashboard();
+    setInterval(updateDashboard, 2000);
+</script>

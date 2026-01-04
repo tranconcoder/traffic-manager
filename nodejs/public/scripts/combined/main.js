@@ -44,15 +44,22 @@
     let latestTrackLineY = null;
     let lastManualLightChange = 0; // Debounce manual changes
 
+    // HLS State
+    let hls = null;
+    let videoElement = null;
+
     // Camera Configs
     let allCameras = [];
     let currentCameraConfig = null;
 
     // Capture Source Config
-    let captureSource = 'simulation'; // 'simulation' or 'webcam'
+    let captureSource = 'simulation'; // 'simulation', 'webcam', or 'video'
     let webcamStream = null;
     const webcamVideo = document.getElementById('webcamVideo');
+    const loopVideo = document.getElementById('loopVideo');
     const sourceSelect = document.getElementById('sourceSelect');
+    const videoFileGroup = document.getElementById('videoFileGroup');
+    const videoFileInput = document.getElementById('videoFileInput');
 
     // Color map helper
     const colorMap = new Map();
@@ -92,7 +99,9 @@
         setupCapture();
         setupPreview();
         setupKeyboard();
-        connectSocket();
+        loadCameras();
+        // connectSocket(); // Removed
+
 
         window.addEventListener('resize', () => { setupCanvas(); });
         requestAnimationFrame(renderLoop);
@@ -481,9 +490,34 @@
 
     function setupCaptureSource() {
         if (!sourceSelect) return;
+
+        // Handle video file selection
+        if (videoFileInput) {
+            videoFileInput.addEventListener('change', (e) => {
+                const file = e.target.files[0];
+                if (file && loopVideo) {
+                    const url = URL.createObjectURL(file);
+                    loopVideo.src = url;
+                    loopVideo.load();
+                    loopVideo.play().catch(err => console.log('Video autoplay blocked:', err));
+                }
+            });
+        }
+
         sourceSelect.addEventListener('change', async (e) => {
             captureSource = e.target.value;
+
+            // Show/hide video file input
+            if (videoFileGroup) {
+                videoFileGroup.style.display = captureSource === 'video' ? 'block' : 'none';
+            }
+
             if (captureSource === 'webcam') {
+                // Stop loop video if playing
+                if (loopVideo) {
+                    loopVideo.pause();
+                    loopVideo.src = '';
+                }
                 try {
                     // Use getDisplayMedia for screen recording instead of webcam
                     webcamStream = await navigator.mediaDevices.getDisplayMedia({
@@ -508,18 +542,31 @@
                     sourceSelect.value = 'simulation';
                     captureSource = 'simulation';
                 }
-            } else {
+            } else if (captureSource === 'video') {
+                // Stop webcam stream
                 if (webcamStream) {
                     webcamStream.getTracks().forEach(track => track.stop());
                     webcamStream = null;
                 }
                 webcamVideo.srcObject = null;
+                // Loop video will be started when file is selected
+            } else {
+                // Simulation mode - stop all other sources
+                if (webcamStream) {
+                    webcamStream.getTracks().forEach(track => track.stop());
+                    webcamStream = null;
+                }
+                webcamVideo.srcObject = null;
+                if (loopVideo) {
+                    loopVideo.pause();
+                    loopVideo.src = '';
+                }
             }
         });
     }
 
     function startCapture() {
-        if (!socket?.connected) { alert('Chưa kết nối server!'); return; }
+        if (!ws || ws.readyState !== WebSocket.OPEN) { alert('Chưa kết nối server WebSocket!'); return; }
         if (!selectedCameraId) { alert('Chọn camera trước!'); return; }
 
         isCapturing = true;
@@ -537,19 +584,32 @@
         if (captureInterval) clearInterval(captureInterval);
     }
 
+    const sendCanvas = document.createElement('canvas');
+    sendCanvas.width = 640;
+    sendCanvas.height = 480;
+
     function captureAndSend() {
-        const imageData = mainCanvas.toDataURL('image/jpeg', 0.7);
+        if (!ws || ws.readyState !== WebSocket.OPEN) return;
+
+        const sCtx = sendCanvas.getContext('2d');
+
+        // Draw from appropriate source
+        if (captureSource === 'video' && loopVideo && loopVideo.readyState >= 2) {
+            // Draw from loop video
+            sCtx.drawImage(loopVideo, 0, 0, 640, 480);
+        } else if (captureSource === 'webcam' && webcamVideo && webcamVideo.readyState >= 2) {
+            // Draw from webcam/screen capture
+            sCtx.drawImage(webcamVideo, 0, 0, 640, 480);
+        } else {
+            // Draw from simulation canvas
+            sCtx.drawImage(mainCanvas, 0, 0, 640, 480);
+        }
+
+        const imageData = sendCanvas.toDataURL('image/jpeg', 0.7);
         const buffer = dataURLtoBlob(imageData);
 
-        socket.emit('image', {
-            cameraId: selectedCameraId,
-            imageId: Array.from({ length: 24 }, () => Math.floor(Math.random() * 16).toString(16)).join(''),
-            buffer: buffer,
-            width: mainCanvas.width,
-            height: mainCanvas.height,
-            track_line_y: 25,
-            created_at: Date.now()
-        });
+        // Send binary frame directly via WebSocket
+        ws.send(buffer);
 
         sentFrames++;
         framesSent.textContent = sentFrames;
@@ -563,8 +623,18 @@
         return uint8Array;
     }
 
-    // Preview
+    // Preview - Using HLS
     function setupPreview() {
+        // Create video element if not exists
+        if (!videoElement) {
+            videoElement = document.createElement('video');
+            videoElement.style.display = 'none'; // Hidden video, draw to canvas
+            videoElement.muted = true;
+            videoElement.autoplay = true;
+            videoElement.playsInline = true;
+            document.body.appendChild(videoElement);
+        }
+
         let isDrag = false, ox = 0, oy = 0;
         previewFloat.querySelector('.preview-header').addEventListener('mousedown', (e) => {
             isDrag = true;
@@ -582,81 +652,65 @@
         previewClose.addEventListener('click', () => previewFloat.style.display = 'none');
     }
 
-    // Socket
-    function connectSocket() {
-        socket = io(window.location.origin, { transports: ['websocket'], reconnection: true });
+    function initFlvPlayer(cameraId) {
+        if (!videoElement) setupPreview(); // Ensure video element exists
 
-        socket.on('connect', () => {
-            connectionStatus.className = 'status-badge connected';
-            connectionStatus.innerHTML = '<span class="status-dot"></span> Đã kết nối';
-            loadCameras();
-        });
+        if (window.flvPlayer) {
+            window.flvPlayer.destroy();
+            window.flvPlayer = null;
+        }
 
-        socket.on('disconnect', () => {
-            connectionStatus.className = 'status-badge disconnected';
-            connectionStatus.innerHTML = '<span class="status-dot"></span> Mất kết nối';
-        });
+        // HTTP-FLV Protocol (Port 8000)
+        // Dynamic stream path based on Camera ID
+        const streamUrl = `${window.location.protocol}//${window.location.hostname}:8000/live/${cameraId}.flv`;
 
-        // Receive raw image from server (Client draws boxes)
-        socket.on('image', (data) => {
-            if (!data || !data.buffer) return;
-            if (!selectedCameraId || data.cameraId !== selectedCameraId) return;
-
-            try {
-                let imageBytes;
-                if (typeof data.buffer === 'string') {
-                    imageBytes = atob(data.buffer);
-                } else if (data.buffer.buffer) {
-                    imageBytes = new Uint8Array(data.buffer.buffer);
-                } else {
-                    imageBytes = new Uint8Array(data.buffer);
-                }
-
-                const blob = new Blob([imageBytes], { type: 'image/jpeg' });
-                const imageUrl = URL.createObjectURL(blob);
-
-                const img = new Image();
-                img.onload = () => {
-                    latestPreviewImage = img;
-                    URL.revokeObjectURL(imageUrl);
-                    receivedFrames++;
-                    framesReceived.textContent = receivedFrames;
-                    drawPreviewScene();
-                };
-                img.src = imageUrl;
-
-                // Capture track line from image event
-                if (data.track_line_y !== undefined) {
-                    latestTrackLineY = data.track_line_y;
-                }
-            } catch (e) {
-                console.error('Preview image error:', e);
-            }
-        });
-
-        socket.on('car_detected', (data) => {
-            if (data.detections) {
-                latestVehicleData = data;
-                detectionCount.textContent = data.detections.length + ' phát hiện';
-                drawPreviewScene();
-            }
-        });
-
-        socket.on('traffic_light', (data) => {
-            // Ignore server updates for 2 seconds after manual change to prevent "jumping"
-            if (Date.now() - lastManualLightChange < 2000) return;
-
-            latestTrafficSignData = data; // Save data for overlays
-
-            if (data.traffic_status) {
-                const s = data.traffic_status.toLowerCase();
-                if (s.includes('red')) setLight('red');
-                else if (s.includes('yellow')) setLight('yellow');
-                else if (s.includes('green')) setLight('green');
-            }
-            drawPreviewScene();
-        });
+        if (flvjs.isSupported()) {
+            const player = flvjs.createPlayer({
+                type: 'flv',
+                url: streamUrl,
+                isLive: true,
+                cors: true,
+                hasAudio: false
+            });
+            player.attachMediaElement(videoElement);
+            player.load();
+            player.play().catch(e => console.log('Autoplay blocked:', e));
+            window.flvPlayer = player;
+        } else {
+            console.error("FLV not supported on this browser");
+        }
     }
+
+    // Socket
+    // WebSocket for Image Upload
+    let ws;
+
+    function connectDataWebSocket(cameraId) {
+        if (ws) ws.close();
+        if (!cameraId) return;
+
+        // Find camera key
+        const cam = allCameras.find(c => c._id === cameraId);
+        const apiKey = cam ? cam.camera_api_key : 'default_key'; // Fallback or handle error
+
+        // Assuming WS server on port 3001 (default env)
+        // You might need to expose WS port to frontend via API or env
+        const wsPort = 3001;
+        const wsUrl = `ws://${window.location.hostname}:${wsPort}?cameraId=${cameraId}&apiKey=${apiKey}`;
+
+        ws = new WebSocket(wsUrl);
+        ws.onopen = () => {
+            console.log('WS Image Upload Connected');
+            connectionStatus.className = 'status-badge connected';
+            connectionStatus.innerHTML = '<span class="status-dot"></span> Đã kết nối WS';
+        };
+        ws.onerror = (err) => console.error('WS Error:', err);
+    }
+
+    // Legacy Socket.IO removed as requested
+    // Auto start
+    // init(); // Removed duplicate call
+
 
     function loadCameras() {
         fetch('/api/camera/all')
@@ -690,8 +744,11 @@
 
         latestVehicleData = null; // Clear old data
         latestTrafficSignData = null; // Clear traffic data
-        if (cameraId && socket) {
-            socket.emit('join_camera', cameraId);
+        if (cameraId) {
+            // Connect WS for data upload
+            connectDataWebSocket(cameraId);
+            // Init FLV Player
+            initFlvPlayer(cameraId);
         }
     }
 
@@ -699,216 +756,119 @@
     function drawPreviewScene() {
         try {
             const ctx = previewCanvas.getContext('2d');
-            if (!latestPreviewImage) return;
 
-            // Ensure canvas has size (fix for 0x0 canvas issue)
-            if (previewCanvas.width === 0 || previewCanvas.height === 0) {
-                const container = previewFloat.querySelector('.preview-content');
-                if (container && container.clientWidth > 0) {
-                    previewCanvas.width = container.clientWidth;
-                    previewCanvas.height = container.clientWidth * 0.6;
-                }
-            }
-
-            ctx.clearRect(0, 0, previewCanvas.width, previewCanvas.height);
-
-            // Calculate aspect ratio
-            const imageAspect = latestPreviewImage.width / latestPreviewImage.height;
-            const canvasAspect = previewCanvas.width / previewCanvas.height;
-
-            let drawWidth, drawHeight, offsetX, offsetY;
-
-            if (imageAspect > canvasAspect) {
-                drawWidth = previewCanvas.width;
-                drawHeight = previewCanvas.width / imageAspect;
-                offsetX = 0;
-                offsetY = (previewCanvas.height - drawHeight) / 2;
-            } else {
-                drawHeight = previewCanvas.height;
-                drawWidth = previewCanvas.height * imageAspect;
-                offsetX = (previewCanvas.width - drawWidth) / 2;
-                offsetY = 0;
-            }
-
-            // Draw image
-            ctx.drawImage(latestPreviewImage, offsetX, offsetY, drawWidth, drawHeight);
-
-            // --- Draw Lane Lines & Allow Vehicles ---
-            if (currentCameraConfig) {
-                const lanePoints = currentCameraConfig.camera_lane_track_point || [];
-                const laneVehicles = currentCameraConfig.camera_lane_vehicles || [];
-                const sortedPoints = [...lanePoints].sort((a, b) => a - b);
-
-                // Draw vertical lines
-                ctx.beginPath();
-                ctx.strokeStyle = "rgba(255, 255, 255, 0.6)";
-                ctx.lineWidth = 2;
-                ctx.setLineDash([10, 10]);
-
-                sortedPoints.forEach(p => {
-                    // Assume p is 0-100 percentage
-                    const x = offsetX + (p / 100) * drawWidth;
-                    ctx.moveTo(x, offsetY);
-                    ctx.lineTo(x, offsetY + drawHeight);
-                });
-                ctx.stroke();
-                ctx.setLineDash([]);
-
-                // Draw vehicle types per lane
-                const boundaries = [0, ...sortedPoints, 100];
-                ctx.font = "bold 12px Arial";
-                ctx.textAlign = "center";
-                ctx.textBaseline = "top";
-
-                for (let i = 0; i < boundaries.length - 1; i++) {
-                    const startP = boundaries[i];
-                    const endP = boundaries[i + 1];
-                    // Config might have fewer lane defs than calculated lanes? Handle gracefully
-                    const types = laneVehicles[i] || ["ANY"];
-
-                    const startX = offsetX + (startP / 100) * drawWidth;
-                    const endX = offsetX + (endP / 100) * drawWidth;
-                    const centerX = (startX + endX) / 2;
-                    let text = "ANY";
-                    if (Array.isArray(types)) {
-                        text = types.join(", ").toUpperCase();
-                    } else {
-                        text = String(types).toUpperCase();
+            // Draw video frame if available
+            if (videoElement && videoElement.readyState >= 2) {
+                // Ensure canvas has size (fix for 0x0 canvas issue)
+                if (previewCanvas.width === 0 || previewCanvas.height === 0) {
+                    const container = previewFloat.querySelector('.preview-content');
+                    if (container && container.clientWidth > 0) {
+                        previewCanvas.width = container.clientWidth;
+                        previewCanvas.height = container.clientWidth * 0.6;
                     }
-
-                    const p = 6;
-                    const tw = ctx.measureText(text).width + p * 2;
-
-                    ctx.fillStyle = "rgba(0, 0, 0, 0.7)";
-                    ctx.fillRect(centerX - tw / 2, offsetY + 5, tw, 20);
-
-                    ctx.fillStyle = "#fff";
-                    ctx.fillText(text, centerX, offsetY + 8);
                 }
-                ctx.textAlign = "left"; // Restore default
-            }
 
-            // --- 1. Draw Traffic Signs (from traffic_light event) ---
-            if (latestTrafficSignData && latestTrafficSignData.detections) {
-                latestTrafficSignData.detections.forEach((detection) => {
-                    const bbox = detection.bbox;
-                    const className = detection.class;
-                    const confidence = detection.confidence;
+                ctx.clearRect(0, 0, previewCanvas.width, previewCanvas.height);
 
-                    // Get color
-                    const color = getColorForClass(className);
-                    const colorString = `rgb(${color.r}, ${color.g}, ${color.b})`;
+                // Calculate aspect ratio
+                const imageAspect = videoElement.videoWidth / videoElement.videoHeight;
+                const canvasAspect = previewCanvas.width / previewCanvas.height;
 
-                    const x1 = offsetX + bbox.x1 * drawWidth;
-                    const y1 = offsetY + bbox.y1 * drawHeight;
-                    const w = (bbox.x2 - bbox.x1) * drawWidth;
-                    const h = (bbox.y2 - bbox.y1) * drawHeight;
+                let drawWidth, drawHeight, offsetX, offsetY;
 
-                    ctx.strokeStyle = colorString;
+                if (imageAspect > canvasAspect) {
+                    drawWidth = previewCanvas.width;
+                    drawHeight = previewCanvas.width / imageAspect;
+                    offsetX = 0;
+                    offsetY = (previewCanvas.height - drawHeight) / 2;
+                } else {
+                    drawHeight = previewCanvas.height;
+                    drawWidth = previewCanvas.height * imageAspect;
+                    offsetX = (previewCanvas.width - drawWidth) / 2;
+                    offsetY = 0;
+                }
+
+                // Draw video frame
+                ctx.drawImage(videoElement, offsetX, offsetY, drawWidth, drawHeight);
+
+                // --- Draw Lane Lines & Allow Vehicles ---
+                if (currentCameraConfig) {
+                    const lanePoints = currentCameraConfig.camera_lane_track_point || [];
+                    const laneVehicles = currentCameraConfig.camera_lane_vehicles || [];
+                    const sortedPoints = [...lanePoints].sort((a, b) => a - b);
+
+                    // Draw vertical lines
+                    ctx.beginPath();
+                    ctx.strokeStyle = "rgba(255, 255, 255, 0.6)";
                     ctx.lineWidth = 2;
-                    ctx.strokeRect(x1, y1, w, h);
+                    ctx.setLineDash([10, 10]);
 
-                    // Label
-                    const label = `${className}: ${confidence.toFixed(2)}`;
-                    ctx.font = "14px Arial";
-                    const labelWidth = ctx.measureText(label).width + 10;
-                    const labelHeight = 20;
-
-                    ctx.fillStyle = colorString;
-                    ctx.fillRect(x1, y1 - labelHeight, labelWidth, labelHeight);
-
-                    // Text color
-                    const brightness = (color.r * 0.299 + color.g * 0.587 + color.b * 0.114) / 255;
-                    ctx.fillStyle = brightness > 0.5 ? "black" : "white";
-                    ctx.fillText(label, x1 + 5, y1 - 5);
-                });
-            }
-
-            // --- 2. Vehicle Overlays ---
-            if (latestVehicleData || latestTrackLineY !== null) {
-
-                // (Counting Line drawing removed)
-
-
-                // Draw tracks
-                if (latestVehicleData && latestVehicleData.tracks && latestVehicleData.tracks.length > 0) {
-                    // Determine dimensions for normalization
-                    const imgW = latestVehicleData.image_dimensions ? latestVehicleData.image_dimensions.width : (latestPreviewImage ? latestPreviewImage.width : 1280);
-                    const imgH = latestVehicleData.image_dimensions ? latestVehicleData.image_dimensions.height : (latestPreviewImage ? latestPreviewImage.height : 720);
-
-                    latestVehicleData.tracks.forEach((track) => {
-                        if (track.positions && track.positions.length >= 2) {
-                            let color = "rgba(255, 255, 0, 0.8)"; // Default
-                            switch (track.class) {
-                                case "car": color = "rgba(0, 255, 0, 0.8)"; break;
-                                case "truck": color = "rgba(0, 0, 255, 0.8)"; break;
-                                case "bus": color = "rgba(255, 0, 0, 0.8)"; break;
-                                case "motorcycle": color = "rgba(255, 255, 0, 0.8)"; break;
-                                case "bicycle": color = "rgba(255, 0, 255, 0.8)"; break;
-                            }
-
-                            ctx.beginPath();
-                            ctx.strokeStyle = color;
-                            ctx.lineWidth = 2;
-
-                            // Sort positions
-                            const sortedPositions = [...track.positions].sort((a, b) => a.time - b.time);
-
-                            for (let i = 0; i < sortedPositions.length - 1; i++) {
-                                const pos1 = sortedPositions[i];
-                                const pos2 = sortedPositions[i + 1];
-
-                                // Use safe dimensions
-                                const x1 = offsetX + (pos1.x / imgW) * drawWidth;
-                                const y1 = offsetY + (pos1.y / imgH) * drawHeight;
-                                const x2 = offsetX + (pos2.x / imgW) * drawWidth;
-                                const y2 = offsetY + (pos2.y / imgH) * drawHeight;
-
-                                if (i === 0) ctx.moveTo(x1, y1);
-                                ctx.lineTo(x2, y2);
-                            }
-                            ctx.stroke();
-                        }
+                    sortedPoints.forEach(p => {
+                        // Assume p is 0-100 percentage
+                        const x = offsetX + (p / 100) * drawWidth;
+                        ctx.moveTo(x, offsetY);
+                        ctx.lineTo(x, offsetY + drawHeight);
                     });
+                    ctx.stroke();
+                    ctx.setLineDash([]);
+
+
+                    // Draw vehicle types per lane
+                    const boundaries = [0, ...sortedPoints, 100];
+                    ctx.font = "bold 12px Arial";
+                    ctx.textAlign = "center";
+                    ctx.textBaseline = "top";
+
+                    for (let i = 0; i < boundaries.length - 1; i++) {
+                        const startP = boundaries[i];
+                        const endP = boundaries[i + 1];
+                        // Config might have fewer lane defs than calculated lanes? Handle gracefully
+                        const types = laneVehicles[i] || ["ANY"];
+
+                        const startX = offsetX + (startP / 100) * drawWidth;
+                        const endX = offsetX + (endP / 100) * drawWidth;
+                        const centerX = (startX + endX) / 2;
+                        let text = "ANY";
+                        if (Array.isArray(types)) {
+                            text = types.join(", ").toUpperCase();
+                        } else {
+                            text = String(types).toUpperCase();
+                        }
+
+                        const p = 6;
+                        const tw = ctx.measureText(text).width + p * 2;
+
+                        ctx.fillStyle = "rgba(0, 0, 0, 0.7)";
+                        ctx.fillRect(centerX - tw / 2, offsetY + 5, tw, 20);
+
+                        ctx.fillStyle = "#fff";
+                        ctx.fillText(text, centerX, offsetY + 8);
+                    }
+                    ctx.textAlign = "left"; // Restore default
                 }
 
-                // Draw detections
-                if (latestVehicleData && latestVehicleData.detections) {
-                    latestVehicleData.detections.forEach((detection) => {
+                // --- 1. Draw Traffic Signs (from traffic_light event) ---
+                if (latestTrafficSignData && latestTrafficSignData.detections) {
+                    latestTrafficSignData.detections.forEach((detection) => {
                         const bbox = detection.bbox;
-                        if (!bbox) return;
-
                         const className = detection.class;
                         const confidence = detection.confidence;
-                        const trackId = detection.track_id;
 
-                        // Choose color
-                        let colorString;
-                        switch (className) {
-                            case "car": colorString = "rgb(0, 255, 0)"; break; // Green
-                            case "truck": colorString = "rgb(0, 0, 255)"; break; // Blue
-                            case "bus": colorString = "rgb(255, 0, 0)"; break; // Red
-                            case "motorcycle": colorString = "rgb(255, 255, 0)"; break; // Yellow
-                            case "bicycle": colorString = "rgb(255, 0, 255)"; break; // Purple
-                            default: colorString = "rgb(0, 255, 0)";
-                        }
+                        // Get color
+                        const color = getColorForClass(className);
+                        const colorString = `rgb(${color.r}, ${color.g}, ${color.b})`;
 
                         const x1 = offsetX + bbox.x1 * drawWidth;
                         const y1 = offsetY + bbox.y1 * drawHeight;
-                        const x2 = offsetX + bbox.x2 * drawWidth;
-                        const y2 = offsetY + bbox.y2 * drawHeight;
-                        const boxWidth = x2 - x1;
-                        const boxHeight = y2 - y1;
+                        const w = (bbox.x2 - bbox.x1) * drawWidth;
+                        const h = (bbox.y2 - bbox.y1) * drawHeight;
 
                         ctx.strokeStyle = colorString;
                         ctx.lineWidth = 2;
-                        ctx.strokeRect(x1, y1, boxWidth, boxHeight);
+                        ctx.strokeRect(x1, y1, w, h);
 
-                        let label = `${className}: ${confidence ? confidence.toFixed(2) : '?'}`;
-                        if (trackId !== undefined) {
-                            label += ` ID:${trackId}`;
-                        }
-
+                        // Label
+                        const label = `${className}: ${confidence.toFixed(2)}`;
                         ctx.font = "14px Arial";
                         const labelWidth = ctx.measureText(label).width + 10;
                         const labelHeight = 20;
@@ -916,19 +876,119 @@
                         ctx.fillStyle = colorString;
                         ctx.fillRect(x1, y1 - labelHeight, labelWidth, labelHeight);
 
-                        let textColor;
-                        switch (className) {
-                            case "car":
-                            case "motorcycle":
-                                textColor = "black";
-                                break;
-                            default:
-                                textColor = "white";
-                        }
-
-                        ctx.fillStyle = textColor;
+                        // Text color
+                        const brightness = (color.r * 0.299 + color.g * 0.587 + color.b * 0.114) / 255;
+                        ctx.fillStyle = brightness > 0.5 ? "black" : "white";
                         ctx.fillText(label, x1 + 5, y1 - 5);
                     });
+                }
+
+                // --- 2. Vehicle Overlays ---
+                if (latestVehicleData || latestTrackLineY !== null) {
+
+                    // (Counting Line drawing removed)
+
+
+                    // Draw tracks
+                    if (latestVehicleData && latestVehicleData.tracks && latestVehicleData.tracks.length > 0) {
+                        // Determine dimensions for normalization
+                        const imgW = latestVehicleData.image_dimensions ? latestVehicleData.image_dimensions.width : (latestPreviewImage ? latestPreviewImage.width : 1280);
+                        const imgH = latestVehicleData.image_dimensions ? latestVehicleData.image_dimensions.height : (latestPreviewImage ? latestPreviewImage.height : 720);
+
+                        latestVehicleData.tracks.forEach((track) => {
+                            if (track.positions && track.positions.length >= 2) {
+                                let color = "rgba(255, 255, 0, 0.8)"; // Default
+                                switch (track.class) {
+                                    case "car": color = "rgba(0, 255, 0, 0.8)"; break;
+                                    case "truck": color = "rgba(0, 0, 255, 0.8)"; break;
+                                    case "bus": color = "rgba(255, 0, 0, 0.8)"; break;
+                                    case "motorcycle": color = "rgba(255, 255, 0, 0.8)"; break;
+                                    case "bicycle": color = "rgba(255, 0, 255, 0.8)"; break;
+                                }
+
+                                ctx.beginPath();
+                                ctx.strokeStyle = color;
+                                ctx.lineWidth = 2;
+
+                                // Sort positions
+                                const sortedPositions = [...track.positions].sort((a, b) => a.time - b.time);
+
+                                for (let i = 0; i < sortedPositions.length - 1; i++) {
+                                    const pos1 = sortedPositions[i];
+                                    const pos2 = sortedPositions[i + 1];
+
+                                    // Use safe dimensions
+                                    const x1 = offsetX + (pos1.x / imgW) * drawWidth;
+                                    const y1 = offsetY + (pos1.y / imgH) * drawHeight;
+                                    const x2 = offsetX + (pos2.x / imgW) * drawWidth;
+                                    const y2 = offsetY + (pos2.y / imgH) * drawHeight;
+
+                                    if (i === 0) ctx.moveTo(x1, y1);
+                                    ctx.lineTo(x2, y2);
+                                }
+                                ctx.stroke();
+                            }
+                        });
+                    }
+
+                    // Draw detections
+                    if (latestVehicleData && latestVehicleData.detections) {
+                        latestVehicleData.detections.forEach((detection) => {
+                            const bbox = detection.bbox;
+                            if (!bbox) return;
+
+                            const className = detection.class;
+                            const confidence = detection.confidence;
+                            const trackId = detection.track_id;
+
+                            // Choose color
+                            let colorString;
+                            switch (className) {
+                                case "car": colorString = "rgb(0, 255, 0)"; break; // Green
+                                case "truck": colorString = "rgb(0, 0, 255)"; break; // Blue
+                                case "bus": colorString = "rgb(255, 0, 0)"; break; // Red
+                                case "motorcycle": colorString = "rgb(255, 255, 0)"; break; // Yellow
+                                case "bicycle": colorString = "rgb(255, 0, 255)"; break; // Purple
+                                default: colorString = "rgb(0, 255, 0)";
+                            }
+
+                            const x1 = offsetX + bbox.x1 * drawWidth;
+                            const y1 = offsetY + bbox.y1 * drawHeight;
+                            const x2 = offsetX + bbox.x2 * drawWidth;
+                            const y2 = offsetY + bbox.y2 * drawHeight;
+                            const boxWidth = x2 - x1;
+                            const boxHeight = y2 - y1;
+
+                            ctx.strokeStyle = colorString;
+                            ctx.lineWidth = 2;
+                            ctx.strokeRect(x1, y1, boxWidth, boxHeight);
+
+                            let label = `${className}: ${confidence ? confidence.toFixed(2) : '?'}`;
+                            if (trackId !== undefined) {
+                                label += ` ID:${trackId}`;
+                            }
+
+                            ctx.font = "14px Arial";
+                            const labelWidth = ctx.measureText(label).width + 10;
+                            const labelHeight = 20;
+
+                            ctx.fillStyle = colorString;
+                            ctx.fillRect(x1, y1 - labelHeight, labelWidth, labelHeight);
+
+                            let textColor;
+                            switch (className) {
+                                case "car":
+                                case "motorcycle":
+                                    textColor = "black";
+                                    break;
+                                default:
+                                    textColor = "white";
+                            }
+
+                            ctx.fillStyle = textColor;
+                            ctx.fillText(label, x1 + 5, y1 - 5);
+                        });
+                    }
                 }
             }
         } catch (e) {

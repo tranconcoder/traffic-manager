@@ -2,9 +2,11 @@ import path from 'path';
 import { envConfig } from './index.js';
 import { ConfigFilterVideo } from '@/types/ffmpeg.js';
 
+import ffmpegInstaller from '@ffmpeg-installer/ffmpeg';
+
 // Bin file path
-export const FFMPEG_PATH = path.join(import.meta.dirname, envConfig.FFMPEG_PATH);
-export const FFPROBE_PATH = path.join(import.meta.dirname, envConfig.FFPROBE_PATH);
+export const FFMPEG_PATH = ffmpegInstaller.path;
+export const FFPROBE_PATH = envConfig.FFPROBE_PATH;
 
 export const FRAMESIZES = {
 	QCIF: '176x144',

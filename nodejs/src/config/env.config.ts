@@ -2,7 +2,7 @@ import 'dotenv/config';
 import dotenv from 'dotenv';
 
 export const NODE_ENV: 'development' | 'production' =
-	process.env.NODE_ENV as any || 'development' ;
+	process.env.NODE_ENV as any || 'development';
 
 dotenv.config({ path: `.env.${NODE_ENV}` });
 
@@ -10,7 +10,7 @@ export const HOST = process.env.HOST || '0.0.0.0';
 export const PORT = Number(process.env.PORT) || 3000;
 
 // Media server
-export const MEDIA_SERVER_HOST = process.env.MEDIA_SERVER_HOST || '0.0.0.0';
+export const MEDIA_SERVER_HOST = process.env.MEDIA_SERVER_HOST || '127.0.0.1';
 export const MEDIA_SERVER_HOST_IP =
 	process.env.MEDIA_SERVER_HOST_IP || '0.0.0.0';
 

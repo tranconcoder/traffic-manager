@@ -24,6 +24,13 @@ viewsRouter.get("/combined", viewController.combinedPage);
 
 viewsRouter.get("/violations/review", viewController.violationReviewPage);
 
+viewsRouter.get("/admin", async (req, res) => {
+  res.render("pages/admin", {
+    title: "Media Server Admin",
+    layout: "traffic-dashboard",
+  });
+});
+
 viewsRouter.get(
   "/license-plates/search",
   licensePlateController.renderSearchPage

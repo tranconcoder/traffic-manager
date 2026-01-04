@@ -45,7 +45,13 @@
                     <select id="sourceSelect">
                         <option value="simulation">Giả lập (Canvas)</option>
                         <option value="webcam">Ghi màn hình</option>
+                        <option value="video">Video loop</option>
                     </select>
+                </div>
+                <!-- Video file input (hidden by default) -->
+                <div class="form-group" id="videoFileGroup" style="display: none;">
+                    <label>Chọn file video</label>
+                    <input type="file" id="videoFileInput" accept="video/*" class="form-control" />
                 </div>
                 <div class="form-group">
                     <label>FPS: <span id="fpsValue">10</span></label>
@@ -57,8 +63,9 @@
                 </div>
             </div>
 
-            <!-- Hidden generic video element for webcam -->
+            <!-- Hidden video elements -->
             <video id="webcamVideo" autoplay playsinline style="display: none;"></video>
+            <video id="loopVideo" loop muted playsinline style="display: none;"></video>
 
             <!-- Vehicle Manager -->
             <div class="sidebar-section">
@@ -227,6 +234,8 @@
 
     <script src="/socket.io/socket.io.js"></script>
     <script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@1.4.0/dist/hls.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
     <script src="/scripts/combined/main.js"></script>
 </body>
 

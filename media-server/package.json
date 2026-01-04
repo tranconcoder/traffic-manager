@@ -1,0 +1,19 @@
+{
+    "name": "media-server",
+    "version": "1.0.0",
+    "description": "Standalone Node Media Server for Traffic Manager",
+    "main": "src/index.ts",
+    "scripts": {
+        "dev": "tsx watch src/index.ts",
+        "start": "tsx src/index.ts"
+    },
+    "dependencies": {
+        "@ffmpeg-installer/ffmpeg": "^1.1.0",
+        "node-server-media": "^2.6.6",
+        "tsx": "^4.7.1",
+        "typescript": "^5.3.3"
+    },
+    "devDependencies": {
+        "@types/node": "^20.11.24"
+    }
+}

@@ -7,6 +7,9 @@ import url from "url";
 import { WebSocketServer } from "ws";
 // Analytics
 import { websocketAnalytics } from "./websocketAnalytics.service.js";
+// FFmpeg stream input
+import { streamManager } from "./stream.service.js";
+import { ffmpegManager } from "./ffmpeg.service.js";
 
 // Import the io instance (assuming it's exported from index.ts)
 // Adjust the path if necessary
@@ -57,25 +60,22 @@ export default function runWebsocketService(
         const dimensions = imageSize(buffer);
         width = dimensions.width;
         height = dimensions.height;
+
+        ffmpegManager.startStream(cameraId);
       });
 
       /* ----------------------------- Handle message ----------------------------- */
       ws.on("message", async function message(buffer: Buffer) {
         websocketAnalytics.transferData(buffer.length, 1)
 
-        const room = `camera_${cameraId}`;
         const imageId = new mongoose.Types.ObjectId().toString();
         const timestamp = Date.now();
 
-        io.to(room).emit("image", {
-          cameraId,
-          imageId,
-          width,
-          height,
-          buffer,
-          track_line_y: camera.camera_track_line_y,
-          created_at: timestamp
-        });
+        // Push to FFmpeg stream for RTMP/HLS output
+        // Images now flow: WebSocket -> FFmpeg -> RTMP -> Media Server -> HLS
+
+        // Ensure specific camera stream is active
+        streamManager.pushData(cameraId, buffer);
 
         /* ---------------------------- Save image to db ---------------------------- */
         cameraImageModel.create({

@@ -124,12 +124,13 @@ handleRoute(app);
 //
 // RUN SERVICES
 //
-// Ffmpeg
-ffmpegService.run();
-// Websocket
+// Websocket (Camera → FFmpeg)
 runWebsocketService(wss, HOST, PORT);
 // MQTT
 runMqttService();
+// Kaggle Results WebSocket (port 3002)
+import { createKaggleResultsServer } from "@/services/kaggleResults.service.js";
+createKaggleResultsServer(3002);
 
 //
 // ERROR HANDLER

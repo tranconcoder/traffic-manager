@@ -1,19 +1,17 @@
-import { Socket } from "socket.io";
-import trafficLightModel from "@/models/trafficLight.model.js";
-import carDetectionModel from "@/models/carDetection.model.js";
-import cameraModel from "@/models/camera.model.js";
-import violationService from "@/services/violation.service.js";
-import trafficStatisticsService from "@/services/trafficStatistics.service.js";
-import cameraImageModel from "@/models/cameraImage.model.js";
 import { TrafficViolation } from "@/enums/trafficViolation.enum.js";
-import { ViolationLicensePlateDetect } from "./socketio.util.d.js";
-import imagesModel from "@/models/images.model.js";
+import cameraModel from "@/models/camera.model.js";
+import cameraImageModel from "@/models/cameraImage.model.js";
+import carDetectionModel from "@/models/carDetection.model.js";
 import licensePlateDetectedModel from "@/models/licensePlateDetected.model.js";
-import sensorDataModel from "@/models/sensorData.model.js";
+import trafficLightModel from "@/models/trafficLight.model.js";
+import { getRecentImages, pushImage, setTrafficLightStatus } from "@/services/redis.service.js";
+import violationService from "@/services/violation.service.js";
 import { websocketAnalytics } from "@/services/websocketAnalytics.service.js";
 import { Types } from "mongoose";
-import sharp from "sharp";
-import { pushImage, setTrafficLightStatus, getRecentImages } from "@/services/redis.service.js";
+import { Socket } from "socket.io";
+import { ViolationLicensePlateDetect } from "./socketio.util.d.js";
+import { streamManager } from "@/services/stream.service.js";
+import { ffmpegManager } from "@/services/ffmpeg.service.js";
 
 /* -------------------------------------------------------------------------- */
 /*                            Use strategy pattern                            */
@@ -104,8 +102,20 @@ export async function handleImageEvent(
     track_line_y: data.track_line_y,
   };
 
-  socket.broadcast.emit("image", payload);
-  socket.emit("image", payload); // Send back to sender
+  // socket.broadcast.emit("image", payload); // Disabled: Using HLS
+  // socket.emit("image", payload); // Send back to sender // Disabled
+
+  // Push to FFmpeg Stream (Multi-Camera)
+  try {
+    const imgBuffer = Buffer.from(data.buffer);
+
+    // Ensure specific camera stream is active
+    ffmpegManager.startStream(data.cameraId);
+    streamManager.pushData(data.cameraId, imgBuffer);
+
+  } catch (err) {
+    console.error("[Stream] Push error:", err);
+  }
 
   websocketAnalytics.transferData(data.buffer.length, 1);
 
@@ -141,9 +151,11 @@ export async function handleImageEvent(
       lastYoloApiTime.set(data.cameraId, now);
 
       // Call API asynchronously (don't await to not block)
+      /* Disabled: Kaggle now pulls from HLS stream
       callYoloApiAndEmit(socket, data).catch((err) => {
         console.error("[YOLO API] Detection error:", err.message);
       });
+      */
     }
 
   } catch (error: any) {

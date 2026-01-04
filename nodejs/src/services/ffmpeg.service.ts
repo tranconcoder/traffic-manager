@@ -1,99 +1,77 @@
-// Packages
 import Ffmpeg from 'fluent-ffmpeg';
-// Stream
+import { streamManager } from './stream.service.js';
 import {
-	readStreamEsp32CamMonitorImg,
-	readStreamEsp32CamSecurityGateImg,
-} from './stream.service.js';
-// Utils
-import {
-	handleCodecData,
-	handleEnd,
-	handleError,
-	handleProgress,
-	handleStart,
-	reverseFrameSize,
+  handleCodecData,
+  handleEnd,
+  handleError,
+  handleProgress,
+  handleStart,
 } from '@/utils/ffmpeg.util.js';
-// Configs
 import {
-	FFMPEG_PATH,
-	FRAMESIZE,
-	RTMP_MONITOR_URL,
-	RTMP_SECURITY_GATE_URL,
+  FFMPEG_PATH,
+  FRAMESIZE,
+  RTMP_SERVER_BASE_URL,
 } from '@/config/ffmpeg.config.js';
-// Video filter config
 
-//
-// Initial ffmpeg service
-//
-export const ffmpegCommandSecurityGate = Ffmpeg({ priority: 0 })
-  // .setFfmpegPath(FFMPEG_PATH)
-  .input(readStreamEsp32CamSecurityGateImg)
-  .inputOptions(["-re"])
-  .withNativeFramerate()
-  .withNoAudio()
-  .withSize(FRAMESIZE)
-  .nativeFramerate()
-  .noAudio()
-  .outputOptions([
-    "-vf vflip",
-    "-preset ultrafast",
-    "-c:v libx264",
-    "-b:v 2M",
-    "-fps_mode auto",
-    "-pix_fmt yuv420p",
-    "-frame_drop_threshold -5.0",
-    "-thread_queue_size 3M", // Từng gây lỗi khi chạy trong docker // spell-checker: disable-line
-  ])
-  .format("flv")
-  .output(RTMP_SECURITY_GATE_URL)
-  .on("start", handleStart)
-  .on("codecData", (data: any) => handleCodecData(data))
-  .on("progress", handleProgress)
-  .on("end", handleEnd)
-  .on("error", handleError);
-// console.log(
-// 	`-vf ` +
-// 		//`hflip,` +
-// 		`drawtext=${convertObjectConfigToString(timeFilterConfig, '=', ':')}` +
-// 		`drawtext=${convertObjectConfigToString(
-// 			securityGateFilterConfig,
-// 			'=',
-// 			':'
-// 		)}`
-// );
+class FFmpegManager {
+  private activeCommands: Map<string, Ffmpeg.FfmpegCommand> = new Map();
 
-export const ffmpegCommandMonitor = Ffmpeg({ priority: 1 })
-  // .setFfmpegPath(FFMPEG_PATH)
-  .input(readStreamEsp32CamMonitorImg)
-  .inputOptions(["-re"])
-  .withNativeFramerate()
-  .withNoAudio()
-  .withSize(reverseFrameSize(FRAMESIZE))
-  .nativeFramerate()
-  .noAudio()
-  .outputOptions([
-    "-preset medium",
-    "-c:v libx264",
-    // `-vf ` +
-    // 	//`hflip,` +
-    // 	`drawtext=${convertObjectConfigToString(timeFilterConfig, '=', ':')},` +
-    // 	`drawtext=${convertObjectConfigToString(monitorFilterConfig, '=', ':')}`,
-    "-b:v 1M",
-    "-fps_mode auto",
-    "-pix_fmt yuv420p",
-    "-frame_drop_threshold -5.0",
-    // '-thread_queue_size 1M', // Từng gây lỗi khi chạy trong docker
-  ])
-  .format("flv")
-  .output(RTMP_MONITOR_URL)
-  .on("start", handleStart)
-  .on("codecData", (data: any) => handleCodecData(data))
-  .on("progress", handleProgress)
-  .on("end", handleEnd)
-  .on("error", handleError);
+  /**
+   * Start FFmpeg process for a camera if not already running
+   * Pushes RTMP stream to Node Media Server
+   */
+  startStream(cameraId: string) {
+    if (this.activeCommands.has(cameraId)) {
+      return; // Already running
+    }
 
-export const run = () => {
-	ffmpegCommandSecurityGate.run();
-	// ffmpegCommandMonitor.run();
-};
+    console.log(`[FFmpegManager] Starting stream for camera: ${cameraId}`);
+
+    const inputStr = streamManager.getStream(cameraId);
+    const rtmpUrl = `${RTMP_SERVER_BASE_URL}/${cameraId}`;
+
+    const command = Ffmpeg({ priority: 0 })
+      .input(inputStr)
+      .inputFormat("image2pipe")
+      .inputOptions([
+        "-use_wallclock_as_timestamps 1",
+        "-vcodec mjpeg",
+      ])
+      .withNoAudio()
+      .outputOptions([
+        "-preset ultrafast",
+        "-tune zerolatency",
+        "-c:v libx264",
+        "-b:v 1000k",
+        "-maxrate 1000k",
+        "-bufsize 2000k",
+        "-vsync cfr",  // Constant frame rate for RTMP
+        "-pix_fmt yuv420p",
+        "-g 20",
+        "-f flv",
+        "-r 10"
+      ])
+      .output(rtmpUrl)
+      .on("start", (cmd) => {
+        console.log(`[FFmpeg] Started RTMP push to ${cameraId}: ${cmd}`);
+        handleStart(cmd);
+      })
+      .on("codecData", handleCodecData)
+      .on("progress", handleProgress)
+      .on("end", () => {
+        console.log(`[FFmpeg] Ended ${cameraId}`);
+        this.activeCommands.delete(cameraId);
+        handleEnd();
+      })
+      .on("error", (err) => {
+        console.error(`[FFmpeg] Error ${cameraId}:`, err.message);
+        this.activeCommands.delete(cameraId);
+        handleError(err);
+      });
+
+    command.run();
+    this.activeCommands.set(cameraId, command);
+  }
+}
+
+export const ffmpegManager = new FFmpegManager();
