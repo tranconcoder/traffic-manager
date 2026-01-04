@@ -831,7 +831,7 @@
 
 
                 // Draw tracks
-                if (latestVehicleData.tracks && latestVehicleData.tracks.length > 0) {
+                if (latestVehicleData && latestVehicleData.tracks && latestVehicleData.tracks.length > 0) {
                     // Determine dimensions for normalization
                     const imgW = latestVehicleData.image_dimensions ? latestVehicleData.image_dimensions.width : (latestPreviewImage ? latestPreviewImage.width : 1280);
                     const imgH = latestVehicleData.image_dimensions ? latestVehicleData.image_dimensions.height : (latestPreviewImage ? latestPreviewImage.height : 720);
@@ -873,7 +873,7 @@
                 }
 
                 // Draw detections
-                if (latestVehicleData.detections) {
+                if (latestVehicleData && latestVehicleData.detections) {
                     latestVehicleData.detections.forEach((detection) => {
                         const bbox = detection.bbox;
                         if (!bbox) return;
@@ -1187,5 +1187,4 @@
     document.addEventListener('DOMContentLoaded', () => {
         initMqttClient().catch(err => console.warn('[MQTT] Initial connection failed:', err.message));
     });
-    Ư
 })();

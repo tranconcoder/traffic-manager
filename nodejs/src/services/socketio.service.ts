@@ -1,15 +1,17 @@
 import { Server as SocketIOServer, Socket } from "socket.io";
-import { Server as HTTPsServer } from "https";
+import { Server as HTTPServer } from "http";
 import handleEvent from "../utils/socketio.util.js";
 
-export function runSocketIOService(server: HTTPsServer): SocketIOServer {
+export function runSocketIOService(server: HTTPServer): SocketIOServer {
   const io = new SocketIOServer(server, {
-    pingTimeout: 30000, // 30s (reduced for tunnel stability)
-    pingInterval: 10000, // 10s (more frequent pings)
+    pingTimeout: 60000,
+    pingInterval: 5000, // 5s aggressive ping to keep tunnel open
     cors: { origin: "*" },
-    transports: ["websocket", "polling"], // Fallback support
-    allowUpgrades: true,
-    perMessageDeflate: false // Disable compression to avoid b'\xff' errors
+    transports: ["websocket"],
+    allowUpgrades: false,
+    perMessageDeflate: false,
+    allowEIO3: true, // Support older clients
+    maxHttpBufferSize: 1e8 // 100 MB to prevent disconnect on large images
   }); // Store the instance
 
   io.on("connection", async (socket: Socket) => {

@@ -8,9 +8,9 @@ import bodyParser from "body-parser";
 import path from "path";
 import SetupHandlebars from "@/services/handlebars.service.js";
 
-// Https server
-import fs from "fs";
-import https from "https";
+// Https server -> Removed
+// import fs from "fs";
+// import https from "https";
 
 // Websocket Server
 import runWebsocketService from "@/services/websocket.service.js";
@@ -39,30 +39,21 @@ const { HOST, PORT } = envConfig;
 // Services
 import cronService from "./services/cron.service.js";
 
-// SSL Certificates
-const privateKey = fs.readFileSync(
-  path.join(import.meta.dirname, "./assets/certificates/key.pem"),
-  "utf8"
-);
-const certificate = fs.readFileSync(
-  path.join(import.meta.dirname, "./assets/certificates/cert.pem"),
-  "utf8"
-);
+// SSL Certificates -> Removed for Tunnel/HTTP usage
+// const privateKey = ...
+// const certificate = ...
+// const credentials = ...
 
-const credentials = {
-  key: privateKey,
-  cert: certificate,
-};
-
+// Server
 // Server
 const app = express();
 // Use createServer from http for simplicity, assuming HTTPS isn't strictly needed for internal Socket.IO
-const httpsServer = https.createServer(credentials, app); // Renamed for clarity
+const httpServer = createServer(app);
 
-const httpsWs = https.createServer(credentials);
+const httpWs = createServer();
 const wss = new WebSocketServer({
-  // server: httpsServer, // Attach WebSocket server to the HTTP server
-  server: httpsWs,
+  // server: httpServer, // Attach WebSocket server to the HTTP server
+  server: httpWs,
   maxPayload: 102400 * 1024, // Example payload limit
 });
 
@@ -81,7 +72,7 @@ app.use(session(sessionOptions));
 //
 // SOCKET.IO
 //
-const io = runSocketIOService(httpsServer);
+const io = runSocketIOService(httpServer);
 
 //
 // CORS
@@ -149,16 +140,16 @@ app.use(HandleErrorService.middleware);
 // START SERVER
 //
 // Use httpServer.listen (which now has both ws and socket.io attached)
-httpsServer.listen(PORT, HOST, () => {
-  console.log(`Server is running on https://${HOST}:${PORT}`);
+httpServer.listen(PORT, HOST, () => {
+  console.log(`Server is running on http://${HOST}:${PORT}`);
 });
 
-httpsWs.listen(3001, HOST, () => {
+httpWs.listen(3001, HOST, () => {
   console.log(
-    `Server (with WebSocket and Socket.IO) is running on https://${HOST}:3001`
+    `Server (with WebSocket and Socket.IO) is running on http://${HOST}:3001`
   );
 });
 
 cronService.startAllJobs();
 
-export { wss, httpsServer, HOST, PORT, io };
+export { wss, httpServer, HOST, PORT, io };
