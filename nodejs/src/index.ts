@@ -50,10 +50,9 @@ const app = express();
 // Use createServer from http for simplicity, assuming HTTPS isn't strictly needed for internal Socket.IO
 const httpServer = createServer(app);
 
-const httpWs = createServer();
 const wss = new WebSocketServer({
-  // server: httpServer, // Attach WebSocket server to the HTTP server
-  server: httpWs,
+  server: httpServer, // Attach WebSocket server to the HTTP server
+  // server: httpWs,
   maxPayload: 102400 * 1024, // Example payload limit
 });
 
@@ -128,9 +127,6 @@ handleRoute(app);
 runWebsocketService(wss, HOST, PORT);
 // MQTT
 runMqttService();
-// Kaggle Results WebSocket (port 3002)
-import { createKaggleResultsServer } from "@/services/kaggleResults.service.js";
-createKaggleResultsServer(3002);
 
 //
 // ERROR HANDLER
@@ -143,12 +139,7 @@ app.use(HandleErrorService.middleware);
 // Use httpServer.listen (which now has both ws and socket.io attached)
 httpServer.listen(PORT, HOST, () => {
   console.log(`Server is running on http://${HOST}:${PORT}`);
-});
-
-httpWs.listen(3001, HOST, () => {
-  console.log(
-    `Server (with WebSocket and Socket.IO) is running on http://${HOST}:3001`
-  );
+  console.log(`WebSocket Server is listening on ws://${HOST}:${PORT}`);
 });
 
 cronService.startAllJobs();

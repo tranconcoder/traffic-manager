@@ -39,17 +39,17 @@ class FFmpegManager {
       ])
       .withNoAudio()
       .outputOptions([
-        "-preset ultrafast",
+        "-preset fast",      // Better quality than ultrafast
         "-tune zerolatency",
         "-c:v libx264",
-        "-b:v 1000k",
-        "-maxrate 1000k",
-        "-bufsize 2000k",
-        "-vsync cfr",  // Constant frame rate for RTMP
+        "-crf 23",           // Quality level (18-28, lower = better, 23 = medium)
+        "-maxrate 2000k",
+        "-bufsize 4000k",
+        "-vsync cfr",
         "-pix_fmt yuv420p",
-        "-g 20",
+        "-g 50",
         "-f flv",
-        "-r 10"
+        "-r 25"
       ])
       .output(rtmpUrl)
       .on("start", (cmd) => {

@@ -605,7 +605,7 @@
             sCtx.drawImage(mainCanvas, 0, 0, 640, 480);
         }
 
-        const imageData = sendCanvas.toDataURL('image/jpeg', 0.7);
+        const imageData = sendCanvas.toDataURL('image/jpeg', 1.0);
         const buffer = dataURLtoBlob(imageData);
 
         // Send binary frame directly via WebSocket
@@ -693,9 +693,9 @@
         const cam = allCameras.find(c => c._id === cameraId);
         const apiKey = cam ? cam.camera_api_key : 'default_key'; // Fallback or handle error
 
-        // Assuming WS server on port 3001 (default env)
+        // Assuming WS server on port 3000 (default env)
         // You might need to expose WS port to frontend via API or env
-        const wsPort = 3001;
+        const wsPort = 3000;
         const wsUrl = `ws://${window.location.hostname}:${wsPort}?cameraId=${cameraId}&apiKey=${apiKey}`;
 
         ws = new WebSocket(wsUrl);
