@@ -46,14 +46,32 @@ import cronService from "./services/cron.service.js";
 
 // Server
 // Server
+import url from "url"; // Import url module
+
 const app = express();
 // Use createServer from http for simplicity, assuming HTTPS isn't strictly needed for internal Socket.IO
 const httpServer = createServer(app);
 
 const wss = new WebSocketServer({
-  server: httpServer, // Attach WebSocket server to the HTTP server
+  noServer: true, // Handle upgrade manually to avoid conflict with Socket.IO
   // server: httpWs,
   maxPayload: 102400 * 1024, // Example payload limit
+});
+
+// Handle upgrade manually
+httpServer.on('upgrade', (request, socket, head) => {
+  const parsedUrl = url.parse(request.url || '', true);
+  const pathname = parsedUrl.pathname;
+
+  // Let Socket.IO handle /socket.io requests (it attaches its own listener)
+  if (pathname && pathname.startsWith('/socket.io/')) {
+    return;
+  }
+
+  // Handle native WebSocket requests (e.g. from Python /?cameraId=...)
+  wss.handleUpgrade(request, socket, head, (ws) => {
+    wss.emit('connection', ws, request);
+  });
 });
 
 //

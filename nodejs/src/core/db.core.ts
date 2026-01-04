@@ -14,7 +14,7 @@ export default class DBCore {
     }
 
     public connect(): void {
-        mongoose.connect("mongodb://localhost:27017/traffic-detection").then(() => {
+        mongoose.connect("mongodb://admin:123@localhost:27017/traffic-detection?authSource=admin").then(() => {
             console.log("Connected to MongoDB");
         }).catch((err) => {
             console.log("Error connecting to MongoDB", err);

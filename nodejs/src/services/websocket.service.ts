@@ -109,9 +109,17 @@ export default function runWebsocketService(
 
             // Handle Traffic Light Detection
             if (result.traffic_light) {
+              // Normalize status
+              let status = 'UNKNOWN';
+              const raw = (result.traffic_light.traffic_status || "").toUpperCase();
+              if (raw.includes('RED')) status = 'RED';
+              else if (raw.includes('GREEN')) status = 'GREEN';
+              else if (raw.includes('YELLOW')) status = 'YELLOW';
+              else if (result.traffic_light.traffic_status) status = result.traffic_light.traffic_status; // Fallback
+
               const tlPayload = {
                 camera_id: cameraId,
-                traffic_status: result.traffic_light.traffic_status,
+                traffic_status: status,
                 detections: result.traffic_light.detections || [],
                 inference_time: result.traffic_light.inference_time,
                 image_dimensions: result.image_dimensions,
@@ -123,22 +131,12 @@ export default function runWebsocketService(
 
               // Update detections for AI overlay (Overlay traffic lights too)
               if (result.traffic_light.detections && result.traffic_light.detections.length > 0) {
-                // Append traffic light detections to existing overlay state if possible, or just overwrite if separate frames?
-                // Since they come in different messages, we should probably merge or handle a 'type' update.
-                // For now, let's just push them. This might briefly hide cars, but at 25FPS it might flicker/merge visually.
-                // To do this right: bboxStreamManager needs to hold separate states for 'vehicle' and 'traffic_light'
-                // But simple fix first: Just push them.
                 bboxStreamManager.updateDetections(cameraId, result.traffic_light.detections, 'traffic_light');
               }
 
               // Save to Redis for violation detection
-              if (result.traffic_light.traffic_status) {
+              if (status !== 'UNKNOWN') {
                 const { setTrafficLightStatus } = await import('@/services/redis.service.js');
-                let status = 'UNKNOWN';
-                const raw = result.traffic_light.traffic_status.toUpperCase();
-                if (raw.includes('RED')) status = 'RED';
-                else if (raw.includes('GREEN')) status = 'GREEN';
-                else if (raw.includes('YELLOW')) status = 'YELLOW';
                 await setTrafficLightStatus(cameraId, status);
               }
             }
