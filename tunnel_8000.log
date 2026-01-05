@@ -52,3 +52,790 @@
 2026-01-05T11:10:46Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
 2026-01-05T11:11:16Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
 2026-01-05T11:11:16Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T11:11:46Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T11:11:46Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6950e7b282aa4432b6020604.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T11:12:16Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T11:12:16Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T11:12:46Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T11:12:46Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T11:13:16Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T11:13:16Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6950e7b282aa4432b6020604.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T11:13:46Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T11:13:46Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T11:14:16Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T11:14:16Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T11:14:20Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T11:14:20Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6950e7b282aa4432b6020604.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T11:22:55Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T11:22:55Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6950e7b282aa4432b6020604.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T11:23:35Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T11:23:35Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T11:24:05Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T11:24:05Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T11:24:33Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T11:24:33Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T11:24:33Z ERR  error="stream 101 canceled by remote with error code 0" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T11:24:33Z ERR Request failed error="stream 101 canceled by remote with error code 0" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6950e7b282aa4432b6020604.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T11:29:30Z ERR  error="stream 117 canceled by remote with error code 0" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T11:29:30Z ERR Request failed error="stream 117 canceled by remote with error code 0" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6950e7b282aa4432b6020604.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T11:29:38Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T11:29:38Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T11:30:08Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T11:30:08Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T11:30:38Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T11:30:38Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T11:31:08Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T11:31:08Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T11:31:38Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T11:31:38Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T11:32:08Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T11:32:08Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T11:32:38Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T11:32:38Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T11:33:08Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T11:33:08Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T11:33:33Z ERR  error="stream 121 canceled by remote with error code 0" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T11:33:33Z ERR Request failed error="stream 121 canceled by remote with error code 0" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6950e7b282aa4432b6020604.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T11:33:39Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T11:33:39Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T11:34:09Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T11:34:09Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T11:34:58Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T11:34:58Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T11:35:28Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T11:35:28Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6950e7b282aa4432b6020604.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T11:35:58Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T11:35:58Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T11:36:28Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T11:36:28Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T11:36:59Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T11:36:59Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6950e7b282aa4432b6020604.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T11:37:29Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T11:37:29Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T11:37:59Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T11:37:59Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T11:38:29Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T11:38:29Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6950e7b282aa4432b6020604.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T11:38:59Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T11:38:59Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T11:39:29Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T11:39:29Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T11:39:59Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T11:39:59Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6950e7b282aa4432b6020604.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T11:40:09Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T11:40:09Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T11:45:30Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T11:45:30Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6950e7b282aa4432b6020604.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T11:46:27Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T11:46:27Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T11:46:58Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T11:46:58Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T11:47:28Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T11:47:28Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T11:47:58Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T11:47:58Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T11:48:28Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T11:48:28Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T11:48:58Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T11:48:58Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T11:49:28Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T11:49:28Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T11:49:58Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T11:49:58Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T11:50:28Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T11:50:28Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T11:50:58Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T11:50:58Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T11:51:28Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T11:51:28Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T11:51:58Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T11:51:58Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T11:52:08Z ERR  error="stream 221 canceled by remote with error code 0" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T11:52:08Z ERR Request failed error="stream 221 canceled by remote with error code 0" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6950e7b282aa4432b6020604.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T11:52:08Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T11:52:08Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T11:59:04Z ERR  error="stream 277 canceled by remote with error code 0" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T11:59:04Z ERR Request failed error="stream 277 canceled by remote with error code 0" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6950e7b282aa4432b6020604.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T11:59:14Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T11:59:14Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T11:59:44Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T11:59:44Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T12:00:14Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T12:00:14Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T12:00:44Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T12:00:44Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T12:00:57Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T12:00:57Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T12:00:57Z ERR  error="stream 281 canceled by remote with error code 0" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T12:00:57Z ERR Request failed error="stream 281 canceled by remote with error code 0" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6950e7b282aa4432b6020604.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T12:11:32Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T12:11:32Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6950e7b282aa4432b6020604.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T12:12:02Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T12:12:02Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6950e7b282aa4432b6020604.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T12:12:32Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T12:12:32Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T12:13:02Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T12:13:02Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6950e7b282aa4432b6020604.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T12:13:32Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T12:13:32Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T12:14:02Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T12:14:02Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T12:14:44Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T12:14:44Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T12:15:14Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T12:15:14Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T12:15:44Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T12:15:44Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T12:16:14Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T12:16:14Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T12:16:44Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T12:16:44Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T12:17:14Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T12:17:14Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T12:17:44Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T12:17:44Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T12:18:14Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T12:18:14Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T12:18:44Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T12:18:44Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6950e7b282aa4432b6020604.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T12:18:52Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T12:18:52Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T12:19:41Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T12:19:41Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6950e7b282aa4432b6020604.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T12:20:11Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T12:20:11Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6950e7b282aa4432b6020604.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T12:20:42Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T12:20:42Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T12:21:12Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T12:21:12Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6950e7b282aa4432b6020604.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T12:21:42Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T12:21:42Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T12:22:12Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T12:22:12Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T12:22:42Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T12:22:42Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6950e7b282aa4432b6020604.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T12:23:12Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T12:23:12Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T12:23:29Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T12:23:29Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T12:24:19Z ERR  error="stream 409 canceled by remote with error code 0" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T12:24:19Z ERR Request failed error="stream 409 canceled by remote with error code 0" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6950e7b282aa4432b6020604.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T12:24:28Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T12:24:28Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T12:24:58Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T12:24:58Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T12:25:29Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T12:25:29Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T12:25:59Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T12:25:59Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T12:26:29Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T12:26:29Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T12:26:59Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T12:26:59Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T12:27:29Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T12:27:29Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T12:27:59Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T12:27:59Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T12:28:29Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T12:28:29Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T12:28:59Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T12:28:59Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T12:29:29Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T12:29:29Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T12:29:59Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T12:29:59Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T12:30:29Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T12:30:29Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T12:30:59Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T12:30:59Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T12:31:29Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T12:31:29Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T12:32:00Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T12:32:00Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T12:32:18Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T12:32:18Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T12:38:26Z ERR  error="stream 485 canceled by remote with error code 0" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T12:38:26Z ERR Request failed error="stream 485 canceled by remote with error code 0" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6950e7b282aa4432b6020604.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T12:38:38Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T12:38:38Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T12:39:08Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T12:39:08Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T12:39:38Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T12:39:38Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T12:40:08Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T12:40:08Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T12:40:38Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T12:40:38Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T12:41:09Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T12:41:09Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T12:41:39Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T12:41:39Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T12:42:09Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T12:42:09Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T12:42:39Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T12:42:39Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T12:43:09Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T12:43:09Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T12:43:39Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T12:43:39Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T12:44:09Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T12:44:09Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T12:44:39Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T12:44:39Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T12:45:09Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T12:45:09Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T12:45:39Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T12:45:39Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T12:46:10Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T12:46:10Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T12:46:39Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T12:46:39Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T12:47:09Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T12:47:09Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T12:47:38Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T12:47:38Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T12:48:09Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T12:48:09Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T12:48:39Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T12:48:39Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T12:49:09Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T12:49:09Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T12:49:40Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T12:49:40Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T12:49:48Z ERR failed to accept incoming stream requests error="failed to accept QUIC stream: timeout: no recent network activity" connIndex=0 event=0 ip=198.41.192.67
+2026-01-05T12:49:48Z ERR failed to run the datagram handler error="timeout: no recent network activity" connIndex=0 event=0 ip=198.41.192.67
+2026-01-05T12:49:48Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T12:49:48Z ERR  error="timeout: no recent network activity" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T12:49:48Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T12:49:48Z ERR Request failed error="timeout: no recent network activity" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6950e7b282aa4432b6020604.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T12:49:48Z ERR failed to serve tunnel connection error="accept stream listener encountered a failure while serving" connIndex=0 event=0 ip=198.41.192.67
+2026-01-05T12:49:48Z ERR Serve tunnel error error="accept stream listener encountered a failure while serving" connIndex=0 event=0 ip=198.41.192.67
+2026-01-05T12:49:48Z INF Retrying connection in up to 1s connIndex=0 event=0 ip=198.41.192.67
+2026-01-05T12:49:50Z INF Tunnel connection curve preferences: [X25519MLKEM768 CurveP256] connIndex=0 event=0 ip=198.41.192.67
+2026-01-05T12:49:50Z INF Registered tunnel connection connIndex=0 connection=ebaaa950-a098-415d-849f-253206e137de event=0 ip=198.41.192.67 location=sin16 protocol=quic
+2026-01-05T12:50:40Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T12:50:40Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T12:51:10Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T12:51:10Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T12:51:35Z ERR  error="stream 1 canceled by remote with error code 0" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T12:51:35Z ERR Request failed error="stream 1 canceled by remote with error code 0" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6950e7b282aa4432b6020604.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T12:51:35Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T12:51:35Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T13:00:20Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T13:00:20Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6950e7b282aa4432b6020604.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T13:00:52Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T13:00:52Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T13:01:22Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T13:01:22Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T13:01:52Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T13:01:52Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T13:02:22Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T13:02:22Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T13:02:52Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T13:02:52Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T13:03:22Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T13:03:22Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T13:03:52Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T13:03:52Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T13:04:22Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T13:04:22Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T13:04:52Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T13:04:52Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T13:05:22Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T13:05:22Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T13:05:53Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T13:05:53Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T13:06:23Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T13:06:23Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T13:06:53Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T13:06:53Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T13:07:23Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T13:07:23Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T13:07:53Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T13:07:53Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T13:08:23Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T13:08:23Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T13:08:43Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T13:08:43Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T13:08:43Z ERR  error="stream 21 canceled by remote with error code 0" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T13:08:43Z ERR Request failed error="stream 21 canceled by remote with error code 0" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6950e7b282aa4432b6020604.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T13:13:09Z ERR  error="stream 93 canceled by remote with error code 0" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T13:13:09Z ERR Request failed error="stream 93 canceled by remote with error code 0" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6950e7b282aa4432b6020604.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T13:13:21Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T13:13:21Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T13:13:51Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T13:13:51Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T13:14:21Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T13:14:21Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T13:14:51Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T13:14:51Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T13:15:21Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T13:15:21Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T13:15:51Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T13:15:51Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T13:16:21Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T13:16:21Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T13:16:51Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T13:16:51Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T13:17:22Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T13:17:22Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T13:17:52Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T13:17:52Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T13:18:22Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T13:18:22Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T13:18:52Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T13:18:52Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T13:19:22Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T13:19:22Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T13:19:52Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T13:19:52Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T13:20:22Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T13:20:22Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T13:20:34Z ERR  error="stream 97 canceled by remote with error code 0" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T13:20:34Z ERR Request failed error="stream 97 canceled by remote with error code 0" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6950e7b282aa4432b6020604.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T13:20:52Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T13:20:52Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T13:21:23Z ERR  error="stream 165 canceled by remote with error code 0" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T13:21:23Z ERR Request failed error="stream 165 canceled by remote with error code 0" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6950e7b282aa4432b6020604.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T13:21:47Z ERR  error="stream 169 canceled by remote with error code 0" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T13:21:47Z ERR Request failed error="stream 169 canceled by remote with error code 0" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6950e7b282aa4432b6020604.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T13:22:47Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T13:22:47Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T13:22:59Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T13:22:59Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T13:23:17Z ERR  error="stream 173 canceled by remote with error code 0" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T13:23:17Z ERR Request failed error="stream 173 canceled by remote with error code 0" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6950e7b282aa4432b6020604.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T13:23:29Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T13:23:29Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T13:23:59Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T13:23:59Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T13:24:30Z ERR  error="stream 193 canceled by remote with error code 0" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T13:24:30Z ERR Request failed error="stream 193 canceled by remote with error code 0" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6950e7b282aa4432b6020604.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T13:25:09Z ERR  error="stream 197 canceled by remote with error code 0" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T13:25:09Z ERR Request failed error="stream 197 canceled by remote with error code 0" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6950e7b282aa4432b6020604.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T13:26:08Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T13:26:08Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T13:26:38Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T13:26:38Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T13:26:39Z ERR  error="stream 201 canceled by remote with error code 0" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T13:26:39Z ERR Request failed error="stream 201 canceled by remote with error code 0" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6950e7b282aa4432b6020604.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T13:27:09Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T13:27:09Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T13:27:44Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T13:27:44Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T13:28:44Z ERR  error="stream 225 canceled by remote with error code 0" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T13:28:44Z ERR Request failed error="stream 225 canceled by remote with error code 0" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695bba85a984fa02bfa5f7db.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T13:28:44Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T13:28:44Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T13:29:14Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T13:29:14Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T13:30:14Z ERR  error="stream 237 canceled by remote with error code 0" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T13:30:14Z ERR Request failed error="stream 237 canceled by remote with error code 0" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695bba85a984fa02bfa5f7db.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T13:30:14Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T13:30:14Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T13:30:44Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T13:30:44Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T13:31:44Z ERR  error="stream 249 canceled by remote with error code 0" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T13:31:44Z ERR Request failed error="stream 249 canceled by remote with error code 0" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695bba85a984fa02bfa5f7db.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T13:31:44Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T13:31:44Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T13:32:14Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T13:32:14Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T13:32:44Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T13:32:44Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T13:33:44Z ERR  error="stream 265 canceled by remote with error code 0" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T13:33:44Z ERR Request failed error="stream 265 canceled by remote with error code 0" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695bba85a984fa02bfa5f7db.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T13:33:44Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T13:33:44Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T13:34:14Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T13:34:14Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T13:35:14Z ERR  error="stream 277 canceled by remote with error code 0" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T13:35:14Z ERR Request failed error="stream 277 canceled by remote with error code 0" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695bba85a984fa02bfa5f7db.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T13:35:14Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T13:35:14Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T13:35:44Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T13:35:44Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T13:36:45Z ERR  error="stream 289 canceled by remote with error code 0" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T13:36:45Z ERR Request failed error="stream 289 canceled by remote with error code 0" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695bba85a984fa02bfa5f7db.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T13:36:45Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T13:36:45Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T13:37:15Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T13:37:15Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T13:37:42Z ERR  error="stream 301 canceled by remote with error code 0" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T13:37:42Z ERR Request failed error="stream 301 canceled by remote with error code 0" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695bba85a984fa02bfa5f7db.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T13:38:12Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T13:38:12Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T13:39:12Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T13:39:12Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T13:39:12Z ERR  error="stream 309 canceled by remote with error code 0" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T13:39:12Z ERR Request failed error="stream 309 canceled by remote with error code 0" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695bba85a984fa02bfa5f7db.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T13:39:42Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T13:39:42Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T13:40:18Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T13:40:18Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T13:40:48Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T13:40:48Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695bba85a984fa02bfa5f7db.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T13:41:18Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T13:41:18Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T13:41:48Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T13:41:48Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T13:42:18Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T13:42:18Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695bba85a984fa02bfa5f7db.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T13:42:49Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T13:42:49Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T13:43:19Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T13:43:19Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T13:43:49Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T13:43:49Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695bba85a984fa02bfa5f7db.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T13:44:09Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T13:44:09Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T13:47:29Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T13:47:29Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6950e7b282aa4432b6020604.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T13:48:19Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T13:48:19Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T13:48:49Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T13:48:49Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T13:49:19Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T13:49:19Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T13:49:49Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T13:49:49Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T13:50:19Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T13:50:19Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T13:50:50Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T13:50:50Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695bba85a984fa02bfa5f7db.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T13:51:19Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T13:51:19Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T13:51:49Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T13:51:49Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T13:52:20Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T13:52:20Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695bba85a984fa02bfa5f7db.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T13:52:50Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T13:52:50Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T13:53:20Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T13:53:20Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T13:53:50Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T13:53:50Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695bba85a984fa02bfa5f7db.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T13:54:20Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T13:54:20Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T13:54:50Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T13:54:50Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T13:55:20Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T13:55:20Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695bba85a984fa02bfa5f7db.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T13:55:50Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T13:55:50Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T13:56:20Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T13:56:20Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T13:56:50Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T13:56:50Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695bba85a984fa02bfa5f7db.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T13:57:20Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T13:57:20Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T13:57:50Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T13:57:50Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T13:58:20Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T13:58:20Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695bba85a984fa02bfa5f7db.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T13:58:50Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T13:58:50Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T13:59:04Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T13:59:04Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T14:03:36Z ERR  error="stream 461 canceled by remote with error code 0" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T14:03:36Z ERR Request failed error="stream 461 canceled by remote with error code 0" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6950e7b282aa4432b6020604.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T14:03:41Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T14:03:41Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T14:04:11Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T14:04:11Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T14:04:42Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T14:04:42Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T14:05:12Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T14:05:12Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T14:05:42Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T14:05:42Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T14:06:12Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T14:06:12Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695bba85a984fa02bfa5f7db.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T14:06:42Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T14:06:42Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T14:07:12Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T14:07:12Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T14:07:42Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T14:07:42Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695bba85a984fa02bfa5f7db.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T14:08:12Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T14:08:12Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T14:08:42Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T14:08:42Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T14:09:12Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T14:09:12Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695bba85a984fa02bfa5f7db.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T14:09:42Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T14:09:42Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T14:10:12Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T14:10:12Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T14:10:42Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T14:10:42Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695bba85a984fa02bfa5f7db.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T14:11:12Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T14:11:12Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T14:11:43Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T14:11:43Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T14:12:13Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T14:12:13Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695bba85a984fa02bfa5f7db.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T14:12:43Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T14:12:43Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T14:13:13Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T14:13:13Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T14:13:36Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T14:13:36Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695bba85a984fa02bfa5f7db.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T14:14:06Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T14:14:06Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T14:14:36Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T14:14:36Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6950e7b282aa4432b6020604.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T14:15:06Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T14:15:06Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695bba85a984fa02bfa5f7db.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T14:15:36Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T14:15:36Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T14:16:06Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T14:16:06Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6950e7b282aa4432b6020604.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T14:16:36Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T14:16:36Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695bba85a984fa02bfa5f7db.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T14:17:02Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T14:17:02Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T14:17:52Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T14:17:52Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6950e7b282aa4432b6020604.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T14:18:22Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T14:18:22Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6950e7b282aa4432b6020604.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T14:18:52Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T14:18:52Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T14:19:25Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T14:19:25Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T14:19:55Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T14:19:55Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T14:20:25Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T14:20:25Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T14:20:56Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T14:20:56Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T14:21:26Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T14:21:26Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695bba85a984fa02bfa5f7db.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T14:22:05Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T14:22:05Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T14:22:26Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T14:22:26Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T14:22:56Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T14:22:56Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695bba85a984fa02bfa5f7db.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T14:23:26Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T14:23:26Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T14:23:56Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T14:23:56Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T14:24:26Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T14:24:26Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695bba85a984fa02bfa5f7db.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T14:24:56Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T14:24:56Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T14:25:26Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T14:25:26Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T14:25:56Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T14:25:56Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6950e7b282aa4432b6020604.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T14:26:26Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T14:26:26Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T14:26:56Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T14:26:56Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T14:27:26Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T14:27:26Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6950e7b282aa4432b6020604.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T14:27:56Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T14:27:56Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T14:28:27Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T14:28:27Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T14:28:57Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T14:28:57Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6950e7b282aa4432b6020604.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T14:29:27Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T14:29:27Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T14:29:57Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T14:29:57Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T14:30:27Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T14:30:27Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6950e7b282aa4432b6020604.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T14:30:57Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T14:30:57Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T14:31:27Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T14:31:27Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T14:31:57Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T14:31:57Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6950e7b282aa4432b6020604.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T14:32:27Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T14:32:27Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T14:32:57Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T14:32:57Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T14:33:27Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T14:33:27Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6950e7b282aa4432b6020604.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T14:33:57Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T14:33:57Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T14:34:28Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T14:34:28Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T14:34:59Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T14:34:59Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6950e7b282aa4432b6020604.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T14:35:28Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T14:35:28Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695bba85a984fa02bfa5f7db.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T14:35:58Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T14:35:58Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T14:36:28Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T14:36:28Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6950e7b282aa4432b6020604.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T14:36:58Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T14:36:58Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695bba85a984fa02bfa5f7db.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T14:37:28Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T14:37:28Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T14:37:58Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T14:37:58Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6950e7b282aa4432b6020604.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T14:38:28Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T14:38:28Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695bba85a984fa02bfa5f7db.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T14:38:58Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T14:38:58Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T14:39:28Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T14:39:28Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6950e7b282aa4432b6020604.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T14:39:59Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T14:39:59Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695bba85a984fa02bfa5f7db.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T14:40:29Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T14:40:29Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T14:40:59Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T14:40:59Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6950e7b282aa4432b6020604.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T14:41:30Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T14:41:30Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T14:41:59Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T14:41:59Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T14:42:29Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T14:42:29Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6950e7b282aa4432b6020604.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T14:42:59Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T14:42:59Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T14:43:29Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T14:43:29Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T14:43:59Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T14:43:59Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6950e7b282aa4432b6020604.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T14:44:29Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T14:44:29Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T14:44:59Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T14:44:59Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T14:45:30Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T14:45:30Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6950e7b282aa4432b6020604.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T14:45:59Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T14:45:59Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T14:46:29Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T14:46:29Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T14:47:00Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T14:47:00Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6950e7b282aa4432b6020604.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T14:47:30Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T14:47:30Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T14:48:00Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T14:48:00Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T14:48:30Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T14:48:30Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6950e7b282aa4432b6020604.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T14:49:00Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T14:49:00Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T14:49:30Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T14:49:30Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T14:50:00Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T14:50:00Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6950e7b282aa4432b6020604.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T14:50:30Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T14:50:30Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T14:51:00Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T14:51:00Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695bba85a984fa02bfa5f7db.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T14:51:30Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T14:51:30Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6950e7b282aa4432b6020604.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T14:52:00Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T14:52:00Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T14:52:30Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T14:52:30Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695bba85a984fa02bfa5f7db.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T14:53:01Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T14:53:01Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6950e7b282aa4432b6020604.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T14:53:31Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T14:53:31Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T14:54:01Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T14:54:01Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695bba85a984fa02bfa5f7db.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T14:54:31Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T14:54:31Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6950e7b282aa4432b6020604.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T14:55:01Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T14:55:01Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T14:55:16Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T14:55:16Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695bba85a984fa02bfa5f7db.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T14:56:07Z ERR  error="stream 889 canceled by remote with error code 0" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T14:56:07Z ERR Request failed error="stream 889 canceled by remote with error code 0" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6950e7b282aa4432b6020604.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T14:56:18Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T14:56:18Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T14:56:48Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T14:56:48Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T14:57:18Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T14:57:18Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T14:57:48Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T14:57:48Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T14:58:22Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T14:58:22Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T14:58:48Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T14:58:48Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695bba85a984fa02bfa5f7db.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T14:59:18Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T14:59:18Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T14:59:48Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T14:59:48Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T15:00:18Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T15:00:18Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695bba85a984fa02bfa5f7db.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T15:00:48Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T15:00:48Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T15:01:18Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T15:01:18Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T15:01:48Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T15:01:48Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695bba85a984fa02bfa5f7db.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T15:02:19Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T15:02:19Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T15:02:49Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T15:02:49Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T15:03:19Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T15:03:19Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695bba85a984fa02bfa5f7db.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T15:03:49Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T15:03:49Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T15:04:19Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T15:04:19Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T15:04:49Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T15:04:49Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695bba85a984fa02bfa5f7db.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T15:05:19Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T15:05:19Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T15:05:49Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T15:05:49Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T15:06:19Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T15:06:19Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695bba85a984fa02bfa5f7db.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T15:06:49Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T15:06:49Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T15:07:19Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T15:07:19Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T15:07:49Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T15:07:49Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695bba85a984fa02bfa5f7db.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T15:08:19Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T15:08:19Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T15:08:50Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T15:08:50Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T15:09:19Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T15:09:19Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695bba85a984fa02bfa5f7db.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T15:09:50Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T15:09:50Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T15:10:20Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T15:10:20Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T15:10:50Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T15:10:50Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695bba85a984fa02bfa5f7db.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T15:11:20Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T15:11:20Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T15:11:50Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T15:11:50Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T15:12:20Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T15:12:20Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695bba85a984fa02bfa5f7db.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T15:12:50Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T15:12:50Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T15:13:20Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T15:13:20Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T15:13:50Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T15:13:50Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695bba85a984fa02bfa5f7db.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T15:14:20Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T15:14:20Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T15:14:50Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T15:14:50Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T15:15:21Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T15:15:21Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695bba85a984fa02bfa5f7db.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T15:15:51Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T15:15:51Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T15:16:21Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T15:16:21Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T15:16:51Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T15:16:51Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695bba85a984fa02bfa5f7db.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T15:17:21Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T15:17:21Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T15:17:51Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T15:17:51Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.67 type=http
+2026-01-05T15:18:21Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T15:18:21Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://legendary-figured-liquid-june.trycloudflare.com/live/695bba85a984fa02bfa5f7db.flv event=0 ip=198.41.192.67 type=http

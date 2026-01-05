@@ -81,6 +81,7 @@ export default function runKaggleWsService(wss: WebSocketServer) {
                 vehicle_count: number;
                 tracks: any[];
                 new_crossings: any[];
+                track_counts?: { car: number; truck: number; bus: number; motorcycle: number; bicycle: number };
                 traffic_light?: {
                     status: string;
                     detections: any[];
@@ -126,7 +127,9 @@ export default function runKaggleWsService(wss: WebSocketServer) {
                         io.emit('car_detected', vehiclePayload);
                         console.log(`[KaggleWS][DEBUG] Emitted 'car_detected' to Socket.IO clients`);
 
-                        // Save to MongoDB (async)
+                        // Save to MongoDB with track_counts from Kaggle
+                        const trackCounts = result.track_counts || { car: 0, truck: 0, bus: 0, motorcycle: 0, bicycle: 0 };
+
                         carDetectionModel.create({
                             camera_id: cameraId,
                             image_id: result.image_id,
@@ -134,17 +137,31 @@ export default function runKaggleWsService(wss: WebSocketServer) {
                             detections: result.detections,
                             inference_time: result.inference_time,
                             image_dimensions: result.image_dimensions,
-                            vehicle_count: result.vehicle_count,
+                            vehicle_count: {
+                                total_up: trackCounts.car + trackCounts.truck + trackCounts.bus + trackCounts.motorcycle + trackCounts.bicycle,
+                                total_down: 0,
+                                by_type_up: trackCounts,
+                                by_type_down: { car: 0, truck: 0, bus: 0, motorcycle: 0, bicycle: 0 },
+                            },
                             tracks: result.tracks,
-                            new_crossings: result.new_crossings,
+                            new_crossings: [],
                         }).then(() => {
-                            console.log(`[KaggleWS][DEBUG] Car detection saved to MongoDB`);
+                            console.log(`[KaggleWS][DEBUG] Saved track_counts: car=${trackCounts.car}, truck=${trackCounts.truck}, bus=${trackCounts.bus}, motorcycle=${trackCounts.motorcycle}`);
                         }).catch((error) => {
                             console.error(`[KaggleWS][ERROR] Error saving car detection:`, error);
                         });
 
-                        // Update BBox overlay
-                        bboxStreamManager.updateDetections(cameraId, result.detections, 'vehicle');
+                        // Update BBox overlay - merge violations into detections
+                        const detectionsWithViolations = result.detections.map((det: any) => {
+                            const violation = result.violations?.find((v: any) =>
+                                v.detection_id === det.track_id || v.license_plate === det.license_plate
+                            );
+                            return violation ? { ...det, violation_type: violation.type } : det;
+                        });
+                        if (detectionsWithViolations.length > 0) {
+                            console.log(`[KaggleWS][DEBUG] Sending ${detectionsWithViolations.length} detections to bbox. Sample:`, JSON.stringify(detectionsWithViolations[0]).slice(0, 200));
+                        }
+                        bboxStreamManager.updateDetections(cameraId, detectionsWithViolations, 'vehicle');
 
                         /* ------------------------------------------------------------------ */
                         /*              Traffic Statistics (realtime update)                  */

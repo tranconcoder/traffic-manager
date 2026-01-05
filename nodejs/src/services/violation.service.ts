@@ -53,11 +53,71 @@ export default new (class ViolationService {
   }
 
   async getViolationFrames(violation_id: string) {
-    const violation = await violationModel.findById(violation_id).select('video_frames');
-    if (!violation?.video_frames) {
-      return [];
+    console.log(`[DEBUG] getViolationFrames - violation_id: ${violation_id}`);
+
+    const violation = await violationModel.findById(violation_id).select('video_frames detection_time camera_id');
+    console.log(`[DEBUG] getViolationFrames - violation found: ${!!violation}`);
+
+    if (!violation) {
+      console.log(`[DEBUG] getViolationFrames - Violation not found`);
+      throw new Error("Violation not found");
     }
-    return violation.video_frames;
+
+    const detectionTime = (violation as any).detection_time?.getTime() || Date.now();
+    const startTime = detectionTime - 5000; // 5s trước
+    const endTime = detectionTime + 5000;   // 5s sau
+
+    console.log(`[DEBUG] getViolationFrames - detectionTime: ${new Date(detectionTime).toISOString()}`);
+    console.log(`[DEBUG] getViolationFrames - timeRange: ${new Date(startTime).toISOString()} to ${new Date(endTime).toISOString()}`);
+    console.log(`[DEBUG] getViolationFrames - total video_frames: ${(violation as any).video_frames?.length || 0}`);
+
+    // Filter frames trong khoảng ±5s
+    let filteredFrames = ((violation as any).video_frames || [])
+      .filter((f: any) => {
+        const ts = new Date(f.timestamp).getTime();
+        return ts >= startTime && ts <= endTime;
+      })
+      .sort((a: any, b: any) => new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime());
+
+    console.log(`[DEBUG] getViolationFrames - embedded frames count: ${filteredFrames.length}`);
+
+    // Fallback: Nếu không có embedded frames, query từ cameraImageModel
+    if (filteredFrames.length === 0) {
+      console.log(`[DEBUG] getViolationFrames - Querying cameraImageModel fallback...`);
+      const images = await cameraImageModel.find({
+        cameraId: (violation as any).camera_id,
+        created_at: { $gte: new Date(startTime), $lte: new Date(endTime) }
+      }).sort({ created_at: 1 }).lean();
+
+      filteredFrames = images.map(img => ({
+        timestamp: img.created_at,
+        image: img.image // cameraImageModel has 'image' buffer
+      }));
+      console.log(`[DEBUG] getViolationFrames - cameraImageModel query found: ${filteredFrames.length}`);
+    }
+
+    console.log(`[DEBUG] getViolationFrames - final filteredFrames count: ${filteredFrames.length}`);
+
+    // Downsample to ~1 FPS (interval 1000ms)
+    const interval = 1000;
+    const sampledFrames: any[] = [];
+    let lastTs = 0;
+
+    for (const frame of filteredFrames) {
+      const ts = new Date(frame.timestamp).getTime();
+      if (ts - lastTs >= interval || lastTs === 0) {
+        sampledFrames.push(frame);
+        lastTs = ts;
+      }
+    }
+
+    console.log(`[DEBUG] getViolationFrames - sampledFrames (1FPS): ${sampledFrames.length}`);
+
+    return {
+      detection_time: (violation as any).detection_time,
+      camera_id: (violation as any).camera_id,
+      frames: sampledFrames
+    };
   }
 
   /* -------------------------------------------------------------------------- */

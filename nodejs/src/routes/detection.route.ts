@@ -2,8 +2,55 @@ import { Router, Request, Response } from 'express';
 import { bboxStreamManager } from '@/services/bboxStream.service.js';
 import { io } from '@/index.js';
 import { setTrafficLightStatus } from '@/services/redis.service.js';
+import carDetectionModel from '@/models/carDetection.model.js';
 
 const detectionRouter = Router();
+
+/**
+ * GET /api/detection/stats/today
+ * Get LATEST vehicle track counts (for Node-RED dashboard)
+ * Returns the most recent track_counts from Kaggle (already cumulative)
+ */
+detectionRouter.get('/stats/today', async (_req: Request, res: Response): Promise<void> => {
+    try {
+        // Get the latest detection record (track_counts is cumulative from Kaggle)
+        const latestDetection: any = await carDetectionModel
+            .findOne({})
+            .sort({ created_at: -1 })
+            .select('vehicle_count created_at camera_id')
+            .lean();
+
+        if (!latestDetection) {
+            res.json({
+                success: true,
+                total: 0,
+                by_type: { car: 0, truck: 0, bus: 0, motorcycle: 0, bicycle: 0 },
+                last_updated: null
+            });
+            return;
+        }
+
+        const counts = latestDetection.vehicle_count?.by_type_up || { car: 0, truck: 0, bus: 0, motorcycle: 0, bicycle: 0 };
+        const total = (counts.car || 0) + (counts.truck || 0) + (counts.bus || 0) + (counts.motorcycle || 0) + (counts.bicycle || 0);
+
+        res.json({
+            success: true,
+            total: total,
+            by_type: {
+                car: counts.car || 0,
+                truck: counts.truck || 0,
+                bus: counts.bus || 0,
+                motorcycle: counts.motorcycle || 0,
+                bicycle: counts.bicycle || 0,
+            },
+            camera_id: latestDetection.camera_id,
+            last_updated: latestDetection.created_at
+        });
+    } catch (error) {
+        console.error('[Detection] Error fetching daily stats:', error);
+        res.status(500).json({ success: false, error: 'Failed to fetch stats' });
+    }
+});
 
 /**
  * POST /api/detection/:cameraId
@@ -102,3 +149,4 @@ detectionRouter.get('/:cameraId', (req: Request, res: Response) => {
 });
 
 export default detectionRouter;
+

@@ -11,6 +11,8 @@ interface Detection {
     id?: number;  // Tracking ID (legacy)
     track_id?: number; // Tracking ID (V19+)
     license_plate?: string; // Detected plate
+    violation_type?: string; // e.g. 'RED_LIGHT', 'LANE'
+    center?: { x: number; y: number }; // Center in pixels (Kaggle V24+)
     bbox?: { x1: number; y1: number; x2: number; y2: number; width?: number; height?: number } | [number, number, number, number];
     bbox_pixels?: [number, number, number, number]; // [x1, y1, x2, y2] in pixels
 }
@@ -45,6 +47,8 @@ interface CameraAIState {
     vehicleDetections?: Detection[];
     trafficLightDetections?: Detection[];
     trackHistory: Map<number, Array<{ x: number, y: number }>>;
+    violationCache: Map<number, { type: string, expiry: number }>; // track_id -> violation with expiry
+    lastDimensions?: { width: number; height: number }; // For converting normalized bbox to pixels
     ffmpegCommand: Ffmpeg.FfmpegCommand | null;
     inputStream: PassThrough;
     isActive: boolean;
@@ -78,6 +82,7 @@ class BBoxStreamManager {
                 vehicleDetections: [],
                 trafficLightDetections: [],
                 trackHistory: new Map(),
+                violationCache: new Map(),
                 ffmpegCommand: null,
                 inputStream: new PassThrough(),
                 isActive: false,
@@ -99,21 +104,51 @@ class BBoxStreamManager {
         // Update track history for each detection with ID
         for (const det of detections) {
             const trackId = det.track_id ?? det.id;
-            if (trackId !== undefined && det.bbox_pixels) {
-                const [x1, y1, x2, y2] = det.bbox_pixels;
-                const cx = Math.round((x1 + x2) / 2);
-                const cy = Math.round((y1 + y2) / 2);
+            if (trackId !== undefined) {
+                let cx: number | undefined, cy: number | undefined;
 
-                if (!state.trackHistory.has(trackId)) {
-                    state.trackHistory.set(trackId, []);
+                // Priority: center > bbox_pixels > bbox (normalized)
+                if (det.center && det.center.x !== undefined && det.center.y !== undefined) {
+                    // Kaggle sends center in pixels directly
+                    cx = Math.round(det.center.x);
+                    cy = Math.round(det.center.y);
+                } else if (det.bbox_pixels) {
+                    const [x1, y1, x2, y2] = det.bbox_pixels;
+                    cx = Math.round((x1 + x2) / 2);
+                    cy = Math.round((y1 + y2) / 2);
+                } else if (det.bbox && typeof det.bbox === 'object' && !Array.isArray(det.bbox) && state.lastDimensions) {
+                    // bbox is normalized 0-1 object, convert to pixels
+                    const { width, height } = state.lastDimensions;
+                    const x1 = det.bbox.x1 * width;
+                    const y1 = det.bbox.y1 * height;
+                    const x2 = det.bbox.x2 * width;
+                    const y2 = det.bbox.y2 * height;
+                    cx = Math.round((x1 + x2) / 2);
+                    cy = Math.round((y1 + y2) / 2);
                 }
-                const history = state.trackHistory.get(trackId)!;
-                history.push({ x: cx, y: cy });
 
-                // Keep only last 30 positions
-                if (history.length > 30) {
-                    history.shift();
+                if (cx !== undefined && cy !== undefined) {
+                    if (!state.trackHistory.has(trackId)) {
+                        state.trackHistory.set(trackId, []);
+                    }
+                    const history = state.trackHistory.get(trackId)!;
+                    history.push({ x: cx, y: cy });
+
+                    // Keep only last 30 positions
+                    if (history.length > 30) {
+                        history.shift();
+                    }
                 }
+            }
+
+            // Cache violation for 10 seconds
+            if (det.violation_type && trackId !== undefined) {
+                const VIOLATION_DISPLAY_DURATION = 10000; // 10 seconds
+                state.violationCache.set(trackId, {
+                    type: det.violation_type,
+                    expiry: Date.now() + VIOLATION_DISPLAY_DURATION
+                });
+                console.log(`[BBoxStream] Cached violation ${det.violation_type} for track ${trackId}`);
             }
         }
 
@@ -169,6 +204,7 @@ class BBoxStreamManager {
             state = {
                 detections: [],
                 trackHistory: new Map(),
+                violationCache: new Map(),
                 ffmpegCommand: null,
                 inputStream: new PassThrough(),
                 isActive: false,
@@ -343,10 +379,24 @@ class BBoxStreamManager {
                 const trackId = det.track_id ?? det.id;
                 const idLabel = trackId !== undefined ? `#${trackId} ` : '';
                 const lpLabel = det.license_plate ? ` [${det.license_plate}]` : '';
-                const label = `${idLabel}${det.class} ${(det.confidence * 100).toFixed(0)}%${lpLabel}`;
+
+                // Check violationCache for 10s display (or use direct violation_type)
+                let violationType = det.violation_type;
+                if (!violationType && trackId !== undefined && state.violationCache.has(trackId)) {
+                    const cached = state.violationCache.get(trackId)!;
+                    if (Date.now() < cached.expiry) {
+                        violationType = cached.type;
+                    } else {
+                        state.violationCache.delete(trackId); // Expired
+                    }
+                }
+
+                const violLabel = violationType ? ` ⚠️${violationType}` : '';
+                const label = `${idLabel}${det.class} ${(det.confidence * 100).toFixed(0)}%${lpLabel}${violLabel}`;
                 const labelWidth = Math.max(140, label.length * 8);
-                svgOverlay += `<rect x="${x1}" y="${y1 - 20}" width="${labelWidth}" height="20" fill="${color}" opacity="0.7"/>`;
-                svgOverlay += `<text x="${x1 + 5}" y="${y1 - 5}" font-family="monospace" font-size="12" fill="#000">${label}</text>`;
+                const labelColor = violationType ? '#FF0000' : color; // Red if violation
+                svgOverlay += `<rect x="${x1}" y="${y1 - 20}" width="${labelWidth}" height="20" fill="${labelColor}" opacity="0.8"/>`;
+                svgOverlay += `<text x="${x1 + 5}" y="${y1 - 5}" font-family="monospace" font-size="12" fill="#FFF">${label}</text>`;
             }
             svgOverlay += '</svg>';
 

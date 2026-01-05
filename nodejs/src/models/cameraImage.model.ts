@@ -19,6 +19,6 @@ export const cameraImageSchema = new Schema({
     collection: CAMERA_IMAGE_COLLECTION_NAME,
 })
 
-cameraImageSchema.index({ created_at: 1 }, { expireAfterSeconds: ms("1 minutes") / 1000 });
+cameraImageSchema.index({ created_at: 1 }, { expireAfterSeconds: ms("1 day") / 1000 });
 
 export default model(CAMERA_IMAGE_MODEL_NAME, cameraImageSchema);

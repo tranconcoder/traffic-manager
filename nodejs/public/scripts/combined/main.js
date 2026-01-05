@@ -35,6 +35,8 @@
     let currentLight = 'red';
     let vehicleX = 50;
     let vehicleY = 70;
+    let targetVehicleX = 50; // Smooth animation target
+    let targetVehicleY = 70; // Smooth animation target
     let vehicleSize = 150;
     let lightSize = 100; // Traffic light size percentage
     let selectedCameraId = null;
@@ -43,6 +45,7 @@
     let latestTrafficSignData = null; // New: Store traffic sign data
     let latestTrackLineY = null;
     let lastManualLightChange = 0; // Debounce manual changes
+    let isDraggingVehicle = false; // Mouse drag state
 
     // HLS State
     let hls = null;
@@ -99,6 +102,7 @@
         setupCapture();
         setupPreview();
         setupKeyboard();
+        setupVehicleDrag(); // Mouse drag
         loadCameras();
         // connectSocket(); // Removed
 
@@ -277,19 +281,66 @@
         return vehicles[activeVehicleIndex] || null;
     }
 
-    // Keyboard
+    // Keyboard - now uses target for smooth animation
     function setupKeyboard() {
         document.addEventListener('keydown', (e) => {
             if (document.activeElement.tagName === 'INPUT' || document.activeElement.tagName === 'SELECT') return;
-            const step = 2;
+            const step = 0.5; // Smaller step for smooth hold-to-move
             switch (e.key.toLowerCase()) {
-                case 'w': vehicleY = Math.max(10, vehicleY - step); break;
-                case 's': vehicleY = Math.min(90, vehicleY + step); break;
-                case 'a': vehicleX = Math.max(10, vehicleX - step); break;
-                case 'd': vehicleX = Math.min(90, vehicleX + step); break;
+                case 'w': targetVehicleY = Math.max(10, targetVehicleY - step); break;
+                case 's': targetVehicleY = Math.min(90, targetVehicleY + step); break;
+                case 'a': targetVehicleX = Math.max(10, targetVehicleX - step); break;
+                case 'd': targetVehicleX = Math.min(90, targetVehicleX + step); break;
                 default: return;
             }
             e.preventDefault();
+        });
+    }
+
+    // Mouse drag for vehicle - only drag when clicking ON the vehicle
+    function setupVehicleDrag() {
+        mainCanvas.addEventListener('mousedown', (e) => {
+            if (captureSource !== 'simulation') return;
+            const rect = mainCanvas.getBoundingClientRect();
+            const mx = (e.clientX - rect.left) / rect.width * 100;
+            const my = (e.clientY - rect.top) / rect.height * 100;
+            // Check if click is near vehicle center (within ~15% radius based on vehicle size)
+            const distX = Math.abs(mx - vehicleX);
+            const distY = Math.abs(my - vehicleY);
+            const hitRadius = (vehicleSize / mainCanvas.width) * 100 * 0.6; // 60% of vehicle size
+            if (distX < hitRadius && distY < hitRadius) {
+                isDraggingVehicle = true;
+                mainCanvas.style.cursor = 'grabbing';
+            }
+        });
+
+        mainCanvas.addEventListener('mousemove', (e) => {
+            const rect = mainCanvas.getBoundingClientRect();
+            const mx = (e.clientX - rect.left) / rect.width * 100;
+            const my = (e.clientY - rect.top) / rect.height * 100;
+
+            if (!isDraggingVehicle) {
+                // Change cursor when hovering over vehicle
+                if (captureSource === 'simulation') {
+                    const distX = Math.abs(mx - vehicleX);
+                    const distY = Math.abs(my - vehicleY);
+                    const hitRadius = (vehicleSize / mainCanvas.width) * 100 * 0.6;
+                    mainCanvas.style.cursor = (distX < hitRadius && distY < hitRadius) ? 'grab' : 'default';
+                }
+                return;
+            }
+            targetVehicleX = Math.max(10, Math.min(90, mx));
+            targetVehicleY = Math.max(10, Math.min(90, my));
+        });
+
+        mainCanvas.addEventListener('mouseup', () => {
+            isDraggingVehicle = false;
+            mainCanvas.style.cursor = 'default';
+        });
+
+        mainCanvas.addEventListener('mouseleave', () => {
+            isDraggingVehicle = false;
+            mainCanvas.style.cursor = 'default';
         });
     }
 
@@ -357,6 +408,11 @@
 
     // Render
     function renderLoop() {
+        // Smooth animation: lerp vehicle position towards target
+        const lerp = 0.08; // Slower = smoother animation
+        vehicleX += (targetVehicleX - vehicleX) * lerp;
+        vehicleY += (targetVehicleY - vehicleY) * lerp;
+
         render();
         drawPreviewScene(); // Continuous preview rendering
         requestAnimationFrame(renderLoop);
@@ -443,12 +499,16 @@
             ctx.fillText(label, cx, 15);
         }
 
-        // Stop line
-        ctx.fillStyle = '#fff';
-        ctx.fillRect(0, h * 0.25, w, 8);
-        ctx.fillStyle = '#00ffff';
-        ctx.font = 'bold 14px Inter, Arial';
-        ctx.fillText('Counting Line', 10, h * 0.25 - 5);
+        // Get track line position from camera config (default 50%)
+        const trackLineY = currentCameraConfig?.camera_track_line_y ?? 50;
+        const lineY = h * (trackLineY / 100);
+
+        // Red Light Line only (for violation detection visual reference)
+        ctx.fillStyle = '#ff0000';
+        ctx.fillRect(0, lineY, w, 3);
+        ctx.fillStyle = '#ff6666';
+        ctx.font = 'bold 12px Inter, Arial';
+        ctx.fillText('Red Light Line', 10, lineY - 8);
 
         // Traffic light (with size control)
         const tlScale = lightSize / 100;
