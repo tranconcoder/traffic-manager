@@ -13,7 +13,6 @@ import SetupHandlebars from "@/services/handlebars.service.js";
 // import https from "https";
 
 // Websocket Server
-import runWebsocketService from "@/services/websocket.service.js";
 import runCameraWsService from "@/services/cameraWs.service.js";
 import runKaggleWsService from "@/services/kaggleWs.service.js";
 import { WebSocketServer } from "ws";
@@ -172,9 +171,6 @@ handleRoute(app);
 //
 // RUN SERVICES
 //
-// Legacy Websocket (backward compatible with old Kaggle)
-runWebsocketService(wss, HOST, PORT);
-
 // V2 Websocket Services (new paths)
 runCameraWsService(cameraWss);   // Path: /ws/camera
 runKaggleWsService(kaggleWss);   // Path: /ws/kaggle

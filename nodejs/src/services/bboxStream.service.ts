@@ -48,6 +48,8 @@ interface CameraAIState {
     ffmpegCommand: Ffmpeg.FfmpegCommand | null;
     inputStream: PassThrough;
     isActive: boolean;
+    lastLoggedDets?: number;   // For log dedup
+    lastLoggedTracks?: number; // For log dedup
 }
 
 // Color map for detection classes
@@ -286,7 +288,14 @@ class BBoxStreamManager {
             // Create SVG overlay with bounding boxes
             let svgOverlay = '<svg width="' + width + '" height="' + height + '">';
 
-            console.log(`[BBoxStream] Drawing overlay for ${cameraId}. Dets: ${detections.length}. Tracks: ${state.trackHistory.size}`);
+            // Only log when detection count changes
+            const currDets = detections.length;
+            const currTracks = state.trackHistory.size;
+            if (state.lastLoggedDets !== currDets || state.lastLoggedTracks !== currTracks) {
+                console.log(`[BBoxStream] Drawing overlay for ${cameraId}. Dets: ${currDets}. Tracks: ${currTracks}`);
+                state.lastLoggedDets = currDets;
+                state.lastLoggedTracks = currTracks;
+            }
 
             // Draw tracking lines first (so they appear behind boxes)
             for (const [trackId, positions] of state.trackHistory) {
