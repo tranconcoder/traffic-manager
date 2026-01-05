@@ -774,3 +774,25 @@
 2026-01-05T09:49:54Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://firewall-video-latinas-yeah.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.47 type=http
 2026-01-05T09:50:24Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
 2026-01-05T09:50:24Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://firewall-video-latinas-yeah.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.47 type=http
+2026-01-05T09:50:54Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T09:50:54Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://firewall-video-latinas-yeah.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.47 type=http
+2026-01-05T09:51:21Z ERR  error="stream 513 canceled by remote with error code 0" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T09:51:21Z ERR Request failed error="stream 513 canceled by remote with error code 0" connIndex=0 dest=https://firewall-video-latinas-yeah.trycloudflare.com/live/6950e7b282aa4432b6020604.flv event=0 ip=198.41.192.47 type=http
+2026-01-05T09:51:21Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T09:51:21Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://firewall-video-latinas-yeah.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.47 type=http
+2026-01-05T09:56:33Z ERR  error="stream 577 canceled by remote with error code 0" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T09:56:33Z ERR Request failed error="stream 577 canceled by remote with error code 0" connIndex=0 dest=https://firewall-video-latinas-yeah.trycloudflare.com/live/6950e7b282aa4432b6020604.flv event=0 ip=198.41.192.47 type=http
+2026-01-05T09:56:43Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T09:56:43Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://firewall-video-latinas-yeah.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.47 type=http
+2026-01-05T09:57:13Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T09:57:13Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://firewall-video-latinas-yeah.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.47 type=http
+2026-01-05T09:57:43Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T09:57:43Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://firewall-video-latinas-yeah.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.47 type=http
+2026-01-05T09:58:13Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T09:58:13Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://firewall-video-latinas-yeah.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.47 type=http
+2026-01-05T09:58:43Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T09:58:43Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://firewall-video-latinas-yeah.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.47 type=http
+2026-01-05T09:59:13Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T09:59:13Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://firewall-video-latinas-yeah.trycloudflare.com/live/695111c37d31c2a42b53fbb6.flv event=0 ip=198.41.192.47 type=http
+2026-01-05T09:59:43Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8000
+2026-01-05T09:59:43Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://firewall-video-latinas-yeah.trycloudflare.com/live/6952317245f38f818ae82011.flv event=0 ip=198.41.192.47 type=http
