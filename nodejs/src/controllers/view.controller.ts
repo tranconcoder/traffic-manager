@@ -81,6 +81,7 @@ export default new (class ViewController {
   };
 
   /* ----------------------------- Violation Review Page ----------------------------- */
+  /* ----------------------------- Violation Review Page ----------------------------- */
   violationReviewPage: RequestHandler = (req, res, next) => {
     res.render("pages/violation-review", {
       layout: "traffic-dashboard",

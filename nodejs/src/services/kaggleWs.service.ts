@@ -12,6 +12,7 @@ import carDetectionModel from "@/models/carDetection.model.js";
 import trafficStatisticsModel from "@/models/trafficStatistics.model.js";
 import violationModel from "@/models/violation.model.js";
 import licensePlateDetectedModel from "@/models/licensePlateDetected.model.js";
+import TrackedVehicle from "@/models/trackedVehicle.model.js";
 
 // Services
 import { setTrafficLightStatus } from '@/services/redis.service.js';
@@ -87,6 +88,7 @@ export default function runKaggleWsService(wss: WebSocketServer) {
                 violations?: KaggleViolation[];
                 image_dimensions?: { width: number; height: number };
                 inference_time?: number;
+                license_plates?: any[]; // V17+
             }
 
             async function onKaggleResult(data: Buffer | string) {
@@ -271,6 +273,8 @@ export default function runKaggleWsService(wss: WebSocketServer) {
                                 ).catch((err: Error) => console.error('[KaggleWS][ERROR] Error saving license plate:', err));
 
                                 console.log(`[KaggleWS][DEBUG] Saved violation: ${violation.type} - ${violation.license_plate}`);
+
+                                // Blacklist check moved to global handler below
                             }
 
                             // Emit violation event
@@ -286,6 +290,35 @@ export default function runKaggleWsService(wss: WebSocketServer) {
                             });
 
                             console.log(`[KaggleWS][DEBUG] Emitted 'violation_detect': ${validViolations.length} violations`);
+                        }
+
+                        /* ---------------- Check ALL detected plates (V17+) ---------------- */
+                        const incomingPlates = result.license_plates || [];
+                        if (result.violations) {
+                            result.violations.forEach((v: any) => { if (v.license_plate) incomingPlates.push({ plate: v.license_plate }); });
+                        }
+
+                        if (incomingPlates.length > 0) {
+                            const uniquePlates = new Set();
+                            for (const item of incomingPlates) {
+                                const plate = item.plate || item.license_plate;
+                                if (!plate || uniquePlates.has(plate)) continue;
+                                uniquePlates.add(plate);
+
+                                try {
+                                    const tracked = await TrackedVehicle.findOne({ license_plate: plate });
+                                    if (tracked) {
+                                        console.log(`[KaggleWS][ALERT] 🚨 FOUND TRACKED VEHICLE: ${plate}`);
+                                        io.emit('tracked_vehicle_alert', {
+                                            camera_id: cameraId,
+                                            license_plate: plate,
+                                            reason: tracked.reason,
+                                            description: tracked.description,
+                                            timestamp: Date.now()
+                                        });
+                                    }
+                                } catch (err) { console.error('Error checking tracked vehicle:', err); }
+                            }
                         }
                     }
 

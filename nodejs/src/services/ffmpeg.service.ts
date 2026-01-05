@@ -47,9 +47,9 @@ class FFmpegManager {
         "-bufsize 4000k",
         "-vsync cfr",
         "-pix_fmt yuv420p",
-        "-g 20",
+        "-g 48",
         "-f flv",
-        "-r 10"  // Output 15 FPS (optimized for smooth viewing)
+        "-r 24"  // Output 15 FPS (optimized for smooth viewing)
       ])
       .output(rtmpUrl)
       .on("start", (cmd) => {

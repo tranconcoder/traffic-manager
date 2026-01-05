@@ -8,7 +8,9 @@ import {
 interface Detection {
     class: string;
     confidence: number;
-    id?: number;  // Tracking ID
+    id?: number;  // Tracking ID (legacy)
+    track_id?: number; // Tracking ID (V19+)
+    license_plate?: string; // Detected plate
     bbox?: { x1: number; y1: number; x2: number; y2: number; width?: number; height?: number } | [number, number, number, number];
     bbox_pixels?: [number, number, number, number]; // [x1, y1, x2, y2] in pixels
 }
@@ -94,15 +96,16 @@ class BBoxStreamManager {
 
         // Update track history for each detection with ID
         for (const det of detections) {
-            if (det.id !== undefined && det.bbox_pixels) {
+            const trackId = det.track_id ?? det.id;
+            if (trackId !== undefined && det.bbox_pixels) {
                 const [x1, y1, x2, y2] = det.bbox_pixels;
                 const cx = Math.round((x1 + x2) / 2);
                 const cy = Math.round((y1 + y2) / 2);
 
-                if (!state.trackHistory.has(det.id)) {
-                    state.trackHistory.set(det.id, []);
+                if (!state.trackHistory.has(trackId)) {
+                    state.trackHistory.set(trackId, []);
                 }
-                const history = state.trackHistory.get(det.id)!;
+                const history = state.trackHistory.get(trackId)!;
                 history.push({ x: cx, y: cy });
 
                 // Keep only last 30 positions
@@ -113,7 +116,7 @@ class BBoxStreamManager {
         }
 
         // Clean up old tracks (IDs not seen in current detections)
-        const currentIds = new Set(detections.filter(d => d.id !== undefined).map(d => d.id!));
+        const currentIds = new Set(detections.filter(d => (d.track_id ?? d.id) !== undefined).map(d => (d.track_id ?? d.id)!));
         for (const [id] of state.trackHistory) {
             if (!currentIds.has(id)) {
                 // Keep for a few more frames, then remove
@@ -292,7 +295,7 @@ class BBoxStreamManager {
                     const points = positions.map(p => `${p.x},${p.y}`).join(' ');
 
                     // Get color from current detection with this ID
-                    const det = detections.find(d => d.id === trackId);
+                    const det = detections.find(d => (d.track_id ?? d.id) === trackId);
                     let lineColor = '#00FF00';
                     if (det) {
                         if (det.class === 'truck') lineColor = '#0000FF';
@@ -328,9 +331,12 @@ class BBoxStreamManager {
                 svgOverlay += `<rect x="${x1}" y="${y1}" width="${boxWidth}" height="${boxHeight}" fill="none" stroke="${color}" stroke-width="2"/>`;
 
                 // Draw label background and text
-                const idLabel = det.id !== undefined ? `#${det.id} ` : '';
-                const label = `${idLabel}${det.class} ${(det.confidence * 100).toFixed(0)}%`;
-                svgOverlay += `<rect x="${x1}" y="${y1 - 20}" width="140" height="20" fill="${color}" opacity="0.7"/>`;
+                const trackId = det.track_id ?? det.id;
+                const idLabel = trackId !== undefined ? `#${trackId} ` : '';
+                const lpLabel = det.license_plate ? ` [${det.license_plate}]` : '';
+                const label = `${idLabel}${det.class} ${(det.confidence * 100).toFixed(0)}%${lpLabel}`;
+                const labelWidth = Math.max(140, label.length * 8);
+                svgOverlay += `<rect x="${x1}" y="${y1 - 20}" width="${labelWidth}" height="20" fill="${color}" opacity="0.7"/>`;
                 svgOverlay += `<text x="${x1 + 5}" y="${y1 - 5}" font-family="monospace" font-size="12" fill="#000">${label}</text>`;
             }
             svgOverlay += '</svg>';

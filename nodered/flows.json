@@ -540,5 +540,45 @@
         "wires": [
             []
         ]
+    },
+    {
+        "id": "ui_tab_scenario3",
+        "type": "ui_tab",
+        "name": "Kịch bản 3: Xe Nghi Vấn",
+        "icon": "search",
+        "order": 3,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "ui_group_scenario3_main",
+        "type": "ui_group",
+        "name": "Giám Sát & Cảnh Báo",
+        "tab": "ui_tab_scenario3",
+        "order": 1,
+        "disp": true,
+        "width": "20",
+        "collapse": false
+    },
+    {
+        "id": "ui_template_scenario3",
+        "type": "ui_template",
+        "z": "f6f2187d.f17ca8",
+        "group": "ui_group_scenario3_main",
+        "name": "Scenario 3 Logic",
+        "order": 1,
+        "width": "20",
+        "height": "14",
+        "format": "<div style=\"display: flex; gap: 20px; height: 100%; color: #ccc;\">\n    <!-- LEFT -->\n    <div style=\"flex: 2; display: flex; flex-direction: column; gap: 15px;\">\n        <!-- Alert -->\n        <div id=\"alert-area\" style=\"display: none; background: #3c1414; border: 1px solid #ff4444; border-radius: 8px; padding: 15px;\">\n            <h3 style=\"margin: 0 0 10px 0; color: #ff4444;\"><i class=\"fa fa-exclamation-triangle\"></i> CẢNH BÁO XE NGHI VẤN</h3>\n            <div id=\"alert-content\" style=\"font-size: 1.2em; margin-bottom: 10px;\"></div>\n            <button id=\"btn-close-alert\" style=\"background: #555; border: none; color: white; padding: 5px 15px; cursor: pointer; border-radius: 4px;\">Đóng</button>\n        </div>\n        <!-- List -->\n        <div style=\"background: #1a1a2e; padding: 15px; border-radius: 8px; flex: 1; overflow-y: auto;\">\n            <div style=\"display: flex; justify-content: space-between; margin-bottom: 10px; border-bottom: 1px solid #333; padding-bottom: 10px;\">\n                <h3 style=\"margin:0; color:#e94560\"><i class=\"fa fa-list\"></i> Danh Sách Theo Dõi</h3>\n                <button id=\"btn-refresh\" style=\"background: #0f3460; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer;\"><i class=\"fa fa-sync\"></i> Làm mới</button>\n            </div>\n            <div id=\"list-container\">Đang tải...</div>\n        </div>\n    </div>\n    <!-- RIGHT -->\n    <div style=\"flex: 1; background: #16213e; padding: 20px; border-radius: 8px; height: fit-content;\">\n        <h3 style=\"margin-top:0; color:#4caf50\"><i class=\"fa fa-plus-circle\"></i> Thêm Mới</h3>\n        \n        <div style=\"margin-bottom: 15px;\">\n            <label style=\"display:block; color:#888; font-size:12px; margin-bottom:5px\">Biển số xe</label>\n            <input id=\"inp-plate\" placeholder=\"Ví dụ: 30A-123.45\" style=\"width:100%; padding:10px; margin-bottom:10px; background:#0f172a; color:white; border:1px solid #334155; border-radius:4px; text-transform: uppercase;\">\n        </div>\n        \n        <div style=\"margin-bottom: 15px;\">\n             <label style=\"display:block; color:#888; font-size:12px; margin-bottom:5px\">Lý do theo dõi</label>\n            <select id=\"inp-reason\" style=\"width:100%; padding:10px; margin-bottom:10px; background:#0f172a; color:white; border:1px solid #334155; border-radius:4px;\">\n                <option value=\"Vi phạm nhiều lần\">Vi phạm nhiều lần</option>\n                <option value=\"Xe mất cắp\">Xe mất cắp</option>\n                <option value=\"Đối tượng nghi vấn\">Đối tượng nghi vấn</option>\n                <option value=\"Khác\">Khác</option>\n            </select>\n        </div>\n        \n        <button id=\"btn-add\" style=\"width:100%; padding:12px; background:#4caf50; color:white; font-weight:bold; cursor:pointer; border:none; border-radius:4px;\">THÊM VÀO DANH SÁCH</button>\n        <div id=\"form-msg\" style=\"margin-top:10px; font-size: 13px; text-align: center;\"></div>\n    </div>\n</div>\n\n<script src=\"https://cdn.socket.io/4.5.4/socket.io.min.js\"></script>\n<script>\n(function(scope) {\n    const baseUrl = 'http://' + location.hostname + ':3000';\n    const apiUrl = baseUrl + '/api/tracked-vehicles';\n    const socket = io(baseUrl, {transports:['websocket','polling'], rejectUnauthorized:false});\n    \n    // UI Refs\n    const dom = {\n        list: document.getElementById('list-container'),\n        plate: document.getElementById('inp-plate'),\n        reason: document.getElementById('inp-reason'),\n        msg: document.getElementById('form-msg'),\n        alert: document.getElementById('alert-area'),\n        alertContent: document.getElementById('alert-content'),\n        btnRefresh: document.getElementById('btn-refresh'),\n        btnAdd: document.getElementById('btn-add'),\n        btnCloseAlert: document.getElementById('btn-close-alert')\n    };\n\n    scope.refreshList = function() {\n        dom.list.innerHTML = 'Đang tải...';\n        fetch(apiUrl).then(r=>r.json()).then(d=>{\n            const list = d.data || [];\n            if(list.length===0) { dom.list.innerHTML='<div style=\"text-align:center; padding:20px; color:#666\">Danh sách trống</div>'; return;}\n            dom.list.innerHTML = list.map(v=>`\n                <div style=\"display:flex; justify-content:space-between; align-items:center; padding:10px; border-bottom:1px solid #333;\">\n                    <div>\n                        <span style=\"font-weight:bold; font-family:monospace; font-size:1.1em; color:#fff; display:block\">${v.license_plate}</span>\n                        <small style=\"color:#888\">${new Date(v.createdAt).toLocaleString()}</small>\n                    </div>\n                    <div style=\"text-align:right\">\n                        <div style=\"color:#ccc; margin-bottom:5px\">${v.reason}</div>\n                        <button class=\"btn-del\" data-id=\"${v._id}\" style=\"color:#ff6b6b; background:none; border:1px solid #ff6b6b; border-radius:4px; cursor:pointer; padding:2px 8px; font-size:12px\"><i class=\"fa fa-trash\"></i> Xóa</button>\n                    </div>\n                </div>\n            `).join('');\n        }).catch(e=>dom.list.innerHTML='<div style=\"color:red\">Lỗi tải danh sách</div>');\n    };\n\n    scope.addVehicle = function() {\n        const p = dom.plate.value.trim().toUpperCase();\n        if(!p) { \n            dom.msg.textContent='Vui lòng nhập biển số'; dom.msg.style.color='red'; \n            return; \n        }\n        \n        dom.msg.textContent='Đang xử lý...';\n        dom.msg.style.color='#aaa';\n        \n        fetch(apiUrl, { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({license_plate:p, reason:dom.reason.value}) })\n        .then(r=>r.json())\n        .then(d=>{\n            if(d.success) { \n                dom.msg.textContent='Thêm thành công!'; dom.msg.style.color='green'; \n                dom.plate.value='';\n                scope.refreshList(); \n            } else { \n                dom.msg.textContent = d.message; dom.msg.style.color='red';\n            }\n        }).catch(e=> { dom.msg.textContent='Lỗi kết nối'; dom.msg.style.color='red'; });\n    };\n\n    scope.delete = function(id) {\n        if(confirm('Bạn chắc chắn muốn xóa?')) fetch(apiUrl+'/'+id, {method:'DELETE'}).then(()=>scope.refreshList());\n    };\n\n    // Event Bindings (Fixing scope issue)\n    if(dom.btnRefresh) dom.btnRefresh.addEventListener('click', scope.refreshList);\n    if(dom.btnAdd) dom.btnAdd.addEventListener('click', scope.addVehicle);\n    if(dom.btnCloseAlert) dom.btnCloseAlert.addEventListener('click', () => { dom.alert.style.display='none'; });\n    \n    // Event Delegation for Delete buttons\n    if(dom.list) dom.list.addEventListener('click', (e) => {\n        const btn = e.target.closest('.btn-del');\n        if(btn && btn.dataset.id) {\n            scope.delete(btn.dataset.id);\n        }\n    });\n\n    socket.on('tracked_vehicle_alert', d => {\n        dom.alert.style.display='block';\n        dom.alertContent.innerHTML = `<div>Phát hiện xe: <b style=\"color:#fff; font-size:1.2em\">${d.license_plate}</b></div><div>Camera: ${d.camera_id}</div><div>Lý do: ${d.reason}</div><div style=\"color:#bbb; font-size:0.9em; margin-top:5px\">${new Date(d.timestamp).toLocaleString()}</div>`;\n        let blink = true;\n        const interval = setInterval(() => {\n            dom.alert.style.borderColor = blink ? '#ff4444' : 'yellow';\n            blink = !blink;\n        }, 500);\n        setTimeout(() => clearInterval(interval), 10000);\n    });\n\n    // Init\n    scope.refreshList();\n})(scope);\n</script>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 710,
+        "y": 600,
+        "wires": [
+            []
+        ]
     }
 ]

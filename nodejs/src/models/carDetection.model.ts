@@ -20,7 +20,7 @@ export const cartDetectionSchema = new Schema(
     image_id: {
       type: Schema.Types.ObjectId,
       ref: CAMERA_IMAGE_MODEL_NAME,
-      required: true,
+      required: false, // Optional for V18+ (no image upload)
     },
 
     /* -------------------------------- Detection ------------------------------- */
@@ -42,23 +42,23 @@ export const cartDetectionSchema = new Schema(
       ],
       required: true,
     },
-    inference_time: { type: Number, required: true },
+    inference_time: { type: Number, default: 0 }, // Optional for V18
     vehicle_count: {
-      total_up: { type: Number, required: true },
-      total_down: { type: Number, required: true },
+      total_up: { type: Number, default: 0 },
+      total_down: { type: Number, default: 0 },
       by_type_up: {
-        car: { type: Number, required: true },
-        truck: { type: Number, required: true },
-        bus: { type: Number, required: true },
-        motorcycle: { type: Number, required: true },
-        bicycle: { type: Number, required: true },
+        car: { type: Number, default: 0 },
+        truck: { type: Number, default: 0 },
+        bus: { type: Number, default: 0 },
+        motorcycle: { type: Number, default: 0 },
+        bicycle: { type: Number, default: 0 },
       },
       by_type_down: {
-        car: { type: Number, required: true },
-        truck: { type: Number, required: true },
-        bus: { type: Number, required: true },
-        motorcycle: { type: Number, required: true },
-        bicycle: { type: Number, required: true },
+        car: { type: Number, default: 0 },
+        truck: { type: Number, default: 0 },
+        bus: { type: Number, default: 0 },
+        motorcycle: { type: Number, default: 0 },
+        bicycle: { type: Number, default: 0 },
       },
     },
     tracks: {
