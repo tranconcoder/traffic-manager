@@ -39,7 +39,7 @@ class FFmpegManager {
       ])
       .withNoAudio()
       .outputOptions([
-        "-preset fast",      // Better quality than ultrafast
+        "-preset ultrafast",      // Better quality than ultrafast
         "-tune zerolatency",
         "-c:v libx264",
         "-crf 23",           // Quality level (18-28, lower = better, 23 = medium)
@@ -47,16 +47,16 @@ class FFmpegManager {
         "-bufsize 4000k",
         "-vsync cfr",
         "-pix_fmt yuv420p",
-        "-g 50",
+        "-g 20",
         "-f flv",
-        "-r 25"
+        "-r 10"  // Output 15 FPS (optimized for smooth viewing)
       ])
       .output(rtmpUrl)
       .on("start", (cmd) => {
         console.log(`[FFmpeg] Started RTMP push to ${cameraId}: ${cmd}`);
         handleStart(cmd);
       })
-      .on("codecData", handleCodecData)
+      .on("codecData" as any, handleCodecData as any)
       .on("progress", handleProgress)
       .on("end", () => {
         console.log(`[FFmpeg] Ended ${cameraId}`);

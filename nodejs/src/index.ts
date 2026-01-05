@@ -14,6 +14,8 @@ import SetupHandlebars from "@/services/handlebars.service.js";
 
 // Websocket Server
 import runWebsocketService from "@/services/websocket.service.js";
+import runCameraWsService from "@/services/cameraWs.service.js";
+import runKaggleWsService from "@/services/kaggleWs.service.js";
 import { WebSocketServer } from "ws";
 
 // Services
@@ -52,23 +54,52 @@ const app = express();
 // Use createServer from http for simplicity, assuming HTTPS isn't strictly needed for internal Socket.IO
 const httpServer = createServer(app);
 
+// Legacy WebSocket Server (backward compatible with old Kaggle)
 const wss = new WebSocketServer({
-  noServer: true, // Handle upgrade manually to avoid conflict with Socket.IO
-  // server: httpWs,
-  maxPayload: 102400 * 1024, // Example payload limit
+  noServer: true,
+  maxPayload: 102400 * 1024,
 });
 
-// Handle upgrade manually
+// V2 WebSocket Servers with dedicated paths
+const cameraWss = new WebSocketServer({
+  noServer: true,
+  maxPayload: 102400 * 1024,
+});
+
+const kaggleWss = new WebSocketServer({
+  noServer: true,
+  maxPayload: 10 * 1024 * 1024, // 10MB for JSON results
+});
+
+// Handle upgrade manually with path routing
 httpServer.on('upgrade', (request, socket, head) => {
   const parsedUrl = url.parse(request.url || '', true);
   const pathname = parsedUrl.pathname;
 
-  // Let Socket.IO handle /socket.io requests (it attaches its own listener)
+  console.log(`[WS Upgrade] Path: ${pathname}`);
+
+  // Let Socket.IO handle /socket.io requests
   if (pathname && pathname.startsWith('/socket.io/')) {
     return;
   }
 
-  // Handle native WebSocket requests (e.g. from Python /?cameraId=...)
+  // V2: Camera WebSocket (/ws/camera)
+  if (pathname === '/ws/camera') {
+    cameraWss.handleUpgrade(request, socket, head, (ws) => {
+      cameraWss.emit('connection', ws, request);
+    });
+    return;
+  }
+
+  // V2: Kaggle WebSocket (/ws/kaggle)
+  if (pathname === '/ws/kaggle') {
+    kaggleWss.handleUpgrade(request, socket, head, (ws) => {
+      kaggleWss.emit('connection', ws, request);
+    });
+    return;
+  }
+
+  // Legacy: Handle /? or root path (backward compatible)
   wss.handleUpgrade(request, socket, head, (ws) => {
     wss.emit('connection', ws, request);
   });
@@ -141,8 +172,13 @@ handleRoute(app);
 //
 // RUN SERVICES
 //
-// Websocket (Camera → FFmpeg)
+// Legacy Websocket (backward compatible with old Kaggle)
 runWebsocketService(wss, HOST, PORT);
+
+// V2 Websocket Services (new paths)
+runCameraWsService(cameraWss);   // Path: /ws/camera
+runKaggleWsService(kaggleWss);   // Path: /ws/kaggle
+
 // MQTT
 runMqttService();
 

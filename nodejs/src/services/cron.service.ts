@@ -6,7 +6,10 @@ import mongoose from "mongoose";
 
 export default new (class CronService {
   startAllJobs() {
-    this.startTrafficStatisticsJob();
+    // Disabled: Traffic statistics are now updated realtime via WebSocket
+    // when new_crossings are received from Kaggle
+    // this.startTrafficStatisticsJob();
+    console.log('[CronService] Traffic statistics cron job disabled - using realtime updates');
   }
 
   /* ---------------------------------------------------------- */

@@ -22,7 +22,11 @@ await client.connect();
 /*                                  Services                                  */
 /* -------------------------------------------------------------------------- */
 
-// Image Caching (Images of the last 1 minute)
+// Image Caching - Retention: 3 seconds, Max: 30 images per camera
+// WARNING: Giữ thời gian retention ngắn để tránh tràn RAM!
+const IMAGE_RETENTION_MS = 3000; // 3 giây
+const MAX_IMAGES_PER_CAMERA = 30; // Giới hạn số ảnh tối đa trong Redis
+
 export const pushImage = async (cameraId: string, imageData: any) => {
     try {
         const key = `camera_images_v2:${cameraId}`;
@@ -32,8 +36,17 @@ export const pushImage = async (cameraId: string, imageData: any) => {
         // Add to sorted set with timestamp as score
         await client.zAdd(key, { score, value });
 
-        // Remove images older than 1 minute (60000 ms)
-        await client.zRemRangeByScore(key, "-inf", score - 60000);
+        // Remove images older than retention time
+        await client.zRemRangeByScore(key, "-inf", score - IMAGE_RETENTION_MS);
+
+        // ALSO limit by count - keep only newest MAX_IMAGES_PER_CAMERA images
+        // zRemRangeByRank removes from start (oldest) to specified index
+        const count = await client.zCard(key);
+        if (count > MAX_IMAGES_PER_CAMERA) {
+            // Remove oldest images to keep only MAX_IMAGES_PER_CAMERA
+            await client.zRemRangeByRank(key, 0, count - MAX_IMAGES_PER_CAMERA - 1);
+            console.log(`[Redis][DEBUG] Trimmed camera ${cameraId.slice(-4)} images: ${count} -> ${MAX_IMAGES_PER_CAMERA}`);
+        }
     } catch (error) {
         console.error("Redis pushImage error:", error);
     }

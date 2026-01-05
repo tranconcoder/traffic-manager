@@ -40,9 +40,6 @@ export function runSocketIOService(server: HTTPServer): SocketIOServer {
     /* -------------------- Set 'traffic_light' event handler ------------------- */
     socket.on("traffic_light", handleEvent("traffic_light").bind(socket));
 
-    /* -------------------- Set 'car_detected' event handler -------------------- */
-    socket.on("car_detected", handleEvent("car_detected").bind(socket));
-
     /* ----------------- Set 'violation_license_plate' event handler ------------- */
     socket.on(
       "violation_license_plate",

@@ -693,10 +693,9 @@
         const cam = allCameras.find(c => c._id === cameraId);
         const apiKey = cam ? cam.camera_api_key : 'default_key'; // Fallback or handle error
 
-        // Assuming WS server on port 3000 (default env)
-        // You might need to expose WS port to frontend via API or env
+        // V2: Using /ws/camera path for new camera WebSocket
         const wsPort = 3000;
-        const wsUrl = `ws://${window.location.hostname}:${wsPort}?cameraId=${cameraId}&apiKey=${apiKey}`;
+        const wsUrl = `ws://${window.location.hostname}:${wsPort}/ws/camera?cameraId=${cameraId}&apiKey=${apiKey}`;
 
         ws = new WebSocket(wsUrl);
         ws.onopen = () => {

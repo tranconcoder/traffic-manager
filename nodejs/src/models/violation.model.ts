@@ -30,12 +30,22 @@ export const violationLicensePlateSchema = new Schema({
     violation_status: {
         type: String,
         required: true,
+        default: ViolationStatus.PENDING, // Default status
         enum: Object.values(ViolationStatus),
     },
     image_buffer: {
         type: Buffer,
-        required: true,
+        required: false, // Make optional for Kaggle V2
     },
+    bbox: {
+        x1: Number,
+        y1: Number,
+        x2: Number,
+        y2: Number,
+        width: Number,
+        height: Number
+    },
+    confidence: Number,
     video_frames: [{
         timestamp: Date,
         image: Buffer

@@ -35,8 +35,8 @@ export const cartDetectionSchema = new Schema(
             y1: { type: Number, required: true },
             x2: { type: Number, required: true },
             y2: { type: Number, required: true },
-            width: { type: Number, required: true },
-            height: { type: Number, required: true },
+            width: { type: Number },  // Optional - can be calculated from x2-x1
+            height: { type: Number }, // Optional - can be calculated from y2-y1
           },
         },
       ],

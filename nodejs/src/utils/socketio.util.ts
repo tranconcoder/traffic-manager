@@ -1,10 +1,11 @@
-import { TrafficViolation } from "@/enums/trafficViolation.enum.js";
+// NOTE: car_detected handling đã được di chuyển sang websocket.service.ts
+// để tránh memory leak do circular emit loop
+
 import cameraModel from "@/models/camera.model.js";
 import cameraImageModel from "@/models/cameraImage.model.js";
-import carDetectionModel from "@/models/carDetection.model.js";
 import licensePlateDetectedModel from "@/models/licensePlateDetected.model.js";
 import trafficLightModel from "@/models/trafficLight.model.js";
-import { getRecentImages, pushImage, setTrafficLightStatus } from "@/services/redis.service.js";
+import { pushImage, setTrafficLightStatus } from "@/services/redis.service.js";
 import violationService from "@/services/violation.service.js";
 import { websocketAnalytics } from "@/services/websocketAnalytics.service.js";
 import { Types } from "mongoose";
@@ -25,7 +26,7 @@ const strategy = {
   /* ------------------------------ Event handler ----------------------------- */
   image: handleImageEvent,
   traffic_light: handleTrafficLightEvent,
-  car_detected: handleCarDetectedEvent,
+  // NOTE: car_detected đã được di chuyển sang websocket.service.ts để tránh memory leak
   violation_license_plate: handleViolationLicensePlateEvent,
 };
 
@@ -282,104 +283,10 @@ export async function handleTrafficLightEvent(this: Socket, data: any) {
   });
 }
 
-/* -------------------------------------------------------------------------- */
-/*                      Handle 'car_detected' event handler                      */
-/* -------------------------------------------------------------------------- */
-export async function handleCarDetectedEvent(this: Socket, data: any) {
-  const socket = this;
 
-  // Forward vehicle detection data to all clients with original event name
-  socket.broadcast.emit("car_detected", data);
-  socket.emit("car_detected", data); // Send back to sender
+// NOTE: handleCarDetectedEvent đã được xóa vì logic đã được di chuyển sang websocket.service.ts
+// Việc gọi socket.broadcast.emit("car_detected") từ đây gây memory leak do circular emit loop
 
-  try {
-    const camera = await cameraModel.findById(data.camera_id);
-    if (!camera) throw new Error("Not found camera!");
-
-    // Fetch from Redis (using recent 1-minute buffer)
-    const recentImages = await getRecentImages(data.camera_id);
-
-    // Find the specific image frame for this detection
-    // Try matching by ID first, then fallback to timestamp
-    const redisImage = recentImages.find((img: any) =>
-      (data.image_id && img.imageId === data.image_id) ||
-      (img.created_at === data.created_at)
-    );
-
-    let cameraImageBuffer: Buffer | null = null;
-    if (!redisImage) {
-      console.warn(`[Car Detection] Image frame not found in Redis cache (ID: ${data.image_id}). Proceeding without image buffer.`);
-    } else {
-      // Restore Buffer
-      if (redisImage.image && redisImage.image.type === 'Buffer') {
-        cameraImageBuffer = Buffer.from(redisImage.image.data);
-      } else if (Array.isArray(redisImage.image?.data)) {
-        cameraImageBuffer = Buffer.from(redisImage.image.data);
-      } else if (redisImage.image) {
-        cameraImageBuffer = Buffer.from(redisImage.image);
-      }
-    }
-
-    // Detect Red Light Violations (Optimized to check Redis for traffic light)
-    const redLightViolations = await violationService.detectRedLightViolation(
-      data,
-      camera
-    );
-
-    // Detect Lane Encroachment
-    const laneViolations = await violationService.laneEncroachment(
-      data.detections,
-      data.image_dimensions,
-      camera
-    );
-
-    const carDetectionResult = await carDetectionModel
-      .create({
-        camera_id: data.camera_id,
-        image_id: data.image_id,
-        created_at: data.created_at,
-        detections: data.detections,
-        inference_time: data.inference_time,
-        image_dimensions: data.image_dimensions,
-        vehicle_count: data.vehicle_count,
-        tracks: data.tracks,
-        new_crossings: data.new_crossings,
-      })
-      .catch((error) => {
-        console.error("[Car Detection] Error creating record:", error);
-        return null;
-      });
-
-    // Process violations if any
-    const violations = [
-      ...redLightViolations.map((id) => ({
-        id,
-        type: TrafficViolation.RED_LIGHT_VIOLATION,
-      })),
-      ...laneViolations.map((id) => ({
-        id,
-        type: TrafficViolation.LANE_ENCROACHMENT,
-      })),
-    ];
-
-    if (violations.length > 0) {
-      socket.broadcast.emit("violation_detect", {
-        camera_id: data.camera_id,
-        image_id: data.image_id,
-        violations,
-        buffer: cameraImageBuffer, // Send the high-quality buffer from Redis
-        detections: data.detections,
-      });
-    }
-
-    if (carDetectionResult)
-      console.log("[Car Detection] Record created successfully");
-    if (violations.length > 0)
-      console.log(`[Violations] Detected ${violations.length} violations`);
-  } catch (error: any) {
-    console.error("[Car Detection] Error processing event:", error);
-  }
-}
 
 /* -------------------------------------------------------------------------- */
 /*                Handle 'violation_license_plate' event handler              */
